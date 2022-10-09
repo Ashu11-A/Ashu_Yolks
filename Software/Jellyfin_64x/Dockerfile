@@ -12,13 +12,6 @@ RUN         apt update -y \
             && apt install -y aspnetcore-runtime-6.0 libgdiplus
 
 
-ENV          DEBIAN_FRONTEND noninteractive
-
-RUN          useradd -m -d /home/container -s /bin/bash container
-
-RUN          ln -s /home/container/ /nonexistent
-
-ENV          USER=container HOME=/home/container
 
 ## Update base packages
 RUN          apt update \
