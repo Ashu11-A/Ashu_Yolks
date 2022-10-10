@@ -71,7 +71,7 @@ RUN          apt update \
 ## Install dependencies
 RUN          apt install -y git wget curl tar zip unzip binutils xz-utils cabextract iproute2 net-tools netcat telnet \
              icu-devtools sqlite3 locales ffmpeg gnupg2 apt-transport-https software-properties-common ca-certificates \
-             tzdata libsqlite3-0 libfontconfig1 libfreetype6
+             tzdata libsqlite3-0 libfontconfig1 libfreetype6 fuse
 
 RUN          apt install curl gnupg \
              && curl -fsSL https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/jellyfin.gpg \
