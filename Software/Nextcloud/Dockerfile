@@ -93,6 +93,12 @@ RUN echo "**** Instalação dos PHP ****" && \
 #  rm -rf \
 #    /tmp/*
 
+ADD cron_nextcloud.txt /cron_nextcloud.txt
+ADD script.sh /script.sh
+COPY entry.sh /entry.sh
+RUN chmod 755 /script.sh /entry.sh
+RUN /usr/bin/crontab /crontab.txt
+
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 USER container

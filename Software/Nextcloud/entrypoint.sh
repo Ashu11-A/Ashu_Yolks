@@ -1,5 +1,8 @@
-#!/bin/bash
+#!/bin/ash
 sleep 1
+
+# start cron
+/usr/sbin/crond -f -l 8
 
 cd /home/container
 
