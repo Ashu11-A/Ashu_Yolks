@@ -2,7 +2,8 @@
 sleep 1
 
 # start cron
-/usr/sbin/crond -f -l 8
+echo "*/5  *  *  *  * php -f /var/www/nextcloud/cron.php" >> /etc/crontabs/root
+crond -l 2 -f > /dev/stdout 2> /dev/stderr &
 
 cd /home/container
 
