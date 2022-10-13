@@ -79,19 +79,19 @@ RUN echo "**** Instalação dos PHP ****" && \
     php8-iconv \
     php8-tokenizer
 
-RUN  echo "**** compile smbclient ****" && \
-  git clone https://github.com/eduardok/libsmbclient-php.git /tmp/smbclient && \
-  cd /tmp/smbclient && \
-  phpize8 && \
-  ./configure \
-    --with-php-config=/usr/bin/php-config8 && \
-  make && \
-  make install && \
-  echo "**** cleanup ****" && \
-  apk del --purge \
-    build-dependencies && \
-  rm -rf \
-    /tmp/*
+#RUN  echo "**** compile smbclient ****" && \
+#  git clone https://github.com/eduardok/libsmbclient-php.git /tmp/smbclient && \
+#  cd /tmp/smbclient && \
+#  phpize8 && \
+#  ./configure \
+#    --with-php-config=/usr/bin/php-config8 && \
+#  make && \
+#  make install && \
+#  echo "**** cleanup ****" && \
+#  apk del --purge \
+#    build-dependencies && \
+#  rm -rf \
+#    /tmp/*
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
