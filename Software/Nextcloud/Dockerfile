@@ -97,7 +97,7 @@ ADD cron_nextcloud /cron_nextcloud
 ADD script.sh /script.sh
 COPY entry.sh /entry.sh
 RUN chmod 755 /script.sh /entry.sh
-RUN /usr/bin/crontab /crontab.txt
+RUN /usr/bin/crontab /cron_nextcloud
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
