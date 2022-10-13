@@ -93,7 +93,7 @@ RUN echo "**** Instalação dos PHP ****" && \
 #  rm -rf \
 #    /tmp/*
 
-ADD cron_nextcloud.txt /cron_nextcloud.txt
+ADD cron_nextcloud /cron_nextcloud
 ADD script.sh /script.sh
 COPY entry.sh /entry.sh
 RUN chmod 755 /script.sh /entry.sh
