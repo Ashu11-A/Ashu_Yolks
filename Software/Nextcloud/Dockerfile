@@ -86,7 +86,12 @@ RUN  echo "**** compile smbclient ****" && \
   ./configure \
     --with-php-config=/usr/bin/php-config8 && \
   make && \
-  make install
+  make install && \
+  echo "**** cleanup ****" && \
+  apk del --purge \
+    build-dependencies && \
+  rm -rf \
+    /tmp/*
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
