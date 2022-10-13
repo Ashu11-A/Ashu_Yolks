@@ -93,11 +93,6 @@ RUN echo "**** Instalação dos PHP ****" && \
 #  rm -rf \
 #    /tmp/*
 
-ADD cron_nextcloud /cron_nextcloud
-ADD script.sh /script.sh
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod 755 /script.sh /entrypoint.sh
-RUN /usr/bin/crontab /cron_nextcloud
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
@@ -107,5 +102,6 @@ ENV HOME /home/container
 
 WORKDIR /home/container
 
+COPY ./entrypoint.sh /entrypoint.sh
 
 CMD ["/bin/ash", "/entrypoint.sh"]

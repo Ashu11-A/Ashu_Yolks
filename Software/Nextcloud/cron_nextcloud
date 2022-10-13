@@ -1,2 +1,0 @@
-*/5  *  *  *  * php -f /home/container/nextcloud/cron.php
-*/30 * * * * /script.sh >> /home/container/logs/script.log
