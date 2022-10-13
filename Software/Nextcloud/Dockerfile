@@ -86,7 +86,7 @@ RUN  echo "**** compile smbclient ****" && \
   ./configure \
     --with-php-config=/usr/bin/php-config8 && \
   make && \
-  make install &&
+  make install
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
