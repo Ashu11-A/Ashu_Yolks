@@ -1,5 +1,42 @@
+FROM ghcr.io/parkervcp/yolks:debian AS build
+
+COPY run-test.sh /run-test.sh
+RUN chmod 777 run-test.sh
+# Install dependencies
+RUN \
+  apt update -y && \
+  apt upgrade -y && \
+  apt install -y \
+    alpine-sdk \
+    build-base  \
+    tcl-dev \
+    tk-dev \
+    mesa-dev \
+    jpeg-dev \
+    libjpeg-turbo-dev
+
+# Download latest release
+RUN \
+  wget \
+    -O sqlite.tar.gz \
+    https://www.sqlite.org/src/tarball/sqlite.tar.gz?r=release && \
+  tar xvfz sqlite.tar.gz
+
+# Configure and make SQLite3 binary
+RUN \
+  ./sqlite/configure --prefix=/usr && \
+  make && \
+  make install \
+  && \
+  # Smoke test
+  sqlite3 --version && \
+  /run-test.sh
+
 FROM ghcr.io/parkervcp/yolks:debian
 
+COPY --from=build /usr/bin/sqlite3 /usr/bin/sqlite3
+
+ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 ENV         DEBIAN_FRONTEND noninteractive
 
 RUN         apt update -y \
