@@ -1,40 +1,4 @@
-FROM ghcr.io/parkervcp/yolks:debian AS build
-
-COPY run-test.sh /run-test.sh
-RUN chmod 777 run-test.sh
-# Install dependencies
-RUN \
-  apt update -y && \
-  apt upgrade -y && \
-  apt install -y \
-    alpine-sdk \
-    build-base  \
-    tcl-dev \
-    tk-dev \
-    mesa-dev \
-    jpeg-dev \
-    libjpeg-turbo-dev
-
-# Download latest release
-RUN \
-  wget \
-    -O sqlite.tar.gz \
-    https://www.sqlite.org/src/tarball/sqlite.tar.gz?r=release && \
-  tar xvfz sqlite.tar.gz
-
-# Configure and make SQLite3 binary
-RUN \
-  ./sqlite/configure --prefix=/usr && \
-  make && \
-  make install \
-  && \
-  # Smoke test
-  sqlite3 --version && \
-  /run-test.sh
-
-FROM ghcr.io/parkervcp/yolks:debian
-
-COPY --from=build /usr/bin/sqlite3 /usr/bin/sqlite3
+FROM debian:latest
 
 ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 ENV         DEBIAN_FRONTEND noninteractive
@@ -75,15 +39,24 @@ RUN \
     /var/tmp/*
 
 ## Install dependencies
-RUN	     apt update && apt upgrade -y
+RUN          apt update && apt upgrade -y
 RUN          apt install -y git wget curl tar zip unzip binutils xz-utils cabextract iproute2 net-tools netcat telnet \
              icu-devtools sqlite3 locales ffmpeg gnupg2 apt-transport-https software-properties-common ca-certificates \
              tzdata libsqlite3-0 libfontconfig1 libfreetype6 libsqlite3-dev
 
+RUN apt install -y build-essential
+
+RUN wget https://www.sqlite.org/2022/sqlite-autoconf-3390400.tar.gz && \
+    mkdir SQLite && cd SQLite && \
+    tar xvfz ../sqlite-autoconf-3390400.tar.gz && cd sqlite-autoconf-3390400 && \
+    ./configure && \
+    make && \
+    make install && \
+    sqlite3 --version
+
 ## Configure locale
 RUN          update-locale lang=en_US.UTF-8 \
              && dpkg-reconfigure --frontend noninteractive locales
-
 
 WORKDIR     /home/container
 
