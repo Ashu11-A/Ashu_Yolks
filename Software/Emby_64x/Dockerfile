@@ -3,17 +3,6 @@ FROM debian:latest
 ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility"
 ENV         DEBIAN_FRONTEND noninteractive
 
-RUN         apt update -y \
-            && apt upgrade -y \
-            && apt install -y apt-transport-https wget iproute2 \
-            && wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
-            && dpkg -i packages-microsoft-prod.deb \
-            && rm packages-microsoft-prod.deb \
-            && apt update -y \
-            && apt install -y aspnetcore-runtime-6.0 libgdiplus
-
-
-
 ## Update base packages
 RUN          apt update \
              && apt upgrade -y
@@ -53,6 +42,16 @@ RUN wget https://www.sqlite.org/2022/sqlite-autoconf-3390400.tar.gz && \
     make && \
     make install && \
     sqlite3 --version
+
+
+RUN         apt update -y \
+            && apt upgrade -y \
+            && apt install -y apt-transport-https wget iproute2 \
+            && wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+            && dpkg -i packages-microsoft-prod.deb \
+            && rm packages-microsoft-prod.deb \
+            && apt update -y \
+            && apt install -y aspnetcore-runtime-6.0 libgdiplus
 
 ## Configure locale
 RUN          update-locale lang=en_US.UTF-8 \
