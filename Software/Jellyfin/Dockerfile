@@ -1,40 +1,27 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:6.0.9-jammy
+FROM $REPO:6.0.10-bullseye-slim
 
 ENV         DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 
 ENV         DEBIAN_FRONTEND noninteractive
 
-RUN         dpkg --configure -a
+ENV          DEBIAN_FRONTEND noninteractive
 
-RUN         apt clean
+RUN          useradd -m -d /home/container -s /bin/bash container
 
-RUN         apt --fix-missing update
+RUN          ln -s /home/container/ /nonexistent
 
-RUN         apt update -y
+ENV          USER=container HOME=/home/container
 
-RUN         apt -f install
+## Update base packages
+RUN          apt update \
+             && apt upgrade -y
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+    && apt-get install -y --no-install-recommends -y --no-install-recommends \
         curl \
         git \
-        wget \
-        libsdl2-dev \
-        libc6 \
-        libgcc1 \
-        libgssapi-krb5-2 \
-        libstdc++6 \
-        zlib1g \
-        iproute2 \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN         apt upgrade -y
-
-RUN         apt install -y wget
-
-RUN         wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh \
-            && bash dotnet-install.sh
+        gnupg gnupg1 gnupg2
 
 
 ENV          DEBIAN_FRONTEND noninteractive
@@ -50,15 +37,30 @@ RUN          apt update \
              && apt upgrade -y
 
 ## Install dependencies
-RUN          apt install -y git wget curl tar zip unzip binutils xz-utils cabextract iproute2 net-tools netcat telnet \
-             icu-devtools sqlite3 locales ffmpeg gnupg2 apt-transport-https software-properties-common ca-certificates \
-             tzdata libsqlite3-0 libfontconfig1 libfreetype6
+RUN          apt install -y git wget curl ffmpeg
 
 RUN          apt install curl gnupg \
              && curl -fsSL https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/jellyfin.gpg \
              && echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release ) $( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release ) main" | tee /etc/apt/sources.list.d/jellyfin.list \
              && apt update \
              && apt install jellyfin-ffmpeg
+
+RUN      dpkg --configure -a && \
+         apt clean && \
+         apt --fix-missing update && \
+         apt -f install && \
+         apt upgrade -y
+
+
+RUN         wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh \
+            && bash dotnet-install.sh
+
+RUN   echo "**** cleanup ****" && \
+  rm -rf \
+    /tmp/* \
+    /var/lib/apt/lists/* \
+    /var/tmp/*
+
 
 
 ## Configure locale
