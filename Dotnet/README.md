@@ -9,6 +9,8 @@ It might take a while to build all 3 images. After that the same image should be
 1 # in AMD64 or ARM environment
 
 2 docker run --rm <docker user>/<repo>:<tag>
+  
+  
 EDIT: When there’s some strange errors with buildx such as
 
 1 #8 23.71 Error while loading /usr/sbin/dpkg-split: No such file or directory       
@@ -17,6 +19,8 @@ EDIT: When there’s some strange errors with buildx such as
 
 3 #13 0.187 Can't open perl script "adduser": No such file or directory             
 
+  
+  
 A potential fix is a set of commands
 
 1 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
