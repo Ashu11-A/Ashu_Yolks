@@ -3,8 +3,6 @@ FROM $REPO:6.0.10-bullseye-slim
 
 ENV         DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 
-ENV         DEBIAN_FRONTEND noninteractive
-
 ENV          DEBIAN_FRONTEND noninteractive
 
 RUN          useradd -m -d /home/container -s /bin/bash container
