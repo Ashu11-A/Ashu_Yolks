@@ -1,5 +1,5 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:6.0.9-jammy
+FROM $REPO:6.0.10-bullseye-slim
 
 ENV         DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 
@@ -19,23 +19,20 @@ RUN          apt update \
 
 RUN \
   echo "**** install packages ****" && \
-  apt-get update && \
   apt-get install -y \
     cpio \
     jq \
-    rpm2cpio
+    rpm2cpio && \
+    apt-get update && apt-get install -y --no-install-recommends \
+        curl \
+        git \
+        gnupg gnupg1 gnupg2
 
 RUN \
   echo "**** install packages ****" && \
-  apt-get update && \
   apt-get install -y --no-install-recommends \
     mesa-va-drivers \
-    netcat && \
-  echo "**** cleanup ****" && \
-  rm -rf \
-    /tmp/* \
-    /var/lib/apt/lists/* \
-    /var/tmp/*
+    netcat
 
 RUN \
   echo "**** add emby deps *****" && \
@@ -44,61 +41,41 @@ RUN \
   apt-get update && apt full-upgrade &&  apt -f install && \
   apt-get install -y --no-install-recommends \
     libomxil-bellagio0 \
-    libomxil-bellagio-bin \
-    netcat && \
-  echo "**** cleanup ****" && \
+    libomxil-bellagio-bin
+
+## Install dependencies
+RUN          apt update && apt upgrade -y && \
+             apt install -y --no-install-recommends wget tar  \
+             sqlite3 locales ffmpeg  \
+             tzdata libsqlite3-0 libfontconfig1 libfreetype6 libsqlite3-dev
+
+RUN apt install -y build-essential && \
+    wget https://www.sqlite.org/2022/sqlite-autoconf-3390400.tar.gz && \
+    mkdir SQLite && cd SQLite && \
+    tar xvfz ../sqlite-autoconf-3390400.tar.gz && rm ../sqlite-autoconf-3390400.tar.gz && cd sqlite-autoconf-3390400 && \
+    ./configure && \
+    make && \
+    make install && \
+    rm -rf ../sqlite-autoconf-3390400 && \
+    sqlite3 --version &&  \
+    apt autoremove -y build-essential && \
+    apt remove -y build-essential
+
+RUN      dpkg --configure -a && \
+         apt clean && \
+         apt --fix-missing update && \
+         apt -f install && \
+         apt upgrade -y
+
+
+RUN         wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh \
+            && bash dotnet-install.sh
+
+RUN   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/* \
     /var/lib/apt/lists/* \
     /var/tmp/*
-
-## Install dependencies
-RUN          apt update && apt upgrade -y
-RUN          apt install -y git wget curl tar zip unzip binutils xz-utils cabextract iproute2 net-tools netcat telnet \
-             icu-devtools sqlite3 locales ffmpeg gnupg2 apt-transport-https software-properties-common ca-certificates \
-             tzdata libsqlite3-0 libfontconfig1 libfreetype6 libsqlite3-dev
-             
-RUN apt install -y build-essential
-
-RUN wget https://www.sqlite.org/2022/sqlite-autoconf-3390400.tar.gz && \
-    mkdir SQLite && cd SQLite && \
-    tar xvfz ../sqlite-autoconf-3390400.tar.gz && cd sqlite-autoconf-3390400 && \
-    ./configure && \
-    make && \
-    make install && \
-    sqlite3 --version
-             
-RUN         dpkg --configure -a
-
-RUN         apt clean
-
-RUN         apt --fix-missing update
-
-RUN         apt update -y
-
-RUN         apt -f install
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        curl \
-        git \
-        wget \
-        libsdl2-dev \
-        libc6 \
-        libgcc1 \
-        libgssapi-krb5-2 \
-        libstdc++6 \
-        zlib1g \
-        iproute2 \
-        gnupg gnupg1 gnupg2 \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN         apt upgrade -y
-
-RUN         apt install -y wget
-
-RUN         wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh \
-            && bash dotnet-install.sh
 
 ## Configure locale
 RUN          update-locale lang=en_US.UTF-8 \
