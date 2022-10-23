@@ -33,17 +33,18 @@ RUN apt-get update \
         gnupg2 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "amd64" || echo "arm64") && \
-    curl -fSL --output dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/$DOTNET_SDK_VERSION/dotnet-sdk-$DOTNET_SDK_VERSION-linux-$ARCH.tar.gz \
-    && dotnet_sha512='8c05f9e02e0a48fcc3e4534fa7225fe5b974c07f1a4788c46207e18e94031194e1c881e40452ee6c432764e92331c50ae47305d4aec5afa363fab3a8a6727cdf' \
-    && echo "$dotnet_sha512  dotnet.tar.gz" | sha512sum -c - \
+RUN if [[ $(uname -m) == 'x86_64' ]]; then \
+    curl -fSL --output dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/$DOTNET_SDK_VERSION/dotnet-sdk-$DOTNET_SDK_VERSION-linux-x64.tar.gz \
+        ; else \
+        curl -fSL --output dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/$DOTNET_SDK_VERSION/dotnet-sdk-$DOTNET_SDK_VERSION-linux-arm64.tar.gz \
+        ; fi \
     && mkdir -p /usr/share/dotnet \
     && tar -oxzf dotnet.tar.gz -C /usr/share/dotnet ./packs ./sdk ./sdk-manifests ./templates ./LICENSE.txt ./ThirdPartyNotices.txt \
     && rm dotnet.tar.gz \
     # Trigger first run experience by running arbitrary cmd
     && dotnet help
 
-RUN ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "amd64" || echo "arm64") && \
+RUN ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "x64" || echo "arm64") && \
     powershell_version=7.2.6 \
     && curl -fSL --output PowerShell.Linux.$ARCH.$powershell_version.nupkg https://pwshtool.blob.core.windows.net/tool/$powershell_version/PowerShell.Linux.$ARCH.$powershell_version.nupkg \
     && powershell_sha512='1ba4406e51f428e34c89c7e669ac942f64a11de056b25a04054e4955833bae862ea5f5c1993183c081f1e80a2cdc0d6a48e282a01a0c9dbe47dba97b64d7e919' \
@@ -70,7 +71,7 @@ ENV          USER=container HOME=/home/container
 RUN          apt update \
              && apt upgrade -y
 
-RUN \
+RUN if [[ $(uname -m) == 'arm64' ]]; then \
   echo "**** add emby deps *****" && \
   curl -s https://keyserver.ubuntu.com/pks/lookup?op=get\&search=0x6587ffd6536b8826e88a62547876ae518cbcf2f2 | apt-key add - && \
   echo "deb http://ppa.launchpad.net/ubuntu-raspi2/ppa-nightly/ubuntu focal main">> /etc/apt/sources.list.d/raspbins.list && \
@@ -79,12 +80,7 @@ RUN \
     libomxil-bellagio0 \
     libomxil-bellagio-bin \
     libraspberrypi0 \
-    netcat && \
-  echo "**** cleanup ****" && \
-  rm -rf \
-    /tmp/* \
-    /var/lib/apt/lists/* \
-    /var/tmp/*
+       ; fi
 
 ## Install dependencies
 RUN apt update && apt install -y build-essential wget && \
@@ -101,7 +97,7 @@ RUN apt update && apt install -y build-essential wget && \
 
 RUN          apt update && apt upgrade -y && \
              apt install -y --no-install-recommends wget tar  \
-             sqlite3 locales ffmpeg  \
+             sqlite3 locales ffmpeg netcat \
              tzdata libsqlite3-0 libfontconfig1 libfreetype6 libsqlite3-dev
 
 RUN      dpkg --configure -a && \
