@@ -1,5 +1,6 @@
 Crie imagens do Docker de vários arcos no Ubuntu Linux
 
+
 This can be tested with the default docker build command just to iron out any error before going into multi-arch. The buildx command will be like
 
 1 docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t <docker user>/<repo>:<tag> .
