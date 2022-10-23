@@ -27,6 +27,7 @@ RUN apt-get update \
         libstdc++6 \
         zlib1g \
         iproute2 \
+        gnupg gnupg1 gnupg2 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN         apt upgrade -y
