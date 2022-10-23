@@ -3,11 +3,7 @@ FROM $REPO:6.0.10-bullseye-slim
 
 ENV         DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 
-ENV         DEBIAN_FRONTEND noninteractive
-
 ENV          DEBIAN_FRONTEND noninteractive
-
-RUN          useradd -m -d /home/container -s /bin/bash container
 
 RUN          ln -s /home/container/ /nonexistent
 
@@ -18,10 +14,8 @@ RUN          apt update \
              && apt upgrade -y
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends -y --no-install-recommends \
-        curl \
-        git \
-        gnupg gnupg1 gnupg2
+    && apt-get install -y --no-install-recommends -y \
+         wget ffmpeg locales
 
 
 ENV          DEBIAN_FRONTEND noninteractive
@@ -32,18 +26,11 @@ RUN          ln -s /home/container/ /nonexistent
 
 ENV          USER=container HOME=/home/container
 
-## Update base packages
-RUN          apt update \
-             && apt upgrade -y
-
-## Install dependencies
-RUN          apt install -y git wget curl ffmpeg
-
-RUN          apt install curl gnupg \
+RUN          apt install -y curl gnupg \
              && curl -fsSL https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/jellyfin.gpg \
              && echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release ) $( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release ) main" | tee /etc/apt/sources.list.d/jellyfin.list \
              && apt update \
-             && apt install jellyfin-ffmpeg
+             && apt install -y jellyfin-ffmpeg
 
 RUN      dpkg --configure -a && \
          apt clean && \
