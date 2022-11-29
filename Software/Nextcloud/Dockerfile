@@ -35,49 +35,49 @@ RUN  apk add --no-cache --upgrade \
 
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
-    php8 \
-    php8-apcu \
-    php8-ctype \
-    php8-json \
-    php8-posix \
-    php8-zlib \
-    php8-fileinfo \
-    php8-ftp \
-    php8-redis \
-    php8-pcntl \
-    php8-phar \
-    php8-dev \
-    php8-fpm \
-    php8-dom \
-    php8-xml \
-    php8-simplexml \
-    php8-mbstring \
-    php8-xmlwriter \
-    php8-xmlreader \
-    php8-pdo_mysql \
-    php8-mysqli \
-    php8-bcmath \
-    php8-bz2 \
-    php8-curl \
-    php8-gd \
-    php8-opcache \
-    php8-gmp \
-    php8-imap \
-    php8-intl \
-    php8-ldap \
-    php8-sodium \
-    php8-zip \
-    php8 \
-    php8-exif \
-    php8-session \
-    php8-soap \
-    php8-openssl \
-    php8-pdo_odbc \
-    php8-pdo \
-    php8-odbc \
-    php8-gettext \
-    php8-iconv \
-    php8-tokenizer
+    php8.1 \
+    php8.1-apcu \
+    php8.1-ctype \
+    php8.1-json \
+    php8.1-posix \
+    php8.1-zlib \
+    php8.1-fileinfo \
+    php8.1-ftp \
+    php8.1-redis \
+    php8.1-pcntl \
+    php8.1-phar \
+    php8.1-dev \
+    php8.1-fpm \
+    php8.1-dom \
+    php8.1-xml \
+    php8.1-simplexml \
+    php8.1-mbstring \
+    php8.1-xmlwriter \
+    php8.1-xmlreader \
+    php8.1-pdo_mysql \
+    php8.1-mysqli \
+    php8.1-bcmath \
+    php8.1-bz2 \
+    php8.1-curl \
+    php8.1-gd \
+    php8.1-opcache \
+    php8.1-gmp \
+    php8.1-imap \
+    php8.1-intl \
+    php8.1-ldap \
+    php8.1-sodium \
+    php8.1-zip \
+    php8.1 \
+    php8.1-exif \
+    php8.1-session \
+    php8.1-soap \
+    php8.1-openssl \
+    php8.1-pdo_odbc \
+    php8.1-pdo \
+    php8.1-odbc \
+    php8.1-gettext \
+    php8.1-iconv \
+    php8.1-tokenizer
 
 #RUN  echo "**** compile smbclient ****" && \
 #  git clone https://github.com/eduardok/libsmbclient-php.git /tmp/smbclient && \
