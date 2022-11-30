@@ -1,5 +1,5 @@
 FROM alpine:latest
-RUN apk update && apk upgrade
+
 RUN apk --update --no-cache add curl ca-certificates nginx
 RUN apk update
 
@@ -33,54 +33,57 @@ RUN  apk add --no-cache --upgrade \
     unzip \
     curl
 
-RUN echo "**** Instalação dos PHP ****" && \
+RUN echo "**** Instalação dos php7 ****" && \
     apk add --no-cache --update \
-    php \
-    php-ctype \
-    php-json \
-    php-posix \
-    php-zlib \
-    php-fileinfo \
-    php-ftp \
-    php-pcntl \
-    php-phar \
-    php-fpm \
-    php-dom \
-    php-xml \
-    php-simplexml \
-    php-mbstring \
-    php-xmlwriter \
-    php-xmlreader \
-    php-pdo_mysql \
-    php-mysqli \
-    php-bcmath \
-    php-bz2 \
-    php-curl \
-    php-gd \
-    php-opcache \
-    php-gmp \
-    php-imap \
-    php-intl \
-    php-ldap \
-    php-sodium \
-    php-zip \
-    php-exif \
-    php-session \
-    php-soap \
-    php-openssl \
-    php-pdo_odbc \
-    php-pdo \
-    php-odbc \
-    php-gettext \
-    php-iconv \
-    php-tokenizer
+    php7 \
+    php7-apcu \
+    php7-ctype \
+    php7-json \
+    php7-posix \
+    php7-zlib \
+    php7-fileinfo \
+    php7-ftp \
+    php7-redis \
+    php7-pcntl \
+    php7-phar \
+    php7-dev \
+    php7-fpm \
+    php7-dom \
+    php7-xml \
+    php7-simplexml \
+    php7-mbstring \
+    php7-xmlwriter \
+    php7-xmlreader \
+    php7-pdo_mysql \
+    php7-mysqli \
+    php7-bcmath \
+    php7-bz2 \
+    php7-curl \
+    php7-gd \
+    php7-opcache \
+    php7-gmp \
+    php7-imap \
+    php7-intl \
+    php7-ldap \
+    php7-sodium \
+    php7-zip \
+    php7-exif \
+    php7-session \
+    php7-soap \
+    php7-openssl \
+    php7-pdo_odbc \
+    php7-pdo \
+    php7-odbc \
+    php7-gettext \
+    php7-iconv \
+    php7-tokenizer
 
 #RUN  echo "**** compile smbclient ****" && \
-#  git clone https://github.com/eduardok/libsmbclient-php.git /tmp/smbclient && \
+#  git clone https://github.com/eduardok/libsmbclient-php7.git /tmp/smbclient && \
 #  cd /tmp/smbclient && \
-#  phpize8 && \
+#  php7ize8 && \
 #  ./configure \
-#    --with-php-config=/usr/bin/php-config8 && \
+#    --with-php7-config=/usr/bin/php7-config8 && \
 #  make && \
 #  make install && \
 #  echo "**** cleanup ****" && \
