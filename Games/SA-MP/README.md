@@ -1,1 +1,0 @@
-# SA-MP-Pterodactyl-Docker
