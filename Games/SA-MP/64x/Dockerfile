@@ -1,6 +1,4 @@
-FROM        debian:latest
-
-LABEL       author="QuintenQVD" maintainer="josdekurk@gmail.com"
+FROM        debian:bullseye-slim
 
 RUN         apt update \
             && apt -y upgrade
