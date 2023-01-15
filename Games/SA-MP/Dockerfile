@@ -1,5 +1,5 @@
 #arm64v8
-FROM debian:bullseye-slim as build
+FROM debian:latest as build
 
 RUN dpkg --add-architecture armhf && \
     apt-get update && \
@@ -15,7 +15,7 @@ RUN cmake .. -DRPI4ARM64=1 -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo &&
     make -j$(nproc) && \
     make install DESTDIR=/tmp/install
 
-FROM debian:bullseye-slim
+FROM debian:latest
 LABEL "maintainer"="Weilbyte <me@weilbyte.dev>"
 LABEL "org.opencontainers.image.source"="https://github.com/weilbyte/box"
 
