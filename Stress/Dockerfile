@@ -14,7 +14,7 @@ FROM alpine:3
 
 RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk add --update libaio libattr libbsd libcap libcap libgcrypt jpeg judy@testing keyutils lksctp-tools libatomic zlib kmod-dev xxhash-dev && \
-    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/* /stress-ng
+    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 
 COPY --from=build stress-ng/install-root/ /
 
