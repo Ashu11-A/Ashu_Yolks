@@ -1,5 +1,5 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:6.0.9-jammy-arm64v8
+FROM $REPO:6.0.13-jammy-arm64v8
 
 ENV \
     # Unset ASPNETCORE_URLS from aspnet base image
