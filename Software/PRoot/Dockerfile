@@ -19,6 +19,8 @@ RUN make -C src loader.elf loader-m32.elf build.h && \
 
 FROM ubuntu:22.04
 
+COPY --from=build /tmp/install /
+
 ENV   DEBIAN_FRONTEND noninteractive
 
 ## add container user
