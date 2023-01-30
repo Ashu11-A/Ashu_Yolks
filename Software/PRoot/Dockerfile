@@ -15,7 +15,7 @@ RUN   apt install -y gcc g++ libgcc1 libc++-dev gdb libc6 git wget curl tar zip 
         libcurl3-gnutls liblua5.1-0 libluajit-5.1-2 libsqlite3-0 bzip2 zlib1g libevent-dev libmariadb-dev-compat libmariadb-dev libssl-dev \
 		libfluidsynth-dev libmariadb-dev libicu-dev libssl3 libduktape207 libjsoncpp-dev libleveldb1d libncurses5 libncursesw5
 		
-RUN   apt install -y qemu-user-static
+RUN   apt install -y qemu-user-static proot
 
 ## configure locale
 RUN   update-locale lang=en_US.UTF-8 \
