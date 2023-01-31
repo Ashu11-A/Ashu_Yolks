@@ -35,8 +35,8 @@ RUN  apk add --no-cache --upgrade \
 
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
-    php8.1 \
-    php8.1-{cli,gd,mysql,pdo,mbstring,tokenizer,bcmath,xml,fpm,curl,zip} \
+    php81 \
+    php81-{cli,gd,mysql,pdo,mbstring,tokenizer,bcmath,xml,fpm,curl,zip} \
     redis \
     redis-server \
     nano
