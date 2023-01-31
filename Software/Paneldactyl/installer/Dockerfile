@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM php:8.1-rc-fpm-alpine
 
 RUN apk --update --no-cache add curl ca-certificates nginx
 RUN apk update
