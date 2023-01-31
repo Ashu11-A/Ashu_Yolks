@@ -1,6 +1,6 @@
-FROM alpine:latest
+FROM php:8.1-rc-fpm-alpine
 
-RUN apk --update --no-cache add curl ca-certificates nginx gnupg
+RUN apk --update --no-cache add curl ca-certificates nginx gnupg  &&   update-ca-certificates
 RUN apk update
 
 ENV NEXTCLOUD_PATH="/home/container/webroot" \
@@ -17,10 +17,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     autoconf \
     automake \
     file \
-    g++ \
-    gcc \
-    make \
-    re2c
+    wget \
+    jq
 
 RUN  apk add --no-cache --upgrade \
     ffmpeg \
@@ -38,7 +36,6 @@ RUN echo "**** Instalação dos PHP ****" && \
     php81 \
     php81-cli \
     php81-gd \
-    php81-mysql \
     php81-pdo \
     php81-mbstring \
     php81-tokenizer \
