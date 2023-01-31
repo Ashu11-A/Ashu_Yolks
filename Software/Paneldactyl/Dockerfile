@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk --update --no-cache add curl ca-certificates nginx gnupg apt-transport-https software-properties-common
+RUN apk --update --no-cache add curl ca-certificates nginx gnupg
 RUN apk update
 
 ENV NEXTCLOUD_PATH="/home/container/webroot" \
