@@ -16,10 +16,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     autoconf \
     automake \
     file \
-    g++ \
-    gcc \
-    make \
-    re2c
+    wget \
+    jq
 
 RUN  apk add --no-cache --upgrade \
     ffmpeg \
@@ -34,45 +32,19 @@ RUN  apk add --no-cache --upgrade \
 
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
-    php \
-    php-ctype \
-    php-json \
-    php-posix \
-    php-zlib \
-    php-fileinfo \
-    php-ftp \
-    php-pcntl \
-    php-phar \
-    php-fpm \
-    php-dom \
-    php-xml \
-    php-simplexml \
-    php-mbstring \
-    php-xmlwriter \
-    php-xmlreader \
-    php-pdo_mysql \
-    php-mysqli \
-    php-bcmath \
-    php-bz2 \
-    php-curl \
-    php-gd \
-    php-opcache \
-    php-gmp \
-    php-imap \
-    php-intl \
-    php-ldap \
-    php-sodium \
-    php-zip \
-    php-exif \
-    php-session \
-    php-soap \
-    php-openssl \
-    php-pdo_odbc \
-    php-pdo \
-    php-odbc \
-    php-gettext \
-    php-iconv \
-    php-tokenizer
+    php81 \
+    php81-cli \
+    php81-gd \
+    php81-pdo \
+    php81-mbstring \
+    php81-tokenizer \
+    php81-bcmath \
+    php81-xml \
+    php81-fpm \
+    php81-curl \
+    php81-zip \
+    redis \
+    nano
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
