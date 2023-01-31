@@ -52,6 +52,8 @@ RUN docker-php-ext-install mysqli && \
     docker-php-ext-enable mysqli && \
     docker-php-ext-enable sodium
 
+RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+
 USER container
 ENV  USER container
 ENV HOME /home/container
