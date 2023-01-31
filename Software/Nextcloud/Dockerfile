@@ -75,20 +75,9 @@ RUN echo "**** Instalação dos PHP ****" && \
     php-iconv \
     php-tokenizer
 
-#RUN  echo "**** compile smbclient ****" && \
-#  git clone https://github.com/eduardok/libsmbclient-php.git /tmp/smbclient && \
-#  cd /tmp/smbclient && \
-#  phpize8 && \
-#  ./configure \
-#    --with-php-config=/usr/bin/php-config8 && \
-#  make && \
-#  make install && \
-#  echo "**** cleanup ****" && \
-#  apk del --purge \
-#    build-dependencies && \
-#  rm -rf \
-#    /tmp/*
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 

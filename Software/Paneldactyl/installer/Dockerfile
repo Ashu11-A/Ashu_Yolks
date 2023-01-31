@@ -73,3 +73,7 @@ RUN echo "**** Instalação dos PHP ****" && \
     php-gettext \
     php-iconv \
     php-tokenizer
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN docker-php-ext-install mysqli pdo pdo_mysql
