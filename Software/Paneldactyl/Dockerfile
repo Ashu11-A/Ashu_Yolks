@@ -3,8 +3,7 @@ FROM php:8.1-rc-fpm-alpine
 RUN apk --update --no-cache add curl ca-certificates nginx gnupg  &&   update-ca-certificates
 RUN apk update
 
-ENV NEXTCLOUD_PATH="/home/container/webroot" \
-  LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
+ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 
 RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     file \
