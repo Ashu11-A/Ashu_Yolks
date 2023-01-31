@@ -3,7 +3,8 @@ FROM alpine:latest
 RUN apk --update --no-cache add curl ca-certificates nginx
 RUN apk update
 
-ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
+ENV NEXTCLOUD_PATH="/home/container/webroot" \
+  LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 
 RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     file \
@@ -74,9 +75,6 @@ RUN echo "**** Instalação dos PHP ****" && \
     php-iconv \
     php-tokenizer
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
