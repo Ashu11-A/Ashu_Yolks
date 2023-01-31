@@ -36,9 +36,18 @@ RUN  apk add --no-cache --upgrade \
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
     php81 \
-    php81-{cli,gd,mysql,pdo,mbstring,tokenizer,bcmath,xml,fpm,curl,zip} \
+    php81-cli \
+    php81-gd \
+    php81-mysql \
+    php81-pdo \
+    php81-mbstring \
+    php81-tokenizer \
+    php81-bcmath \
+    php81-xml \
+    php81-fpm \
+    php81-curl \
+    php81-zip \
     redis \
-    redis-server \
     nano
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
