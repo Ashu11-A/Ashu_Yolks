@@ -46,7 +46,11 @@ RUN echo "**** Instalação dos PHP ****" && \
     redis \
     nano
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
+
+RUN docker-php-ext-install mysqli && \
+    docker-php-ext-enable mysqli && \
+    docker-php-ext-enable sodium
 
 USER container
 ENV  USER container
