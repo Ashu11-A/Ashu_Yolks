@@ -36,17 +36,14 @@ RUN  apk add --no-cache --upgrade \
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
     php \
-    php-apcu \
     php-ctype \
     php-json \
     php-posix \
     php-zlib \
     php-fileinfo \
     php-ftp \
-    php-redis \
     php-pcntl \
     php-phar \
-    php-dev \
     php-fpm \
     php-dom \
     php-xml \
