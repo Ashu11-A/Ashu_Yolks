@@ -1,6 +1,6 @@
 FROM php:8.1-rc-fpm-alpine
 
-RUN apk --update --no-cache add curl ca-certificates nginx
+RUN apk --update --no-cache add curl ca-certificates nginx gnupg  &&   update-ca-certificates
 RUN apk update
 
 ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
