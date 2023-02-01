@@ -16,7 +16,7 @@ RUN apk add --upgrade \
     automake \
     file \
     wget \
-    jq
+    jq 
 
 RUN  apk add --upgrade \
     ffmpeg \
@@ -27,7 +27,8 @@ RUN  apk add --upgrade \
     sudo \
     tar \
     unzip \
-    curl
+    curl \
+    libzip-dev
 
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --update \
