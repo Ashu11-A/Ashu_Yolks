@@ -74,6 +74,8 @@ ENV HOME /home/container
 WORKDIR /home/container
 
 
+ADD crontab.txt /crontab.txt
+RUN /usr/bin/crontab /crontab.txt
 
 COPY ./entrypoint.sh /entrypoint.sh
 
