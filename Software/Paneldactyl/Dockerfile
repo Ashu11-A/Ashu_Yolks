@@ -54,6 +54,8 @@ COPY ./painel /etc/cron.d/painel
 RUN echo "UTC" > /etc/timezone
 RUN apt-get install -y  zip sqlite supervisor
 
+RUN apt-get install -y fakeroot
+
 RUN mkdir -p /etc/supervisor.d/
 COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini
 
