@@ -19,11 +19,9 @@ RUN apk add --upgrade \
     jq 
 
 RUN  apk add --upgrade \
-    ffmpeg \
     gnu-libiconv \
     imagemagick \
     libxml2 \
-    samba-client \
     sudo \
     tar \
     unzip \
