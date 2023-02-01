@@ -14,7 +14,8 @@ RUN apt-get install -y --no-install-recommends -y \
     automake \
     file \
     wget \
-    jq
+    jq \
+    iproute2
 
 RUN  apt-get install -y --no-install-recommends -y \
     imagemagick \
