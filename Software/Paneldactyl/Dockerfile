@@ -52,7 +52,7 @@ RUN apt-get update && apt-get install -y cron
 COPY ./painel /etc/cron.d/painel
 
 RUN echo "UTC" > /etc/timezone
-RUN apk add --no-cache zip sqlite supervisor
+RUN apt-get install -y  zip sqlite supervisor
 
 RUN mkdir -p /etc/supervisor.d/
 COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini
