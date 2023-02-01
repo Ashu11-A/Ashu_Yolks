@@ -54,8 +54,8 @@ COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 RUN docker-php-ext-install mysqli && \
     docker-php-ext-install pdo && \
     docker-php-ext-install pdo_mysql && \
-    docker-php-ext-install ext-bcmath && \
-    docker-php-ext-install ext-zip
+    docker-php-ext-install bcmath && \
+    docker-php-ext-install zip
 
 RUN docker-php-ext-enable mysqli && \
     docker-php-ext-enable pdo && \
