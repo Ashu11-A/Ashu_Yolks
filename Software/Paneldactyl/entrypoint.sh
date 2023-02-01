@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 sleep 1
 
 cd /home/container
@@ -7,8 +7,6 @@ cd /home/container
 MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
 echo ":/home/container$ ${MODIFIED_STARTUP}"
 
-echo "executando crontab"
-nohup /usr/sbin/crond -f -l 8 &
-
+crond -l 2 -f > /dev/stdout 2> /dev/stderr &
 # Run the Server
 ${MODIFIED_STARTUP}

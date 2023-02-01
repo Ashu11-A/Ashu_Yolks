@@ -74,8 +74,7 @@ ENV HOME /home/container
 WORKDIR /home/container
 
 
-COPY ./crontab.txt /crontab.txt
-RUN /usr/bin/crontab /crontab.txt
+RUN echo "* * * * * php /home/container/painel/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontabs/root
 
 COPY ./entrypoint.sh /entrypoint.sh
 
