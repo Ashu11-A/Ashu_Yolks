@@ -48,7 +48,8 @@ RUN echo "**** Instalação dos PHP ****" && \
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
-RUN echo "* * * * * php /home/container/painel/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontabs/root
+RUN apt-get update && apt-get install -y cron
+COPY ./painel /etc/cron.d/painel
 
 RUN echo "UTC" > /etc/timezone
 RUN apk add --no-cache zip sqlite supervisor
