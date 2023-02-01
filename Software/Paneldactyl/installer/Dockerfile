@@ -5,10 +5,9 @@ RUN apk update
 
 ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 
-RUN apk add --no-cache --virtual=build-dependencies --upgrade \
+RUN apk add --upgrade \
     file \
     re2c \
-    samba-dev \
     zlib-dev \
     libtool \
     git \
@@ -19,7 +18,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     wget \
     jq
 
-RUN  apk add --no-cache --upgrade \
+RUN  apk add --upgrade \
     ffmpeg \
     gnu-libiconv \
     imagemagick \
@@ -31,7 +30,7 @@ RUN  apk add --no-cache --upgrade \
     curl
 
 RUN echo "**** Instalação dos PHP ****" && \
-    apk add --no-cache --update \
+    apk add --update \
     php81 \
     php81-cli \
     php81-gd \
@@ -44,11 +43,27 @@ RUN echo "**** Instalação dos PHP ****" && \
     php81-curl \
     php81-zip \
     php-intl \
+    php81-fileinfo \
+    php81-session \
     redis \
     nano
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 RUN docker-php-ext-install mysqli && \
-    docker-php-ext-enable mysqli && \
+    docker-php-ext-install pdo && \
+    docker-php-ext-install pdo_mysql && \
+    docker-php-ext-install ext-bcmath && \
+    docker-php-ext-install ext-zip
+
+RUN docker-php-ext-enable mysqli && \
+    docker-php-ext-enable pdo && \
+    docker-php-ext-enable pdo_mysql && \
+    docker-php-ext-enable pdo_mysql && \
     docker-php-ext-enable sodium
+
+RUN apk add bash
+RUN sed -i 's/bin\/ash/bin\/bash/g' /etc/passwd
+
+RUN mkdir -p /etc/supervisor.d/
+COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini
