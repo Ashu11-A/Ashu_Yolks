@@ -58,7 +58,6 @@ RUN docker-php-ext-install mysqli && \
 RUN docker-php-ext-enable mysqli && \
     docker-php-ext-enable pdo && \
     docker-php-ext-enable pdo_mysql && \
-    docker-php-ext-enable pdo_mysql && \
     docker-php-ext-enable sodium
 
 RUN apk add bash
