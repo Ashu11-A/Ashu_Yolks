@@ -64,6 +64,8 @@ RUN docker-php-ext-enable mysqli && \
 RUN apk add bash
 RUN sed -i 's/bin\/ash/bin\/bash/g' /etc/passwd
 
+RUN echo "* * * * * php /home/container/painel/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontabs/root
+
 RUN mkdir -p /etc/supervisor.d/
 COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini
 
@@ -72,9 +74,6 @@ ENV  USER container
 ENV HOME /home/container
 
 WORKDIR /home/container
-
-
-RUN echo "* * * * * php /home/container/painel/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontabs/root
 
 COPY ./entrypoint.sh /entrypoint.sh
 
