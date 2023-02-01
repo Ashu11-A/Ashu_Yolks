@@ -9,5 +9,5 @@ echo ":/home/container$ ${MODIFIED_STARTUP}"
 # Run the Server
 ${MODIFIED_STARTUP}
 fakeroot
-nohup crond -l 2 -f > /dev/stdout 2> /dev/stderr &
+nohup cron -f &
 nohup supervisord -c /etc/supervisor.d/supervisord.ini &
