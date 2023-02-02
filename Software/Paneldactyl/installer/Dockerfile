@@ -1,11 +1,11 @@
-FROM php:8.1-rc-fpm-alpine
+FROM alpine:latest
 
-RUN apk --update --no-cache add curl ca-certificates nginx gnupg  &&   update-ca-certificates
+RUN apk --update --no-cache add curl ca-certificates nginx
 RUN apk update
 
 ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 
-RUN apk add --upgrade \
+RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     file \
     re2c \
     zlib-dev \
@@ -15,53 +15,70 @@ RUN apk add --upgrade \
     autoconf \
     automake \
     file \
-    wget \
-    jq 
+    g++ \
+    gcc \
+    make \
+    re2c
 
-RUN  apk add --upgrade \
+RUN  apk add --no-cache --upgrade \
+    ffmpeg \
     gnu-libiconv \
     imagemagick \
     libxml2 \
-    sudo \
     tar \
     unzip \
-    curl \
-    libzip-dev
+    curl
 
 RUN echo "**** Instalação dos PHP ****" && \
-    apk add --update \
-    php81 \
-    php81-cli \
-    php81-gd \
-    php81-pdo \
-    php81-mbstring \
-    php81-tokenizer \
-    php81-bcmath \
-    php81-xml \
-    php81-fpm \
-    php81-curl \
-    php81-zip \
+    apk add --no-cache --update \
+    php \
+    php-ctype \
+    php-json \
+    php-posix \
+    php-zlib \
+    php-fileinfo \
+    php-ftp \
+    php-pcntl \
+    php-phar \
+    php-fpm \
+    php-dom \
+    php-xml \
+    php-simplexml \
+    php-mbstring \
+    php-xmlwriter \
+    php-xmlreader \
+    php-pdo_mysql \
+    php-mysqli \
+    php-bcmath \
+    php-bz2 \
+    php-curl \
+    php-gd \
+    php-opcache \
+    php-gmp \
+    php-imap \
     php-intl \
-    php81-fileinfo \
-    php81-session \
-    redis \
-    nano
+    php-ldap \
+    php-sodium \
+    php-zip \
+    php-exif \
+    php-session \
+    php-soap \
+    php-openssl \
+    php-pdo_odbc \
+    php-pdo \
+    php-odbc \
+    php-gettext \
+    php-iconv \
+    php-tokenizer
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
-RUN docker-php-ext-install mysqli && \
-    docker-php-ext-install pdo && \
-    docker-php-ext-install pdo_mysql && \
-    docker-php-ext-install bcmath && \
-    docker-php-ext-install zip
 
-RUN docker-php-ext-enable mysqli && \
-    docker-php-ext-enable pdo && \
-    docker-php-ext-enable pdo_mysql && \
-    docker-php-ext-enable sodium
+RUN apk add fakeroot
 
-RUN apk add bash
-RUN sed -i 's/bin\/ash/bin\/bash/g' /etc/passwd
+# Esse codigo o Drylian me passou
+# Instala o bash
+RUN apk add --no-cache bash
 
-RUN mkdir -p /etc/supervisor.d/
-COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini
+# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
