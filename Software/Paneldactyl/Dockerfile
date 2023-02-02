@@ -75,7 +75,9 @@ COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 
 RUN apk add bash
-RUN sed -i 's/bin\/ash/bin\/bash/g' /etc/passwd
+
+RUN rm /bin/sh && \
+    ln -s /bin/bash /bin/sh
 
 RUN echo "* * * * * php /home/container/painel/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontabs/root
 
