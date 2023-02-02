@@ -1,12 +1,14 @@
-FROM debian:buster-slim
+FROM php:8.1-rc-fpm-alpine
 
-RUN apt update
-RUN apt-get install -y --no-install-recommends -y curl ca-certificates nginx gnupg software-properties-common apt-transport-https  &&   update-ca-certificates
-RUN apt-get update
+RUN apk --update --no-cache add curl ca-certificates nginx gnupg  &&   update-ca-certificates
+RUN apk update
 
-RUN apt-get install -y --no-install-recommends -y \
+ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
+
+RUN apk add --upgrade \
     file \
     re2c \
+    zlib-dev \
     libtool \
     git \
     gpg \
@@ -14,10 +16,10 @@ RUN apt-get install -y --no-install-recommends -y \
     automake \
     file \
     wget \
-    jq \
-    iproute2
+    jq 
 
-RUN  apt-get install -y --no-install-recommends -y \
+RUN  apk add --upgrade \
+    gnu-libiconv \
     imagemagick \
     libxml2 \
     sudo \
@@ -26,25 +28,40 @@ RUN  apt-get install -y --no-install-recommends -y \
     curl \
     libzip-dev
 
-RUN apt update && apt install -y wget gnupg2 lsb-release && \
-wget https://packages.sury.org/php/apt.gpg && apt-key add apt.gpg && \
-echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
-
 RUN echo "**** Instalação dos PHP ****" && \
-    apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends -y \
-    php8.1 \
-    php8.1-cli \
-    php8.1-gd \
-    php8.1-mysql \
-    php8.1-pdo \
-    php8.1-mbstring \
-    php8.1-tokenizer \
-    php8.1-bcmath \
-    php8.1-xml \
-    php8.1-fpm \
-    php8.1-curl \
-    php8.1-zip
+    apk add --update \
+    php81 \
+    php81-cli \
+    php81-gd \
+    php81-pdo \
+    php81-mbstring \
+    php81-tokenizer \
+    php81-bcmath \
+    php81-xml \
+    php81-fpm \
+    php81-curl \
+    php81-zip \
+    php-intl \
+    php81-fileinfo \
+    php81-session \
+    redis \
+    nano
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
+
+RUN docker-php-ext-install mysqli && \
+    docker-php-ext-install pdo && \
+    docker-php-ext-install pdo_mysql && \
+    docker-php-ext-install bcmath && \
+    docker-php-ext-install zip
+
+RUN docker-php-ext-enable mysqli && \
+    docker-php-ext-enable pdo && \
+    docker-php-ext-enable pdo_mysql && \
+    docker-php-ext-enable sodium
+
+RUN apk add bash
+RUN sed -i 's/bin\/ash/bin\/bash/g' /etc/passwd
+
+RUN mkdir -p /etc/supervisor.d/
+COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini

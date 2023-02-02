@@ -1,12 +1,14 @@
-FROM debian:buster-slim
+FROM php:8.1-rc-fpm-alpine
 
-RUN apt update
-RUN apt-get install -y --no-install-recommends -y curl ca-certificates nginx gnupg software-properties-common apt-transport-https  &&   update-ca-certificates
-RUN apt-get update
+RUN apk --update --no-cache add curl ca-certificates nginx gnupg  &&   update-ca-certificates
+RUN apk update
 
-RUN apt-get install -y --no-install-recommends -y \
+ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
+
+RUN apk add --upgrade \
     file \
     re2c \
+    zlib-dev \
     libtool \
     git \
     gpg \
@@ -14,48 +16,53 @@ RUN apt-get install -y --no-install-recommends -y \
     automake \
     file \
     wget \
-    jq \
-    iproute2
+    jq
 
-RUN  apt-get install -y --no-install-recommends -y \
+RUN  apk add --upgrade \
+    gnu-libiconv \
     imagemagick \
     libxml2 \
-    sudo \
     tar \
     unzip \
     curl \
-    libzip-dev
-
-RUN apt update && apt install -y wget gnupg2 lsb-release && \
-wget https://packages.sury.org/php/apt.gpg && apt-key add apt.gpg && \
-echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
+    libzip-dev \
+    nano
 
 RUN echo "**** Instalação dos PHP ****" && \
-    apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends -y \
-    php8.1 \
-    php8.1-cli \
-    php8.1-gd \
-    php8.1-mysql \
-    php8.1-pdo \
-    php8.1-mbstring \
-    php8.1-tokenizer \
-    php8.1-bcmath \
-    php8.1-xml \
-    php8.1-fpm \
-    php8.1-curl \
-    php8.1-zip
+    docker-php-ext-install cli \
+    docker-php-ext-install gd \
+    docker-php-ext-install pdo \
+    docker-php-ext-install mbstring \
+    docker-php-ext-install tokenizer \
+    docker-php-ext-install bcmath \
+    docker-php-ext-install xml \
+    docker-php-ext-install fpm \
+    docker-php-ext-install url \
+    docker-php-ext-install zip \
+    docker-php-ext-install intl \
+    docker-php-ext-install fileinfo \
+    docker-php-ext-install session \
+    docker-php-ext-install redis
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
-RUN apt-get update && apt-get install -y cron
-COPY ./painel /etc/cron.d/painel
+RUN docker-php-ext-install mysqli && \
+    docker-php-ext-install pdo && \
+    docker-php-ext-install pdo_mysql && \
+    docker-php-ext-install zip
+
+RUN docker-php-ext-enable mysqli && \
+    docker-php-ext-enable pdo && \
+    docker-php-ext-enable pdo_mysql && \
+    docker-php-ext-enable sodium
+
+RUN apk add bash
+RUN sed -i 's/bin\/ash/bin\/bash/g' /etc/passwd
+
+RUN echo "* * * * * php /home/container/painel/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontabs/root
 
 RUN echo "UTC" > /etc/timezone
-RUN apt-get install -y  zip sqlite supervisor
-
-RUN apt-get install -y fakeroot
+RUN apk add --no-cache zip sqlite supervisor
 
 RUN mkdir -p /etc/supervisor.d/
 COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini
@@ -68,4 +75,4 @@ WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
 
-CMD ["/bin/bash", "/entrypoint.sh"]
+CMD ["/bin/ash", "/entrypoint.sh"]
