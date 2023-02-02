@@ -29,19 +29,19 @@ RUN  apk add --upgrade \
     nano
 
 RUN echo "**** Instalação dos PHP ****" && \
-    docker-php-ext-install cli \
-    docker-php-ext-install gd \
-    docker-php-ext-install pdo \
-    docker-php-ext-install mbstring \
-    docker-php-ext-install tokenizer \
-    docker-php-ext-install bcmath \
-    docker-php-ext-install xml \
-    docker-php-ext-install fpm \
-    docker-php-ext-install url \
-    docker-php-ext-install zip \
-    docker-php-ext-install intl \
-    docker-php-ext-install fileinfo \
-    docker-php-ext-install session \
+    docker-php-ext-install cli && \
+    docker-php-ext-install gd && \
+    docker-php-ext-install pdo && \
+    docker-php-ext-install mbstring && \
+    docker-php-ext-install tokenizer && \
+    docker-php-ext-install bcmath && \
+    docker-php-ext-install xml && \
+    docker-php-ext-install fpm && \
+    docker-php-ext-install url && \
+    docker-php-ext-install zip && \
+    docker-php-ext-install intl && \
+    docker-php-ext-install fileinfo && \
+    docker-php-ext-install session && \
     docker-php-ext-install redis
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
