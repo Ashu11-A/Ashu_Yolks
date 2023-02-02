@@ -1,11 +1,11 @@
-FROM php:8.1-rc-fpm-alpine
+FROM alpine:latest
 
-RUN apk --update --no-cache add curl ca-certificates nginx gnupg  &&   update-ca-certificates
+RUN apk --update --no-cache add curl ca-certificates nginx
 RUN apk update
 
 ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 
-RUN apk add --upgrade \
+RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     file \
     re2c \
     zlib-dev \
@@ -15,49 +15,61 @@ RUN apk add --upgrade \
     autoconf \
     automake \
     file \
-    wget \
-    jq
+    g++ \
+    gcc \
+    make \
+    re2c
 
-RUN  apk add --upgrade \
+RUN  apk add --no-cache --upgrade \
+    ffmpeg \
     gnu-libiconv \
     imagemagick \
     libxml2 \
     tar \
     unzip \
-    curl \
-    libzip-dev \
-    nano
+    curl
 
 RUN echo "**** Instalação dos PHP ****" && \
-    docker-php-ext-install gd && \
-    docker-php-ext-install pdo && \
-    docker-php-ext-install mbstring && \
-    docker-php-ext-install tokenizer && \
-    docker-php-ext-install bcmath && \
-    docker-php-ext-install xml && \
-    docker-php-ext-install url && \
-    docker-php-ext-install zip && \
-    docker-php-ext-install intl && \
-    docker-php-ext-install fileinfo && \
-    docker-php-ext-install session && \
-    docker-php-ext-install mysqli && \
-    docker-php-ext-install pdo_mysql && \
-    apk add --upgrade php81-cli php81-fpm redis
-
-RUN docker-php-ext-enable mysqli && \
-    docker-php-ext-enable pdo && \
-    docker-php-ext-enable pdo_mysql && \
-    docker-php-ext-enable sodium && \
-    docker-php-ext-enable gd && \
-    docker-php-ext-enable mbstring && \
-    docker-php-ext-enable tokenizer && \
-    docker-php-ext-enable bcmath && \
-    docker-php-ext-enable xml && \
-    docker-php-ext-enable url && \
-    docker-php-ext-enable zip && \
-    docker-php-ext-enable intl && \
-    docker-php-ext-enable fileinfo && \
-    docker-php-ext-enable session
+    apk add --no-cache --update \
+    php \
+    php-ctype \
+    php-json \
+    php-posix \
+    php-zlib \
+    php-fileinfo \
+    php-ftp \
+    php-pcntl \
+    php-phar \
+    php-fpm \
+    php-dom \
+    php-xml \
+    php-simplexml \
+    php-mbstring \
+    php-xmlwriter \
+    php-xmlreader \
+    php-pdo_mysql \
+    php-mysqli \
+    php-bcmath \
+    php-bz2 \
+    php-curl \
+    php-gd \
+    php-opcache \
+    php-gmp \
+    php-imap \
+    php-intl \
+    php-ldap \
+    php-sodium \
+    php-zip \
+    php-exif \
+    php-session \
+    php-soap \
+    php-openssl \
+    php-pdo_odbc \
+    php-pdo \
+    php-odbc \
+    php-gettext \
+    php-iconv \
+    php-tokenizer
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
