@@ -76,8 +76,15 @@ COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 RUN apk add bash
 
-RUN rm /bin/sh && \
-    ln -s /bin/bash /bin/sh
+# Esse codigo o Drylian me passou
+# Instala o bash
+RUN apk add --no-cache bash
+
+# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# Define o shell padrão como bash
+SHELL ["/bin/bash", "-c"]
 
 RUN echo "* * * * * php /home/container/painel/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontabs/root
 
@@ -95,4 +102,4 @@ WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
 
-CMD ["/bin/ash", "/entrypoint.sh"]
+CMD [ "bash", "/entrypoint.sh" ]
