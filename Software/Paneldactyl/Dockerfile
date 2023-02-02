@@ -74,7 +74,7 @@ RUN echo "**** Instalação dos PHP ****" && \
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 
-RUN apk add bash
+RUN apk add fakeroot
 
 # Esse codigo o Drylian me passou
 # Instala o bash
