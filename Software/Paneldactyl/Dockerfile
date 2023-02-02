@@ -14,14 +14,11 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     gpg \
     autoconf \
     automake \
-    file \
     g++ \
     gcc \
     make \
-    re2c
-
-RUN  apk add --no-cache --upgrade \
-    ffmpeg \
+    wget \
+    jq \
     gnu-libiconv \
     imagemagick \
     libxml2 \
