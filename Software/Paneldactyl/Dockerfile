@@ -24,7 +24,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     libxml2 \
     tar \
     unzip \
-    curl
+    curl \
+    coreutils
 
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
