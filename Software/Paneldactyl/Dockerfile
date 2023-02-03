@@ -72,7 +72,7 @@ COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 # Esse codigo o Drylian me passou
 # Instala o bash
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash fakeroot
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
