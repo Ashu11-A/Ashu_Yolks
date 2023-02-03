@@ -9,4 +9,4 @@ echo ":/home/container$ ${MODIFIED_STARTUP}"
 # Run the Server
 ${MODIFIED_STARTUP}
 
-nohup /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf &
+#nohup /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf &
