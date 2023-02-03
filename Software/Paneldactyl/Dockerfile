@@ -80,13 +80,19 @@ RUN apk add --no-cache bash
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN echo "* * * * * php /home/container/painel/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontabs/root
+RUN echo " \
+* * * * * php /home/container/painel/artisan schedule:run >> /dev/null 2>&1 \
+0 0 * * * php /home/container/painel/artisan p:schedule:renewal >> /dev/null 2>&1 \
+* * * * * /bin/bash /crontab_test.sh >> /dev/null 2>&1 \
+" >> /etc/crontabs/root
 
 RUN echo "UTC" > /etc/timezone
 RUN apk add --no-cache zip sqlite supervisor
 
 RUN mkdir -p /etc/supervisor.d/
 COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini
+
+COPY ./crontab_test.sh /
 
 USER container
 ENV  USER container
