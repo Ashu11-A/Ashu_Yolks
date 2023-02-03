@@ -86,8 +86,7 @@ RUN /usr/bin/crontab /crontab.txt
 RUN echo "UTC" > /etc/timezone
 RUN apk add --no-cache zip sqlite supervisor
 
-RUN mkdir -p /etc/supervisor.d/
-COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 COPY ./crontab_test.sh /
 RUN chmod 777 /crontab_test.sh
