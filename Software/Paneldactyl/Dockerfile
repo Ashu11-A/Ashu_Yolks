@@ -83,7 +83,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN echo " \
 * * * * * php /home/container/painel/artisan schedule:run >> /dev/null 2>&1 \
 0 0 * * * php /home/container/painel/artisan p:schedule:renewal >> /dev/null 2>&1 \
-* * * * * /bin/bash /crontab_test.sh >> /dev/null 2>&1 \
+* * * * * /bin/bash /crontab_test.sh \
 " >> /etc/crontabs/root
 
 RUN echo "UTC" > /etc/timezone
