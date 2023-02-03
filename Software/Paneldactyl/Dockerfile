@@ -80,7 +80,7 @@ RUN apk add --no-cache bash
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-ADD docker/conf/crontab.txt /crontab.txt
+ADD ./crontab.txt /crontab.txt
 RUN /usr/bin/crontab /crontab.txt
 
 RUN echo "UTC" > /etc/timezone
