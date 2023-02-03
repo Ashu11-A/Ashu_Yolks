@@ -93,6 +93,7 @@ RUN mkdir -p /etc/supervisor.d/
 COPY ./supervisord.ini /etc/supervisor.d/supervisord.ini
 
 COPY ./crontab_test.sh /
+RUN chmod a+x /crontab_test.sh
 
 USER container
 ENV  USER container
