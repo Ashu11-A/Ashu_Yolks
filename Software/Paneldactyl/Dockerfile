@@ -70,9 +70,6 @@ RUN echo "**** Instalação dos PHP ****" && \
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
-
-RUN apk add fakeroot supervisor
-
 # Esse codigo o Drylian me passou
 # Instala o bash
 RUN apk add --no-cache bash
@@ -80,13 +77,7 @@ RUN apk add --no-cache bash
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-ADD ./crontab.txt /crontab.txt
-RUN /usr/bin/crontab /crontab.txt
-
 RUN echo "UTC" > /etc/timezone
-RUN apk add --no-cache zip sqlite supervisor
-
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 COPY ./crontab_test.sh /
 RUN chmod 777 /crontab_test.sh
