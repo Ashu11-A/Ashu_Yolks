@@ -78,8 +78,11 @@ RUN apk add --no-cache bash fakeroot
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | -E bash - && \
-    apk add --no-cache --update nodejs
+RUN set -eux \
+    & apk add \
+        --no-cache \
+        nodejs \
+        yarn
 
 RUN echo "UTC" > /etc/timezone
 
