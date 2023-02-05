@@ -1,3 +1,4 @@
+FROM node:16.19.0-alpine AS node
 FROM alpine:latest
 
 RUN apk --update --no-cache add curl ca-certificates nginx
@@ -78,10 +79,15 @@ RUN apk add --no-cache bash fakeroot
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
+COPY --from=node /usr/lib /usr/lib
+COPY --from=node /usr/local/share /usr/local/share
+COPY --from=node /usr/local/lib /usr/local/lib
+COPY --from=node /usr/local/include /usr/local/include
+COPY --from=node /usr/local/bin /usr/local/bin
+
 RUN set -eux \
     & apk add \
         --no-cache \
-        nodejs \
         yarn
 
 RUN echo "UTC" > /etc/timezone
