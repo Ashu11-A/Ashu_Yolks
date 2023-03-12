@@ -1,2 +1,2 @@
 # Ashu_Yolks
-Docker images designed for use with Pterodactyl's Egg system.
+Imagens do Docker projetadas para uso com o sistema Egg da Pterodactyl.
