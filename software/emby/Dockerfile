@@ -1,5 +1,5 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:7.0.2-jammy
+FROM $REPO:6.0.10-jammy
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
