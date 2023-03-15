@@ -10,7 +10,7 @@ on:
       - software/**
 jobs:
   push:
-    name: "yolks:go_${{ matrix.tag }}"
+    name: "yolks:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
