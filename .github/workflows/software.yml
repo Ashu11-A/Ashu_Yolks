@@ -10,7 +10,7 @@ on:
       - software/**
 jobs:
   push:
-    name: "yolks:${{ matrix.tag }}"
+    name: "software:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -35,7 +35,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./software
+          context: ./software/${{ matrix.tag }}
           file: ./software/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
