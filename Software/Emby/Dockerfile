@@ -60,7 +60,7 @@ RUN \
   apt-get install -y --no-install-recommends \
     libomxil-bellagio0 \
     libomxil-bellagio-bin \
-    libraspberrypi0 \
+    ##libraspberrypi0 \
     netcat && \
   echo "**** cleanup ****" && \
   rm -rf \
