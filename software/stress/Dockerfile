@@ -1,5 +1,7 @@
 FROM alpine:3 as build
 
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+
 RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk add --update build-base libaio-dev libattr libbsd-dev libcap-dev libcap-dev libgcrypt-dev jpeg-dev judy-dev@testing keyutils-dev lksctp-tools-dev libatomic zlib-dev kmod-dev xxhash-dev git
 

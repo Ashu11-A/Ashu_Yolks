@@ -1,5 +1,7 @@
 FROM ubuntu:22.04
 
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+
 ENV   DEBIAN_FRONTEND noninteractive
 
 ## add container user

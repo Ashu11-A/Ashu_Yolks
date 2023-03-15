@@ -1,6 +1,8 @@
 FROM node:16.19.0-alpine AS node
 FROM alpine:latest
 
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+
 RUN apk --update --no-cache add curl ca-certificates nginx
 RUN apk update
 

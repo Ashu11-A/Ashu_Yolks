@@ -1,5 +1,7 @@
 FROM         debian:bullseye-slim
 
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+
 ENV          DEBIAN_FRONTEND noninteractive
 
 RUN          useradd -m -d /home/container -s /bin/bash container

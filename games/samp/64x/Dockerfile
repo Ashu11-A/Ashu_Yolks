@@ -1,5 +1,7 @@
 FROM        debian:bullseye-slim
 
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+
 RUN         apt update \
             && apt -y upgrade
 RUN         dpkg --configure -a \

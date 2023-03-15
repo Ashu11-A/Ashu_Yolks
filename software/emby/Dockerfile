@@ -1,6 +1,8 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
 FROM $REPO:7.0.2-jammy
 
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+
 ENV         DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 
 ENV          DEBIAN_FRONTEND noninteractive

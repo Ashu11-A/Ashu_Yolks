@@ -1,6 +1,8 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
 FROM $REPO:6.0.10-bullseye-slim
 
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+
 ENV         DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 
 ENV          DEBIAN_FRONTEND noninteractive

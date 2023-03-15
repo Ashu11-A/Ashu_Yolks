@@ -1,5 +1,7 @@
 FROM        node:19-bullseye-slim
 
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+
 RUN         apt update
 
 RUN         apt upgrade -y

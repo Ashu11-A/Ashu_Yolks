@@ -1,6 +1,8 @@
 #arm64v8
 FROM debian:latest as build
 
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+
 RUN dpkg --add-architecture armhf && \
     apt-get update && \
     apt-get install --yes --no-install-recommends git  python3 build-essential cmake ca-certificates && \
