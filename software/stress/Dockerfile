@@ -1,12 +1,31 @@
 FROM alpine:3 as build
 
 RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    apk add --update build-base libaio-dev libattr libbsd-dev libcap-dev libcap-dev libgcrypt-dev jpeg-dev judy-dev@testing keyutils-dev lksctp-tools-dev libatomic zlib-dev kmod-dev xxhash-dev git
+    apk add --update \
+    build-base \
+    libaio-dev \
+    libattr \
+    libbsd-dev \
+    libcap-dev \
+    libcap-dev \
+    libgcrypt-dev \
+    jpeg-dev \
+    judy-dev@testing \
+    keyutils-dev \
+    lksctp-tools-dev \
+    libatomic \
+    zlib-dev \
+    kmod-dev \
+    xxhash-dev \
+    git \
+    libmd-dev \
+    libseccomp-dev \
+    mesa-dev
 
 RUN git clone https://github.com/ColinIanKing/stress-ng
 
 RUN cd stress-ng && mkdir install-root && \
-    make -Wno-deprecated && make -Wno-deprecated DESTDIR=install-root/ install
+    make && make DESTDIR=install-root/ install
 
 ####### actual image ########
 
