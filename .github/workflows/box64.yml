@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - Box64/**
+      - box64/**
 jobs:
   push:
     name: "yolks:${{ matrix.tag }}"
@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./Box64
+          context: ./box64
           file: ./${{ matrix.tag }}/Dockerfile
           platforms: linux/arm64
           push: true

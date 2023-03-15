@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - Games/**
+      - games/**
 jobs:
   push:
     name: "games:${{ matrix.game }}"
@@ -30,8 +30,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./Games/${{ matrix.game }}
-          file: ./Games/${{ matrix.game }}/Dockerfile
+          context: ./games/${{ matrix.game }}
+          file: ./games/${{ matrix.game }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |

@@ -1,4 +1,4 @@
-name: build box64
+name: build box86
 on:
   workflow_dispatch:
   schedule:
@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - Box86/**
+      - box86/**
 jobs:
   push:
     name: "yolks:${{ matrix.tag }}"
@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./Box86
+          context: ./box86
           file: ./${{ matrix.tag }}/Dockerfile
           platforms: linux/arm64
           push: true

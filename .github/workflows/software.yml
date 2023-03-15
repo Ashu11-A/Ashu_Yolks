@@ -1,4 +1,4 @@
-name: build Software
+name: build software
 on:
   workflow_dispatch:
   schedule:
@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - Software/**
+      - software/**
 jobs:
   push:
     name: "yolks:go_${{ matrix.tag }}"
@@ -16,12 +16,13 @@ jobs:
       fail-fast: false
       matrix:
         tag:
-          - Emby
-          - Jellyfin
-          - Nextcloud
-          - Owncloud
-          - Paneldactyl
-          - PRoot
+          - emby
+          - jellyfin
+          - nextcloud
+          - owncloud
+          - paneldactyl
+          - proot
+          - stress
     steps:
       - uses: actions/checkout@v3
       - uses: docker/setup-buildx-action@v2
@@ -34,8 +35,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./Software
-          file: ./Software/${{ matrix.tag }}/Dockerfile
+          context: ./software
+          file: ./software/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |

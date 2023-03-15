@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - Debian/**
+      - debian/**
 jobs:
   push:
     name: "yolks:${{ matrix.tag }}"
@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./Debian
+          context: ./debian
           file: ./${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
