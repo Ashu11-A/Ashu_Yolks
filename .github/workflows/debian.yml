@@ -35,4 +35,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/Ashu11-A/yolks:${{ matrix.tag }}
+            ghcr.io/ashu11-a/yolks:${{ matrix.tag }}
