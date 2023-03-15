@@ -1,8 +1,6 @@
 #arm64v8
 FROM debian:latest as build
 
-LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
-
 RUN dpkg --add-architecture armhf && \
     apt-get update && \
     apt-get install --yes --no-install-recommends git  python3 build-essential cmake ca-certificates && \
@@ -18,7 +16,7 @@ RUN cmake .. -DRPI4ARM64=1 -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo &&
     make install DESTDIR=/tmp/install
 
 FROM debian:latest
-LABEL "maintainer"="Weilbyte <me@weilbyte.dev>"
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 LABEL "org.opencontainers.image.source"="https://github.com/weilbyte/box"
 
 COPY --from=build /tmp/install /
