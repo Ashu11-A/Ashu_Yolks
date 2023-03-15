@@ -24,5 +24,5 @@ COPY --from=build stress-ng/install-root/ /
 
 WORKDIR     /home/container
 
-COPY        ./entrypoint.sh /entrypoint.sh
+COPY        ./entrypoint.sh .
 CMD         [ "/bin/ash", "/entrypoint.sh" ]
