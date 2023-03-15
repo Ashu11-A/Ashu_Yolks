@@ -6,7 +6,7 @@ RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/re
 RUN git clone https://github.com/ColinIanKing/stress-ng
 
 RUN cd stress-ng && mkdir install-root && \
-    make && make DESTDIR=install-root/ install
+    make -Wno-deprecated && make -Wno-deprecated DESTDIR=install-root/ install
 
 ####### actual image ########
 

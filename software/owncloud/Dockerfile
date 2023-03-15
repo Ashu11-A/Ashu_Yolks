@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine
+FROM alpine:3.12
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
@@ -15,7 +15,6 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     zlib-dev \
     libtool \
     git \
-    gpg \
     autoconf \
     automake \
     file \
@@ -35,6 +34,8 @@ RUN  apk add --no-cache --upgrade \
     unzip \
     curl
 
+RUN apk add --no-cache  --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/community php
+RUN apk update
 RUN echo "**** Instalação dos php7 ****" && \
     apk add --no-cache --update \
     php7 \
