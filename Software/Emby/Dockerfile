@@ -1,5 +1,5 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:7.0.2-jammy-arm64v8
+FROM $REPO:7.0.2-jammy
 
 ENV         DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 
