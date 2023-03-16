@@ -22,8 +22,8 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN echo "America/Sao_Paulo" > /etc/timezone
 
-USER container
-ENV  USER container
+USER pterodactyl
+ENV  USER pterodactyl
 ENV HOME /home/container
 
 WORKDIR /home/container
