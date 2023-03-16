@@ -5,7 +5,6 @@ ARG VERSION
 RUN apk add --update --no-cache git make
 WORKDIR /app/
 RUN git clone https://github.com/Ashu11-A/egg-wings .
-COPY go.mod go.sum /app/
 RUN go mod download
 COPY . /app/
 RUN CGO_ENABLED=0 go build \
