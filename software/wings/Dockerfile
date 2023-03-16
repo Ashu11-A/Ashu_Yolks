@@ -1,12 +1,8 @@
 # Stage 1 (Build)
-FROM golang:1.19-alpine AS builder
+FROM alpine:latest
 
-RUN echo "ID=\"distroless\"" > /etc/os-release
-
-# Stage 2 (Final)
-FROM gcr.io/distroless/static:latest
-
-COPY --from=builder /etc/os-release /etc/os-release
+# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 USER container
 ENV  USER container
