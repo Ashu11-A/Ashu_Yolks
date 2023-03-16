@@ -30,8 +30,8 @@ Gostou? Então de uma 🌟 ao repositório!
 ## 🖥 | Software
 | Service | AMD64 | ARM64 | Docker |
 |--|--|--|--|
-| [Box64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box64) | ✅ | ✅ | ``none`` |
-| [Box86](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box86) | ✅ | ✅ | ``none`` |
+| [Box64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box64) | ❌ | ✅ | ``none`` |
+| [Box86](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box86) | ❌ | ✅ | ``none`` |
 | [Debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Debian) | ✅ | ✅ | ``ashu11a/debian:latest`` |
 | [Dotnet](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Dotnet) | ✅ | ✅ | ``ashu11a/dotnet:6`` |
 | [Emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Emby) | ✅ | ✅ | ``ashu11a/emby:latest`` |
