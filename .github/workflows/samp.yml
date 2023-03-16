@@ -17,9 +17,6 @@ jobs:
       matrix:
         game:
           - samp
-        arch:
-          - AMD64
-          - ARM64
           
     steps:
       - uses: actions/checkout@v3
@@ -31,11 +28,21 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: docker/build-push-action@v4
         with:
-          context: ./games/${{ matrix.game }}/${{ matrix.arch }}
-          file: ./games/${{ matrix.game }}/${{ matrix.arch }}/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          context: ./games/${{ matrix.game }}/AMD64
+          file: ./games/${{ matrix.game }}/AMD64/Dockerfile
+          platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/ashu11-a/games:${{ matrix.game }}-${{ matrix.arch }}
+            ghcr.io/ashu11-a/games:${{ matrix.game }}-amd64
+
+      - uses: docker/build-push-action@v4
+        with:
+          context: ./games/${{ matrix.game }}/ARM64
+          file: ./games/${{ matrix.game }}/ARM64/Dockerfile
+          platforms: linux/arm64
+          push: true
+          tags: |
+            ghcr.io/ashu11-a/games:${{ matrix.game }}-arm64
