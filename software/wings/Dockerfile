@@ -1,6 +1,14 @@
+# Stage 1 (Build)
+FROM golang:1.19-alpine AS builder
+
+RUN echo "ID=\"distroless\"" > /etc/os-release
+
+# Stage 2 (Final)
 FROM gcr.io/distroless/static:latest
 
 RUN echo "ID=\"distroless\"" > /etc/os-release
+
+COPY --from=builder /app/wings /usr/bin/
 
 USER container
 ENV  USER container
