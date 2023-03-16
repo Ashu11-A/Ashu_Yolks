@@ -16,6 +16,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
 RUN mkdir /var/log/pterodactyl
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
+RUN apk add --no-cache bash fakeroot
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 
