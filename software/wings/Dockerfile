@@ -13,7 +13,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     unzip \
     curl
 
-RUN mkdir /var/log/pterodactyl
+RUN mkdir /var/log/pterodactyl && \
+    mkdir /var/log/pterodactyl/install
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
