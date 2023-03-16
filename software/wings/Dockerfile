@@ -1,5 +1,3 @@
-25 lines (21 sloc)  618 Bytes
-
 # Stage 1 (Build)
 FROM golang:1.19-alpine AS builder
 
