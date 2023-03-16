@@ -6,9 +6,7 @@ RUN echo "ID=\"distroless\"" > /etc/os-release
 # Stage 2 (Final)
 FROM gcr.io/distroless/static:latest
 
-RUN echo "ID=\"distroless\"" > /etc/os-release
-
-COPY --from=builder /app/wings /usr/bin/
+COPY --from=builder /etc/os-release /etc/os-release
 
 USER container
 ENV  USER container
