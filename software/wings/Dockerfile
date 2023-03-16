@@ -17,9 +17,6 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
 RUN apk add --no-cache bash fakeroot
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-
-RUN echo "UTC" > /etc/timezone
-
 USER container
 ENV  USER container
 ENV HOME /home/container
