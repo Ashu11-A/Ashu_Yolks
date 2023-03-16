@@ -11,7 +11,10 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     jq \
     tar \
     unzip \
-    curl
+    curl \
+    tzdata
+
+ENV TZ="America/Sao_Paulo"
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
