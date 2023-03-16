@@ -30,23 +30,24 @@ Gostou? Então de uma 🌟 ao repositório!
 ## 🖥 | Software
 | Service | AMD64 | ARM64 | Docker |
 |--|--|--|--|
-| [Box64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box64) | ❌ | ✅ | ``none`` |
-| [Box86](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box86) | ❌ | ✅ | ``none`` |
-| [Debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Debian) | ✅ | ✅ | ``ashu11a/debian:latest`` |
-| [Dotnet](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Dotnet) | ✅ | ✅ | ``ashu11a/dotnet:6`` |
-| [Emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Emby) | ✅ | ✅ | ``ashu11a/emby:latest`` |
-| [Jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Jellyfin) | ✅ | ✅ | ``ashu11a/jellyfin:latest`` |
-| [Nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Nextcloud) | ✅ | ✅ | ``ashu11a/nextcloud:latest`` |
-| [Owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Owncloud) | ✅ | ✅ | ``ashu11a/owncloud:latest`` |
-| [PRoot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/PRoot) | ✅ | ✅ | ``ashu11a/proot:latest`` |
-| [Paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Paneldactyl) | ✅ | ✅ | ``ashu11a/paneldactyl:latest`` |
-| [Stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Stress) | ✅ | ✅ | ``ashu11a/stress:latest`` |
-| [nodejs/19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/nodejs/19) | ✅ | ✅ | ``AMD: ashu11a/nodejs:19 ARM: ashu11a/nodejs:19_ARM`` |
+| [Box64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box64) | ❌ | ✅ | ``ghcr.io/ashu11-a/yolks:box64`` |
+| [Box86](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box86) | ❌ | ✅ | ``ghcr.io/ashu11-a/yolks:box86`` |
+| [Debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Debian) | ✅ | ✅ | ``ghcr.io/ashu11-a/yolks:debian`` |
+| [Dotnet](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Dotnet) | ✅ | ✅ | ``ghcr.io/ashu11-a/yolks:dotnet_6`` |
+| [Emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Emby) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:emby`` |
+| [Jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Jellyfin) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:jellyfin`` |
+| [Nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Nextcloud) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:nextcloud`` |
+| [nodejs/19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/nodejs/19) | ✅ | ✅ | ``ghcr.io/ashu11-a/yolks:nodejs_9`` |
+| [Owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Owncloud) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:owncloud`` |
+| [PRoot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/PRoot) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:proot`` |
+| [Paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Paneldactyl) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:paneldactyl`` |
+| [Stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Stress) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:stress`` |
+
 
 ## 🎮 | Games
 | Game | AMD64 | ARM64 | Docker |
 |--|--|--|--|
-| [SA-MP](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Games/SA-MP) | ✅ | ✅ | ``ashu11a/samp-pterodactyl:latest`` |
+| [SA-MP](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Games/SA-MP) | ✅ | ✅ | AMD64: ``ghcr.io/ashu11-a/games:samp-amd64`` ARM64: ``ghcr.io/ashu11-a/games:samp-arm64`` |
 
 
 ✅ • Funcionando    
