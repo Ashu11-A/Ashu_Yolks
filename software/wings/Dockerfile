@@ -27,6 +27,8 @@ RUN chown root:docker /var/run/docker.sock && \
 
 ENV TZ="America/Sao_Paulo"
 
+ENV DOCKER_HOST=tcp://172.17.0.1:2376
+
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh

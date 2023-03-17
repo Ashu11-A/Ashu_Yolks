@@ -3,7 +3,7 @@ sleep 1
 
 cd /home/container
 
-dockerd -H unix:///tmp/docker.sock -H tcp://0.0.0.0:2376 &
+dockerd &
 sleep 5
 
 # Replace Startup Variables
