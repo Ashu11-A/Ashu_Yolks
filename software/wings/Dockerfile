@@ -20,7 +20,6 @@ RUN apk add --no-cache --upgrade \
 
 RUN apk add --update docker-cli
 
-RUN adduser pterodactyl docker
 RUN touch /var/run/docker.sock
 RUN chown root:docker /var/run/docker.sock && \
     chmod 660 /var/run/docker.sock
