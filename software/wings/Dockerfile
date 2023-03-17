@@ -1,4 +1,4 @@
-FROM docker:20.10-dind
+FROM debian:latest
 
 # busybox "ip" is insufficient:
 #   [rootlesskit:child ] error: executing [[ip tuntap add name tap0 mode tap] [ip link set tap0 address 02:50:00:00:00:01]]: exit status 1
