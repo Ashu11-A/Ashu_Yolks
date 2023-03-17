@@ -4,8 +4,6 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 RUN apk update
 
-RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl
-
 RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     file \
     git \
@@ -17,16 +15,14 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     tzdata \
     ca-certificates
 
-RUN apk add --update docker-cli docker
+RUN curl -fsSL https://get.docker.com/rootless | sh
 
-RUN adduser pterodactyl docker
-RUN touch /var/run/docker.sock
-RUN chown root:docker /var/run/docker.sock && \
-    chmod 660 /var/run/docker.sock
+ENV DOCKER_HOST=unix:///run/user/1000/docker.sock
+ENV DOCKER_TLS_CERTDIR=/run/user/1000/certs
+
+RUN docker network create pterodactyl_nw
 
 ENV TZ="America/Sao_Paulo"
-
-ENV DOCKER_HOST=tcp://172.17.0.1:2376
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
