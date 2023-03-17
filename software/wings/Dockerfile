@@ -17,7 +17,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
 RUN apk add --update docker openrc
 RUN rc-update add docker boot
 RUN touch /var/run/docker.sock && \
-    chmod 777 /var/run/docker.sock
+    chmod 666 /var/run/docker.sock
 ENV TZ="America/Sao_Paulo"
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
