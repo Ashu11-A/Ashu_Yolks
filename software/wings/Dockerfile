@@ -21,8 +21,6 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
 RUN apk add --update docker openrc
 RUN rc-update add docker boot
 
-RUN addgroup docker
-
 RUN adduser pterodactyl docker
 
 RUN chown root:docker /var/run/docker.sock && \
