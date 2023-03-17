@@ -20,12 +20,13 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
 
 RUN apk add --update docker openrc
 RUN rc-update add docker boot
-RUN touch /var/run/docker.sock && \
-    chmod 666 /var/run/docker.sock
 
-RUN apk add sudo && \
-    echo "user ALL=NOPASSWD:/sbin/iptables" >> /etc/sudoers && \
-    echo "user ALL=NOPASSWD:/usr/bin/dockerd" >> /etc/sudoers
+RUN addgroup docker
+
+RUN adduser pterodactyl docker
+
+RUN chown root:docker /var/run/docker.sock && \
+    chmod 660 /var/run/docker.sock
 
 ENV TZ="America/Sao_Paulo"
 

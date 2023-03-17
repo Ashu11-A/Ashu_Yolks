@@ -3,11 +3,11 @@ sleep 1
 
 cd /home/container
 
-sudo iptables -I INPUT 1 -i eth0 -j ACCEPT
-sudo iptables -I FORWARD 1 -i eth0 -j ACCEPT
-sudo iptables -I OUTPUT 1 -o eth0 -j ACCEPT
+iptables -I INPUT 1 -i eth0 -j ACCEPT
+iptables -I FORWARD 1 -i eth0 -j ACCEPT
+iptables -I OUTPUT 1 -o eth0 -j ACCEPT
 
-sudo dockerd &
+dockerd &
 sleep 5
 
 # Replace Startup Variables
