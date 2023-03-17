@@ -15,7 +15,16 @@ RUN apk add --no-cache --upgrade \
     tzdata \
     ca-certificates
 
-RUN apk update && apk add --no-cache docker docker-cli
+
+RUN apk update && apk add --no-cache \
+    sudo \
+    iptables \
+    coreutils \
+    gnupg \
+    device-mapper \
+    e2fsprogs \
+    xfsprogs \
+    shadow
 
 ENV TZ="America/Sao_Paulo"
 
@@ -25,18 +34,25 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN echo "America/Sao_Paulo" > /etc/timezone
 
-RUN adduser -D pterodactyl
+# Create a new user to run Docker as
+ARG USER_NAME=pterodactyl
+ARG USER_UID=1000
+ARG USER_GID=1000
+RUN addgroup -g ${USER_GID} ${USER_NAME} && \
+    adduser -u ${USER_UID} -G ${USER_NAME} -s /bin/sh -D ${USER_NAME} && \
+    echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-USER pterodactyl
+# Install Docker using dockerd-rootless-setuptool
+RUN curl -sSL https://get.docker.com/rootless | sh
 
-RUN  dockerd-rootless-setuptool.sh install
+# Switch to the non-root user
+USER ${USER_NAME}
 
 ENV DOCKER_HOST=unix:///run/user/1000/docker.sock
 ENV DOCKER_TLS_CERTDIR=/run/user/1000/certs
 
 RUN docker network create pterodactyl_nw
 
-ENV  USER pterodactyl
 ENV HOME /home/container
 
 WORKDIR /home/container
