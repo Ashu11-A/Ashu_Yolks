@@ -26,9 +26,6 @@ RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl &&
     touch /var/run/docker.sock && \
     chown pterodactyl:docker /var/run/docker.sock && \
     chmod g+rwx /var/run/docker.sock
-
-RUN apk update && apk add --no-cache --upgrade sudo shadow
-RUN usermod -aG sudo root
     
 # Inicia o daemon Docker dentro do contêiner
 RUN dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --log-driver=json-file --log-opt=max-size=10m --log-opt=max-file=5
