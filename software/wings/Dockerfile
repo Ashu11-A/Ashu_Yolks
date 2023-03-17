@@ -14,17 +14,21 @@ RUN apt-get update && apt-get install -y \
     gnupg2 \
     software-properties-common \
     tzdata \
-    iproute2
+    iproute2 \
+    dbus-user-session \
+    fuse-overlayfs \
+    overlay2 \
+    btrfs \
+    slirp4netns \
+    uidmap \
+    vfs
 
-# Adiciona a chave GPG oficial do Docker e adiciona o repositório
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-RUN add-apt-repository \
-   "deb [arch=$( dpkg --print-architecture )] https://download.docker.com/linux/debian \
-   $(lsb_release -cs) \
-   stable"
+RUN curl -sSL https://get.docker.com/rootless | sh
 
-# Instalação do Dockera 
-RUN apt-get update && apt-get install -y docker
+ENV PATH=/home/$user/bin:$PATH
+ENV DOCKER_HOST=unix:///home/container/docker.sock
+
+RUN docker context use rootless
 
 # Cria o usuário não-raiz e adiciona-o ao grupo do Docker
 RUN groupadd -g $GROUP_ID $GROUP_NAME
