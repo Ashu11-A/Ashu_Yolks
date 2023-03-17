@@ -20,8 +20,7 @@ RUN apt-get update && apt-get install -y \
     overlay2 \
     btrfs \
     slirp4netns \
-    uidmap \
-    vfs
+    uidmap
 
 RUN curl -sSL https://get.docker.com/rootless | sh
 
