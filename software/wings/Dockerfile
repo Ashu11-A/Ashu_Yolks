@@ -4,7 +4,7 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 RUN apk update
 
-RUN apk add --no-cache --virtual=build-dependencies --upgrade \
+RUN apk add --no-cache --upgrade \
     file \
     git \
     wget \
@@ -13,8 +13,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     unzip \
     curl \
     tzdata \
-    ca-certificates \
-    uidmap
+    ca-certificates && \
+    apk add --no-cache uidmap
 
 ENV TZ="America/Sao_Paulo"
 
