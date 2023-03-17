@@ -21,7 +21,7 @@ RUN apk add --no-cache --upgrade \
 RUN apk add --update docker-cli
 
 RUN touch /var/run/docker.sock
-RUN chown root:docker /var/run/docker.sock && \
+RUN chown pterodactyl:pterodactyl /var/run/docker.sock && \
     chmod 660 /var/run/docker.sock
 
 ENV TZ="America/Sao_Paulo"
