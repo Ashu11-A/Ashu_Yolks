@@ -20,13 +20,12 @@ RUN apk add --no-cache --upgrade \
 
 RUN apk add --update docker-cli
 
-RUN touch /var/run/docker.sock
-RUN chown pterodactyl:pterodactyl /var/run/docker.sock && \
-    chmod 660 /var/run/docker.sock
+RUN touch /var/run/docker.sock \
+    && chown pterodactyl:docker /var/run/docker.sock \
+    && chmod g+rwx /var/run/docker.sock
 
 ENV TZ="America/Sao_Paulo"
 ENV DOCKER_TLS_CERTDIR=""
-ENV DOCKER_HOST=tcp://docker:2375
 ENV DOCKER_HOST=unix:///var/run/docker.sock
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
@@ -35,9 +34,9 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN echo "America/Sao_Paulo" > /etc/timezone
 
-RUN adduser pterodactyl docker
-RUN chown pterodactyl:docker /var/run/docker.sock \
-    && chmod g+rwx /var/run/docker.sock
+RUN addgroup --gid 1001 docker \
+    && adduser pterodactyl docker
+RUN docker network create --driver bridge pterodactyl_nw
 
 USER pterodactyl
 ENV  USER pterodactyl
