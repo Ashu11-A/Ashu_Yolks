@@ -18,7 +18,10 @@ RUN apt-get update && apt-get install -y \
     dbus-user-session \
     fuse-overlayfs \
     slirp4netns \
-    uidmap
+    uidmap \
+    iptables \
+    ip6tables \
+    shadow
 
 # Cria o usuário não-raiz e adiciona-o ao grupo do Docker
 RUN groupadd -g $GROUP_ID $GROUP_NAME
