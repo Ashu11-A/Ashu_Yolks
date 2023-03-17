@@ -22,7 +22,7 @@ RUN touch /var/run/docker.sock && \
     chmod 666 /var/run/docker.sock
 ENV TZ="America/Sao_Paulo"
 
-ENV DOCKER_HOST=tcp://host.docker.internal:2375
+ENV DOCKER_HOST=tcp://host.docker.internal:53
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
