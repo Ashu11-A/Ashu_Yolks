@@ -12,13 +12,15 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     tar \
     unzip \
     curl \
-    tzdata
+    tzdata \
+    ca-certificates
 
 RUN apk add --update docker openrc
 RUN rc-update add docker boot
 RUN touch /var/run/docker.sock && \
     chmod 666 /var/run/docker.sock
 ENV TZ="America/Sao_Paulo"
+ENV WINGS_UID="988"
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
