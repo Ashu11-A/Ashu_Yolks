@@ -26,9 +26,14 @@ RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl &&
     touch /var/run/docker.sock && \
     chown pterodactyl:docker /var/run/docker.sock && \
     chmod g+rwx /var/run/docker.sock
-    
+
+# Configura o driver devicemapper
+RUN sed -i '/^ExecStart/ s/$/ --storage-driver=devicemapper/' /lib/systemd/system/docker.service
+RUN mkdir /etc/docker
+RUN printf "{\n    \"storage-driver\": \"devicemapper\",\n    \"storage-opts\": [\n        \"dm.directlvm_device=/dev/sda1\",\n        \"dm.directlvm_device_force=true\"\n    ]\n}\n" > /etc/docker/daemon.json
+
 # Inicia o daemon Docker dentro do contêiner
-RUN dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay2 --storage-opt=overlay2.override_kernel_check=true --log-driver=json-file --log-opt=max-size=10m --log-opt=max-file=5
+CMD dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --log-driver=json-file --log-opt=max-size=10m --log-opt=max-file=5
 
 RUN docker network create --driver bridge pterodactyl_nw
 
