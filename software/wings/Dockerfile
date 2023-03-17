@@ -1,10 +1,12 @@
-FROM alpine:3.14
+FROM alpine:latest
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 RUN apk update
 
-RUN apk add --no-cache --upgrade \
+RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl
+
+RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     file \
     git \
     wget \
@@ -13,20 +15,19 @@ RUN apk add --no-cache --upgrade \
     unzip \
     curl \
     tzdata \
-    ca-certificates
+    ca-certificates \
+    iptables
 
+RUN apk add --update docker-cli docker
 
-RUN apk update && apk add --no-cache \
-    sudo \
-    iptables \
-    coreutils \
-    gnupg \
-    device-mapper \
-    e2fsprogs \
-    xfsprogs \
-    shadow
+RUN adduser pterodactyl docker
+RUN touch /var/run/docker.sock
+RUN chown root:docker /var/run/docker.sock && \
+    chmod 660 /var/run/docker.sock
 
 ENV TZ="America/Sao_Paulo"
+
+ENV DOCKER_HOST=tcp://172.17.0.1:2376
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
@@ -34,23 +35,8 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN echo "America/Sao_Paulo" > /etc/timezone
 
-# Create a new user to run Docker as
-ARG USER_NAME=pterodactyl
-ARG USER_UID=1000
-ARG USER_GID=1000
-RUN addgroup -g ${USER_GID} ${USER_NAME} && \
-    adduser -u ${USER_UID} -G ${USER_NAME} -s /bin/sh -D ${USER_NAME} && \
-    echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-USER ${USER_NAME}
-
-RUN curl -sSL https://get.docker.com/rootless | sh
-
-ENV DOCKER_HOST=unix:///run/user/1000/docker.sock
-ENV DOCKER_TLS_CERTDIR=/run/user/1000/certs
-
-RUN docker network create pterodactyl_nw
-
+USER pterodactyl
+ENV  USER pterodactyl
 ENV HOME /home/container
 
 WORKDIR /home/container
