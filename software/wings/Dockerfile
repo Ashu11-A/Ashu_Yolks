@@ -53,6 +53,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     ca-certificates \
     iptables
 
+RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl
+
 ENV TZ="America/Sao_Paulo"
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
