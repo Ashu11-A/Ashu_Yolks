@@ -13,14 +13,16 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     unzip \
     curl \
     tzdata \
-    ca-certificates
+    ca-certificates \
+    iptables
 
 RUN apk add --update docker openrc
 RUN rc-update add docker boot
 RUN touch /var/run/docker.sock && \
     chmod 666 /var/run/docker.sock
 ENV TZ="America/Sao_Paulo"
-ENV WINGS_UID="988"
+
+ENV DOCKER_HOST=tcp://host.docker.internal:2375
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
@@ -35,5 +37,6 @@ ENV HOME /home/container
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 CMD [ "bash", "/entrypoint.sh" ]
