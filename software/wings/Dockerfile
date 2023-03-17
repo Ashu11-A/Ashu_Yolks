@@ -53,7 +53,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     ca-certificates \
     iptables
 
-RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl
+RUN adduser --disabled-password --home /home/container --uid 1001 pterodactyl
 
 ENV TZ="America/Sao_Paulo"
 
