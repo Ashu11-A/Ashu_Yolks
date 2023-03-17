@@ -21,7 +21,7 @@ RUN add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
-# Instalação do Docker a
+# Instalação do Docker
 RUN apt-get update && apt-get install -y docker
 
 # Cria o usuário não-raiz e adiciona-o ao grupo do Docker

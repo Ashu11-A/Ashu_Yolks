@@ -26,16 +26,6 @@ jobs:
           - wings
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Fetch all git history
-      - name: Determine if Dockerfile changed
-        id: dockerfile-changed
-        run: |
-          if [[ $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}) == *${{ matrix.tag }}* ]]; then
-            echo "::set-output name=changed::true"
-          else
-            echo "::set-output name=changed::false"
-          fi
       - uses: docker/setup-buildx-action@v2
         with:
           buildkitd-flags: --debug
@@ -44,12 +34,10 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push Docker image
-        if: steps.dockerfile-changed.outputs.changed == 'true'
-        uses: docker/build-push-action@v4
+      - uses: docker/build-push-action@v4
         with:
           context: ./software/${{ matrix.tag }}
-          file: ${{ matrix.tag }}
+          file: ./software/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
