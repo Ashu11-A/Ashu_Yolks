@@ -31,7 +31,7 @@ RUN apk update && apk add --no-cache --upgrade sudo shadow
 RUN usermod -aG sudo root
     
 # Inicia o daemon Docker dentro do contêiner
-RUN dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=vfs --log-driver=json-file --log-opt=max-size=10m --log-opt=max-file=5
+RUN dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --log-driver=json-file --log-opt=max-size=10m --log-opt=max-file=5
 
 RUN docker network create --driver bridge pterodactyl_nw
 
