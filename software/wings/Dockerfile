@@ -35,6 +35,9 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN echo "America/Sao_Paulo" > /etc/timezone
 
+# Cria a rede pterodactyl_nw com driver bridge
+RUN docker network create --driver bridge pterodactyl_nw
+
 USER pterodactyl
 ENV  USER pterodactyl
 ENV HOME /home/container
