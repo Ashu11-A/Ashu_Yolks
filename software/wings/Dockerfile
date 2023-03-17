@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 # Adiciona a chave GPG oficial do Docker e adiciona o repositório
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   "deb [arch=$( dpkg --print-architecture )] https://download.docker.com/linux/debian \
    $(lsb_release -cs) \
    stable"
 
