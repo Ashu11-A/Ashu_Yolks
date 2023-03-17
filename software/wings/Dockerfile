@@ -15,13 +15,6 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     tzdata \
     ca-certificates
 
-RUN curl -fsSL https://get.docker.com/rootless | sh
-
-ENV DOCKER_HOST=unix:///run/user/1000/docker.sock
-ENV DOCKER_TLS_CERTDIR=/run/user/1000/certs
-
-RUN docker network create pterodactyl_nw
-
 ENV TZ="America/Sao_Paulo"
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
@@ -30,7 +23,17 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN echo "America/Sao_Paulo" > /etc/timezone
 
+RUN adduser -D pterodactyl
+
 USER pterodactyl
+
+RUN curl -fsSL https://get.docker.com/rootless | sh
+
+ENV DOCKER_HOST=unix:///run/user/1000/docker.sock
+ENV DOCKER_TLS_CERTDIR=/run/user/1000/certs
+
+RUN docker network create pterodactyl_nw
+
 ENV  USER pterodactyl
 ENV HOME /home/container
 
