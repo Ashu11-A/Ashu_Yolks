@@ -20,6 +20,8 @@ RUN apk update && apk add --no-cache --upgrade \
     && ln -s /bin/bash /bin/sh \
     && echo "America/Sao_Paulo" > /etc/timezone
 
+USER root
+
 # Inicia o daemon Docker dentro do contêiner
 RUN dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=vfs --log-driver=json-file --log-opt=max-size=10m --log-opt=max-file=5
 
