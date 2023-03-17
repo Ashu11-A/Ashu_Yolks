@@ -1,12 +1,23 @@
-# Stage 1 (Build)
-FROM alpine:latest AS builder
+FROM ghcr.io/pterodactyl/wings:latest
 
-RUN echo "ID=\"distroless\"" > /etc/os-release
+ENV TZ="UTC" \
+    WINGS_UID="988" \
+    WINGS_GID="988" \
+    WINGS_USERNAME="pterodactyl"
 
-# Stage 2 (Final)
-FROM gcr.io/distroless/static:latest
-COPY --from=builder /etc/os-release /etc/os-release
+RUN apk --no-cache add curl
 
-CMD [ "/home/container/wings", "--config", "/home/container/config.yml" ]
+# Set up networking
+RUN mkdir -p /var/lib/docker/containers && \
+    mkdir -p /etc/pterodactyl && \
+    mkdir -p /var/lib/pterodactyl && \
+    mkdir -p /var/log/pterodactyl && \
+    mkdir -p /tmp/pterodactyl && \
+    chown -R pterodactyl:pterodactyl /etc/pterodactyl /var/lib/pterodactyl /var/log/pterodactyl /tmp/pterodactyl && \
+    chmod -R 755 /etc/pterodactyl /var/lib/pterodactyl /var/log/pterodactyl /tmp/pterodactyl
 
-EXPOSE 8080
+VOLUME [ "/var/run/docker.sock", "/var/lib/docker/containers/", "/etc/pterodactyl/", "/var/lib/pterodactyl/", "/var/log/pterodactyl/", "/tmp/pterodactyl/" ]
+
+EXPOSE 8080 2022
+
+CMD ["/usr/bin/php", "/usr/local/bin/wings", "--config", "/etc/pterodactyl/config.yml"]
