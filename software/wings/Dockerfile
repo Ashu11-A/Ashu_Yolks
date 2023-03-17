@@ -20,7 +20,8 @@ RUN apk update && apk add --no-cache --upgrade \
     && ln -s /bin/bash /bin/sh \
     && echo "America/Sao_Paulo" > /etc/timezone
 
-RUN addgroup --gid 1001 docker && \
+RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl && \
+    addgroup --gid 1001 docker && \
     adduser pterodactyl docker && \
     touch /var/run/docker.sock && \
     chown pterodactyl:docker /var/run/docker.sock && \
