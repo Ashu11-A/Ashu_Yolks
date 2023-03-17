@@ -13,8 +13,9 @@ RUN apk add --no-cache --upgrade \
     unzip \
     curl \
     tzdata \
-    ca-certificates && \
-    apk add --no-cache uidmap
+    ca-certificates
+
+RUN apk update && apk add --no-cache shadow
 
 ENV TZ="America/Sao_Paulo"
 
