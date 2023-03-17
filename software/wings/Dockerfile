@@ -1,22 +1,45 @@
-FROM docker:latest
+FROM alpine:latest
 
-COPY requirements.txt /tmp/requirements.txt
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
-RUN apk add --no-cache py3-pip python3-dev libffi-dev openssl-dev curl gcc libc-dev rust cargo make && \
-    pip3 install --no-cache-dir -r /tmp/requirements.txt
+RUN apk update
 
-RUN apk add --no-cache --update curl ca-certificates openssl git tar bash sqlite fontconfig \
-    && adduser --disabled-password --home /home/container container
+RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl
 
+RUN apk add --no-cache --virtual=build-dependencies --upgrade \
+    file \
+    git \
+    wget \
+    jq \
+    tar \
+    unzip \
+    curl \
+    tzdata \
+    ca-certificates \
+    iptables
+
+RUN apk add --update docker-cli docker
+
+RUN adduser pterodactyl docker
+RUN touch /var/run/docker.sock
+RUN chown root:docker /var/run/docker.sock && \
+    chmod 660 /var/run/docker.sock
+
+ENV TZ="America/Sao_Paulo"
+VOLUME /var/run/docker.sock
+ENV DOCKER_HOST=unix:///var/run/docker.sock
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-USER container
-ENV  USER=container HOME=/home/container
+RUN echo "America/Sao_Paulo" > /etc/timezone
+
+USER pterodactyl
+ENV  USER pterodactyl
+ENV HOME /home/container
 
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
 
-CMD ["/bin/bash", "/entrypoint.sh"]
+CMD [ "bash", "/entrypoint.sh" ]
