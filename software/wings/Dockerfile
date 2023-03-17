@@ -4,6 +4,8 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 RUN apk update
 
+RUN adduser --disabled-password --home /home/user --uid 1000 pterodactyl
+
 RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     file \
     git \
@@ -20,6 +22,11 @@ RUN apk add --update docker openrc
 RUN rc-update add docker boot
 RUN touch /var/run/docker.sock && \
     chmod 666 /var/run/docker.sock
+
+RUN apk add sudo && \
+    echo "user ALL=NOPASSWD:/sbin/iptables" >> /etc/sudoers && \
+    echo "user ALL=NOPASSWD:/usr/bin/dockerd" >> /etc/sudoers
+
 ENV TZ="America/Sao_Paulo"
 
 ENV DOCKER_HOST=tcp://host.docker.internal:53
