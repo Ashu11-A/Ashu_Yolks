@@ -14,6 +14,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     curl \
     tzdata
 
+RUN curl -sSL https://get.docker.com/ | sh
+
 ENV TZ="America/Sao_Paulo"
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
