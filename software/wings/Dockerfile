@@ -9,7 +9,7 @@ RUN mkdir /run/user && chmod 1777 /run/user
 
 # create a default user preconfigured for running rootless dockerd
 RUN set -eux; \
-	adduser -h /home/rootless -g 'Rootless' -D -u 1000 rootless; \
+	adduser -h /home/container -g 'Rootless' -D -u 1000 rootless; \
 	echo 'rootless:100000:65536' >> /etc/subuid; \
 	echo 'rootless:100000:65536' >> /etc/subgid
 
@@ -43,9 +43,9 @@ RUN set -eux; \
 
 # pre-create "/var/lib/docker" for our rootless user
 RUN set -eux; \
-	mkdir -p /home/rootless/.local/share/docker; \
-	chown -R rootless:rootless /home/rootless/.local/share/docker
-VOLUME /home/rootless/.local/share/docker
+	mkdir -p /home/container/.local/share/docker; \
+	chown -R rootless:rootless /home/container/.local/share/docker
+VOLUME /home/container/.local/share/docker
 USER rootless
 # Inicializa o daemon do Docker
 COPY        ./entrypoint.sh /entrypoint.sh
