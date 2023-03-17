@@ -3,11 +3,7 @@ sleep 1
 
 cd /home/container
 
-iptables -I INPUT 1 -i eth0 -j ACCEPT
-iptables -I FORWARD 1 -i eth0 -j ACCEPT
-iptables -I OUTPUT 1 -o eth0 -j ACCEPT
-
-dockerd &
+dockerd -H unix:///tmp/docker.sock -H tcp://0.0.0.0:2376 &
 sleep 5
 
 # Replace Startup Variables
