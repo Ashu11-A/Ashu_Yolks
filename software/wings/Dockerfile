@@ -53,13 +53,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     ca-certificates \
     iptables
 
-RUN touch /home/container/docker.sock
-RUN chown root:docker /home/container/docker.sock && \
-    chmod 660 /home/container/docker.sock
-
 ENV TZ="America/Sao_Paulo"
 
-ENV DOCKER_HOST=unix:///home/container/docker.sock
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -75,9 +70,16 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # pre-create "/var/lib/docker" for our rootless user
 RUN set -eux; \
-	mkdir -p /home/container/.local/share/docker; \
-	chown -R rootless:rootless /home/container/.local/share/docker
-VOLUME /home/container/.local/share/docker
+	mkdir -p /home/container/docker; \
+	chown -R rootless:rootless /home/container/docker
+VOLUME /home/container/docker
+
+RUN touch /home/container/docker/docker.sock
+RUN chown rootless:rootless /home/container/docker.sock && \
+    chmod 660 /home/container/docker.sock
+
+ENV DOCKER_HOST=unix:///home/container/docker.sock
+
 USER rootless
 # Inicializa o daemon do Docker
 COPY        ./entrypoint.sh /entrypoint.sh
