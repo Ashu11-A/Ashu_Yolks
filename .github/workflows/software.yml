@@ -1,10 +1,8 @@
 name: build software
 on:
   push:
-    branches:
-      - main
     paths:
-      - software/**
+      - 'software/**/Dockerfile'
 jobs:
   build:
     name: "software:${{ matrix.tag }}"
@@ -23,42 +21,19 @@ jobs:
           - wings
     steps:
       - uses: actions/checkout@v2
-      - name: Get Dockerfile changes
-        id: dockerfile_changes
-        run: |
-          echo "::set-output name=files::$(git diff --name-only HEAD^ HEAD | grep -E 'software\/.*\/Dockerfile' || true)"
-        shell: bash
-      - name: Build Docker image
-        id: docker_build
-        if: ${{ steps.dockerfile_changes.outputs.files != '' }}
-        uses: docker/build-push-action@v4
+      - uses: docker/setup-buildx-action@v2
         with:
-          context: ./
-          file: ${{ steps.dockerfile_changes.outputs.files }}
-          platforms: linux/amd64,linux/arm64
-          push: false
-          tags: |
-            ghcr.io/ashu11-a/software:${{ matrix.tag }}
-      - name: Extract image information
-        id: image_info
-        if: ${{ steps.docker_build.outputs.digest != '' }}
-        uses: docker/metadata-action@v3
+          buildkitd-flags: --debug
+      - uses: docker/login-action@v2
         with:
-          images: ghcr.io/ashu11-a/software:${{ matrix.tag }}
-      - name: Push Docker image
-        if: ${{ steps.docker_build.outputs.digest != '' }}
-        uses: docker/build-push-action@v4
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v4
         with:
-          context: ./
-          file: ${{ steps.dockerfile_changes.outputs.files }}
+          context: ./software/${{ matrix.tag }}
+          file: ./software/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
             ghcr.io/ashu11-a/software:${{ matrix.tag }}
-          labels: |
-            org.opencontainers.image.source=https://github.com/ashu11-a/software
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.created=${{ steps.image_info.outputs.created }}
-            org.opencontainers.image.version=${{ steps.image_info.outputs.tags }}
-            org.opencontainers.image.title=${{ matrix.tag }}
-            org.opencontainers.image.description="Docker image for ${matrix.tag} software"
