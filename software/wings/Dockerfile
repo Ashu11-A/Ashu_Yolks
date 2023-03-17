@@ -1,45 +1,35 @@
-FROM alpine:latest
+FROM debian:latest
 
-LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+# Define o usuário não-raiz que irá executar o daemon do Docker
+ARG USER_NAME=dockeruser
+ARG USER_ID=1000
+ARG GROUP_NAME=dockergroup
+ARG GROUP_ID=1000
 
-RUN apk update
-
-RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl
-
-RUN apk add --no-cache --virtual=build-dependencies --upgrade \
-    file \
-    git \
-    wget \
-    jq \
-    tar \
-    unzip \
-    curl \
-    tzdata \
+# Instalação de dependências necessárias para o Docker
+RUN apt-get update && apt-get install -y \
+    apt-transport-https \
     ca-certificates \
-    iptables
+    curl \
+    gnupg2 \
+    software-properties-common
 
-RUN apk add --update docker-cli docker
+# Adiciona a chave GPG oficial do Docker e adiciona o repositório
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+RUN add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
 
-RUN adduser pterodactyl docker
-RUN touch /var/run/docker.sock
-RUN chown root:docker /var/run/docker.sock && \
-    chmod 660 /var/run/docker.sock
+# Instalação do Docker
+RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
 
-ENV TZ="America/Sao_Paulo"
+# Cria o usuário não-raiz e adiciona-o ao grupo do Docker
+RUN groupadd -g $GROUP_ID $GROUP_NAME
+RUN useradd -m -u $USER_ID -g $GROUP_NAME $USER_NAME
 
-ENV DOCKER_HOST=unix:///var/run/docker.sock
-# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
-RUN apk add --no-cache bash fakeroot
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# Define o usuário padrão para o Docker
+USER $USER_NAME
 
-RUN echo "America/Sao_Paulo" > /etc/timezone
-
-USER pterodactyl
-ENV  USER pterodactyl
-ENV HOME /home/container
-
-WORKDIR /home/container
-
-COPY ./entrypoint.sh /entrypoint.sh
-
-CMD [ "bash", "/entrypoint.sh" ]
+# Inicializa o daemon do Docker
+CMD ["dockerd"]
