@@ -1,41 +1,52 @@
-FROM debian:latest
+FROM docker:20.10-dind
 
-# Define o usuário não-raiz que irá executar o daemon do Docker
-ARG USER_NAME=dockeruser
-ARG USER_ID=1000
-ARG GROUP_NAME=dockergroup
-ARG GROUP_ID=1000
+# busybox "ip" is insufficient:
+#   [rootlesskit:child ] error: executing [[ip tuntap add name tap0 mode tap] [ip link set tap0 address 02:50:00:00:00:01]]: exit status 1
+RUN apk add --no-cache iproute2 fuse-overlayfs
 
-# Instalação de dependências necessárias para o Docker
-RUN apt-get update && apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg2 \
-    software-properties-common \
-    tzdata \
-    iproute2 \
-    dbus-user-session \
-    fuse-overlayfs \
-    slirp4netns \
-    uidmap
+# "/run/user/UID" will be used by default as the value of XDG_RUNTIME_DIR
+RUN mkdir /run/user && chmod 1777 /run/user
 
-# Cria o usuário não-raiz e adiciona-o ao grupo do Docker
-RUN groupadd -g $GROUP_ID $GROUP_NAME
-RUN useradd -m -u $USER_ID -g $GROUP_NAME $USER_NAME
+# create a default user preconfigured for running rootless dockerd
+RUN set -eux; \
+	adduser -h /home/rootless -g 'Rootless' -D -u 1000 rootless; \
+	echo 'rootless:100000:65536' >> /etc/subuid; \
+	echo 'rootless:100000:65536' >> /etc/subgid
 
-# Define o usuário padrão para o Docker
-USER $USER_NAME
+RUN set -eux; \
+	\
+	apkArch="$(apk --print-arch)"; \
+	case "$apkArch" in \
+		'x86_64') \
+			url='https://download.docker.com/linux/static/stable/x86_64/docker-rootless-extras-20.10.23.tgz'; \
+			;; \
+		'aarch64') \
+			url='https://download.docker.com/linux/static/stable/aarch64/docker-rootless-extras-20.10.23.tgz'; \
+			;; \
+		*) echo >&2 "error: unsupported 'rootless.tgz' architecture ($apkArch)"; exit 1 ;; \
+	esac; \
+	\
+	wget -O 'rootless.tgz' "$url"; \
+	\
+	tar --extract \
+		--file rootless.tgz \
+		--strip-components 1 \
+		--directory /usr/local/bin/ \
+		'docker-rootless-extras/rootlesskit' \
+		'docker-rootless-extras/rootlesskit-docker-proxy' \
+		'docker-rootless-extras/vpnkit' \
+	; \
+	rm rootless.tgz; \
+	\
+	rootlesskit --version; \
+	vpnkit --version
 
-ENV SKIP_IPTABLES=1
-
-RUN curl -sSL https://get.docker.com/rootless | sh
-
-ENV PATH=/home/$user/bin:$PATH
-ENV DOCKER_HOST=unix:///home/container/docker.sock
-
-RUN docker context use rootless
-
+# pre-create "/var/lib/docker" for our rootless user
+RUN set -eux; \
+	mkdir -p /home/rootless/.local/share/docker; \
+	chown -R rootless:rootless /home/rootless/.local/share/docker
+VOLUME /home/rootless/.local/share/docker
+USER rootless
 # Inicializa o daemon do Docker
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
