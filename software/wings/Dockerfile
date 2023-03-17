@@ -17,8 +17,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     tzdata \
     ca-certificates
 
-RUN apk add --update docker openrc
-RUN rc-update add docker boot
+RUN apk add --update docker-cli docker
 
 RUN adduser pterodactyl docker
 RUN touch /var/run/docker.sock
