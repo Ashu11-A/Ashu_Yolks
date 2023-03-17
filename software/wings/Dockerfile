@@ -27,11 +27,6 @@ RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl &&
     chown pterodactyl:docker /var/run/docker.sock && \
     chmod g+rwx /var/run/docker.sock
 
-# Inicia o daemon Docker dentro do contêiner
-RUN dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay2 --storage-opt=overlay2.override_kernel_check=true --storage-opt=overlay2.override_duplicate_check=true --log-driver=json-file --log-opt=max-size=10m --log-opt=max-file=5
-
-RUN docker network create --driver bridge pterodactyl_nw
-
 USER pterodactyl
 ENV USER=pterodactyl
 ENV HOME=/home/container
