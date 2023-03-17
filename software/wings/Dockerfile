@@ -15,7 +15,7 @@ RUN apk add --no-cache --upgrade \
     tzdata \
     ca-certificates
 
-RUN apk update && apk add --no-cache uidmap
+RUN apk update && apk add --no-cache docker docker-cli
 
 ENV TZ="America/Sao_Paulo"
 
@@ -29,7 +29,7 @@ RUN adduser -D pterodactyl
 
 USER pterodactyl
 
-RUN curl -fsSL https://get.docker.com/rootless | sh
+RUN  dockerd-rootless-setuptool.sh install
 
 ENV DOCKER_HOST=unix:///run/user/1000/docker.sock
 ENV DOCKER_TLS_CERTDIR=/run/user/1000/certs
