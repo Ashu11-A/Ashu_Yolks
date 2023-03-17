@@ -14,7 +14,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     curl \
     tzdata
 
-RUN curl -sSL https://get.docker.com/ | sh
+RUN apk add --update docker openrc
+RUN rc-update add docker boot
 
 ENV TZ="America/Sao_Paulo"
 
