@@ -20,19 +20,19 @@ RUN apt-get update && apt-get install -y \
     slirp4netns \
     uidmap
 
-RUN curl -sSL https://get.docker.com/rootless | sh
-
-ENV PATH=/home/$user/bin:$PATH
-ENV DOCKER_HOST=unix:///home/container/docker.sock
-
-RUN docker context use rootless
-
 # Cria o usuário não-raiz e adiciona-o ao grupo do Docker
 RUN groupadd -g $GROUP_ID $GROUP_NAME
 RUN useradd -m -u $USER_ID -g $GROUP_NAME $USER_NAME
 
 # Define o usuário padrão para o Docker
 USER $USER_NAME
+
+RUN curl -sSL https://get.docker.com/rootless | sh
+
+ENV PATH=/home/$user/bin:$PATH
+ENV DOCKER_HOST=unix:///home/container/docker.sock
+
+RUN docker context use rootless
 
 # Inicializa o daemon do Docker
 COPY        ./entrypoint.sh /entrypoint.sh
