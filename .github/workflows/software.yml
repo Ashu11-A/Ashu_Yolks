@@ -1,15 +1,12 @@
 name: build software
 on:
-  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'software/**/Dockerfile'
   schedule:
     - cron: "0 0 * * 1"
-  push:
-    branches:
-      - main
-    paths:
-      - software/**
 jobs:
-  push:
+  build:
     name: "software:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
@@ -25,7 +22,7 @@ jobs:
           - stress
           - wings
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - uses: docker/setup-buildx-action@v2
         with:
           buildkitd-flags: --debug
