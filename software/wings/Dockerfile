@@ -27,7 +27,7 @@ RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl &&
     chown pterodactyl:docker /var/run/docker.sock && \
     chmod g+rwx /var/run/docker.sock
 
-RUN apt-get update && apt-get install -y sudo
+RUN apk update && apk add --no-cache --upgrade sudo
 RUN usermod -aG sudo root
     
 # Inicia o daemon Docker dentro do contêiner
