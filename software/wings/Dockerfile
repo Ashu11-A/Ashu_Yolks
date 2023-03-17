@@ -4,7 +4,7 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 RUN apk update
 
-RUN adduser --disabled-password --home /home/user --uid 1000 pterodactyl
+RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl
 
 RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     file \
