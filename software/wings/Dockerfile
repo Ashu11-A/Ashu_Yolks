@@ -13,7 +13,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     unzip \
     curl \
     tzdata \
-    ca-certificates
+    ca-certificates \
+    uidmap
 
 ENV TZ="America/Sao_Paulo"
 
