@@ -35,8 +35,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN echo "America/Sao_Paulo" > /etc/timezone
 
-RUN addgroup --gid 1001 docker \
-    && adduser pterodactyl docker
+RUN adduser pterodactyl docker
 RUN chown pterodactyl:docker /var/run/docker.sock \
     && chmod g+rwx /var/run/docker.sock
 
