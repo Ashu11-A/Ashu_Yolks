@@ -75,8 +75,8 @@ RUN set -eux; \
 VOLUME /home/container/docker
 
 RUN touch /home/container/docker/docker.sock
-RUN chown rootless:rootless /home/container/docker.sock && \
-    chmod 660 /home/container/docker.sock
+RUN chown rootless:rootless /home/container/docker/docker.sock && \
+    chmod 660 /home/container/docker/docker.sock
 
 ENV DOCKER_HOST=unix:///home/container/docker.sock
 
