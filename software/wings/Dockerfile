@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM docker:dind
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
@@ -6,7 +6,7 @@ RUN apk update
 
 RUN adduser --disabled-password --home /home/container --uid 1000 pterodactyl
 
-RUN apk add --no-cache --virtual=build-dependencies --upgrade \
+RUN apk add --no-cache --upgrade \
     file \
     git \
     wget \
@@ -18,7 +18,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     ca-certificates \
     iptables
 
-RUN apk add --update docker-cli docker
+RUN apk add --update docker-cli
 
 RUN adduser pterodactyl docker
 RUN touch /var/run/docker.sock
@@ -26,8 +26,10 @@ RUN chown root:docker /var/run/docker.sock && \
     chmod 660 /var/run/docker.sock
 
 ENV TZ="America/Sao_Paulo"
-VOLUME /var/run/docker.sock
+ENV DOCKER_TLS_CERTDIR=""
+ENV DOCKER_HOST=tcp://docker:2375
 ENV DOCKER_HOST=unix:///var/run/docker.sock
+
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN apk add --no-cache bash fakeroot
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
