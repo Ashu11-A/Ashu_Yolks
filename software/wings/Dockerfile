@@ -22,7 +22,7 @@ RUN add-apt-repository \
    stable"
 
 # Instalação do Docker
-RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
+RUN apt-get update && apt-get install -y docker-cli docker
 
 # Cria o usuário não-raiz e adiciona-o ao grupo do Docker
 RUN groupadd -g $GROUP_ID $GROUP_NAME
