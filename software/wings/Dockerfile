@@ -17,8 +17,6 @@ RUN apt-get update && apt-get install -y \
     iproute2 \
     dbus-user-session \
     fuse-overlayfs \
-    overlay2 \
-    btrfs \
     slirp4netns \
     uidmap
 
