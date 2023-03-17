@@ -23,7 +23,6 @@ jobs:
           - paneldactyl
           - proot
           - stress
-          - wings
     steps:
       - uses: actions/checkout@v3
         with:
