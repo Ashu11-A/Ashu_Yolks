@@ -41,6 +41,31 @@ RUN set -eux; \
 	rootlesskit --version; \
 	vpnkit --version
 
+RUN apk add --no-cache --virtual=build-dependencies --upgrade \
+    file \
+    git \
+    wget \
+    jq \
+    tar \
+    unzip \
+    curl \
+    tzdata \
+    ca-certificates \
+    iptables
+
+RUN touch /home/container/docker.sock
+RUN chown root:docker /home/container/docker.sock && \
+    chmod 660 /home/container/docker.sock
+
+ENV TZ="America/Sao_Paulo"
+
+ENV DOCKER_HOST=unix:///home/container/docker.sock
+# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
+RUN apk add --no-cache bash fakeroot
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+RUN echo "America/Sao_Paulo" > /etc/timezone
+
 # Esse codigo o Drylian me passou
 # Instala o bash
 RUN apk add --no-cache bash fakeroot
