@@ -41,6 +41,13 @@ RUN set -eux; \
 	rootlesskit --version; \
 	vpnkit --version
 
+# Esse codigo o Drylian me passou
+# Instala o bash
+RUN apk add --no-cache bash fakeroot
+
+# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
 # pre-create "/var/lib/docker" for our rootless user
 RUN set -eux; \
 	mkdir -p /home/container/.local/share/docker; \
