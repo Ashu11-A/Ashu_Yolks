@@ -20,10 +20,6 @@ RUN apk add --no-cache --upgrade \
 
 RUN apk add --update docker-cli
 
-RUN touch /var/run/docker.sock \
-    && chown pterodactyl:docker /var/run/docker.sock \
-    && chmod g+rwx /var/run/docker.sock
-
 ENV TZ="America/Sao_Paulo"
 ENV DOCKER_TLS_CERTDIR=""
 ENV DOCKER_HOST=unix:///var/run/docker.sock
@@ -36,6 +32,11 @@ RUN echo "America/Sao_Paulo" > /etc/timezone
 
 RUN addgroup --gid 1001 docker \
     && adduser pterodactyl docker
+
+RUN touch /var/run/docker.sock \
+    && chown pterodactyl:docker /var/run/docker.sock \
+    && chmod g+rwx /var/run/docker.sock
+
 RUN docker network create --driver bridge pterodactyl_nw
 
 USER pterodactyl
