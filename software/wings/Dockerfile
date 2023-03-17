@@ -42,11 +42,9 @@ RUN addgroup -g ${USER_GID} ${USER_NAME} && \
     adduser -u ${USER_UID} -G ${USER_NAME} -s /bin/sh -D ${USER_NAME} && \
     echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-# Install Docker using dockerd-rootless-setuptool
-RUN curl -sSL https://get.docker.com/rootless | sh
-
-# Switch to the non-root user
 USER ${USER_NAME}
+
+RUN curl -sSL https://get.docker.com/rootless | sh
 
 ENV DOCKER_HOST=unix:///run/user/1000/docker.sock
 ENV DOCKER_TLS_CERTDIR=/run/user/1000/certs
