@@ -12,7 +12,9 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     curl \
     gnupg2 \
-    software-properties-common
+    software-properties-common \
+    tzdata \
+    iproute2
 
 # Adiciona a chave GPG oficial do Docker e adiciona o repositório
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
@@ -32,4 +34,5 @@ RUN useradd -m -u $USER_ID -g $GROUP_NAME $USER_NAME
 USER $USER_NAME
 
 # Inicializa o daemon do Docker
-CMD ["dockerd"]
+COPY        ./entrypoint.sh /entrypoint.sh
+CMD         [ "/bin/bash", "/entrypoint.sh" ]
