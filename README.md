@@ -26,7 +26,7 @@ Gostou? Então de uma 🌟 ao repositório!
 
 </div>
 
-- [ ] Transformar todos os Docker em Alpine (Mais leve)
+- [ ] Tentar transformar todos os Docker em Alpine (Mais leve)
 
 </div>
 <div align="center">
