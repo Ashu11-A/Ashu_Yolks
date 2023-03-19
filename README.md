@@ -50,14 +50,14 @@ Gostou? Então de uma 🌟 ao repositório!
 | [SA-MP](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Games/SA-MP) | ✅ | ✅ | AMD64: ``ghcr.io/ashu11-a/games:samp-amd64`` ARM64: ``ghcr.io/ashu11-a/games:samp-arm64`` |
 
 
-✅ • Funcionando    
-❔ • Ainda não testado, mas deve funcionar  
-❌ • Não funciona   
+✅ • Funcionando.    
+❔ • Ainda não testado, mas deve funcionar.  
+❌ • Não funciona.   
 
 
-✅ • Working   
-❔ • Not tested yet but should work  
-❌ • Don't work 
+✅ • Working.   
+❔ • Not tested yet but should work.  
+❌ • Don't work. 
 
 ## 📁 | Contato
 
