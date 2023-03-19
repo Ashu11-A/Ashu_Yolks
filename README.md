@@ -20,6 +20,14 @@ Esses dockers oferecem uma maneira fácil e conveniente de configurar um ambient
 
 Gostou? Então de uma 🌟 ao repositório!
 
+<div align="center">
+
+# Metas
+
+</div>
+
+- [ ] Transformar todos os Docker em Alpine (Mais leve)
+
 </div>
 <div align="center">
 
