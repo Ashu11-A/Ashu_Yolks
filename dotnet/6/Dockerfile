@@ -1,31 +1,39 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:6.0-alpine
+FROM $REPO:6.0.13-bullseye-slim
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 ENV         DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 
-RUN apk update \
-    && apk add --no-cache --upgrade \
+ENV         DEBIAN_FRONTEND noninteractive
+
+RUN         dpkg --configure -a
+
+RUN         apt clean
+
+RUN         apt --fix-missing update
+
+RUN         apt update -y
+
+RUN         apt -f install
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
         curl \
         git \
         wget \
-        sdl2-dev \
-        libc6-compat \
-        libgcc \
-        krb5-libs \
+        libsdl2-dev \
+        libc6 \
+        libgcc1 \
+        libgssapi-krb5-2 \
         libstdc++6 \
-        zlib-dev \
-        iproute2
+        zlib1g \
+        iproute2 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Esse codigo o Drylian me passou
-# Instala o bash a
-RUN apk add --no-cache bash
+RUN         apt upgrade -y
 
-# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
-RUN         apk update
+RUN         apt install -y wget
 
 RUN         wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh \
             && bash dotnet-install.sh
