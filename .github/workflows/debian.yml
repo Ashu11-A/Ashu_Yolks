@@ -1,4 +1,4 @@
-name: build debian
+name: build distros
 on:
   workflow_dispatch:
   schedule:
@@ -7,10 +7,10 @@ on:
     branches:
       - main
     paths:
-      - debian/**
+      - distro/**
 jobs:
   push:
-    name: "yolks:${{ matrix.tag }}"
+    name: "emulation:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -19,7 +19,16 @@ jobs:
           - debian
     steps:
       - uses: actions/checkout@v3
-      - uses: docker/setup-qemu-action@v2
+        with:
+          fetch-depth: 0 # Fetch all git history
+      - name: Determine if Dockerfile changed
+        id: dockerfile-changed
+        run: |
+          if [[ $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}) == *${{ matrix.tag }}* ]]; then
+            echo "::set-output name=changed::true"
+          else
+            echo "::set-output name=changed::false"
+          fi
       - uses: docker/setup-buildx-action@v2
         with:
           buildkitd-flags: --debug
@@ -28,11 +37,14 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/build-push-action@v4
+      - name: Build and push Docker image
+        if: steps.dockerfile-changed.outputs.changed == 'true'
+        uses: docker/build-push-action@v4
         with:
-          context: ./debian
-          file: ./${{ matrix.tag }}/Dockerfile
+          context: ./distro/${{ matrix.tag }}
+          file: ./distro/${{ matrix.tag }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/ashu11-a/yolks:${{ matrix.tag }}
+            ghcr.io/ashu11-a/distro:${{ matrix.tag }}
+

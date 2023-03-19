@@ -10,7 +10,7 @@ RUN          ln -s /home/container/ /nonexistent
 
 ENV          USER=container HOME=/home/container
 
-## Update base packages
+## Update base packages a
 RUN          apt update \
              && apt upgrade -y
 
