@@ -10,7 +10,7 @@ on:
       - distro/**
 jobs:
   push:
-    name: "emulation:${{ matrix.tag }}"
+    name: "distro:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
