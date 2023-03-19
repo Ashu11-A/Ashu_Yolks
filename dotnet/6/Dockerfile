@@ -18,6 +18,13 @@ RUN apk update \
         zlib-dev \
         iproute2
 
+# Esse codigo o Drylian me passou
+# Instala o bash a
+RUN apk add --no-cache bash
+
+# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
 RUN         apk update
 
 RUN         wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh \
