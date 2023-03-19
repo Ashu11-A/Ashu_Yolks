@@ -10,12 +10,12 @@ RUN apk update \
         curl \
         git \
         wget \
-        libsdl2-dev \
-        libc6 \
-        libgcc1 \
-        libgssapi-krb5-2 \
+        sdl2-dev \
+        libc6-compat \
+        libgcc \
+        krb5-libs \
         libstdc++6 \
-        zlib1g \
+        zlib-dev \
         iproute2
 
 RUN         apk update
