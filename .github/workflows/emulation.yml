@@ -1,4 +1,4 @@
-name: build box
+name: build emulation
 on:
   workflow_dispatch:
   schedule:
