@@ -7,10 +7,7 @@ RUN apk add --no-cache --upgrade \
     fontconfig icu-libs icu-dev libunwind openssl-dev sqlite sqlite-dev mariadb-dev duktape libzip tzdata ffmpeg \
     gnutls jsoncpp leveldb lua-dev luajit-dev sqlite-libs fluidsynth bzip2 zlib-dev libevent-dev
 
-RUN apk add --no-cache mono --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing && \
-    apk add --no-cache --virtual=.build-dependencies ca-certificates && \
-    cert-sync /etc/ssl/certs/ca-certificates.crt && \
-    apk del .build-dependencies
+RUN apk add --no-cache mono --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
 ## wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
 ## wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r0/glibc-2.35-r0.apk
