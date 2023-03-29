@@ -3,8 +3,10 @@ FROM alpine:latest
 RUN apk update
 
 RUN apk add --no-cache --upgrade \
-    gcc g++ libgcc libc-dev gdb libc6-compat git wget curl tar zip unzip binutils xz lzo cabextract iproute2 net-tools netcat-openbsd busybox-extras libatomic sdl2 \
-    fontconfig icu-libs icu-dev libunwind libressl-dev sqlite sqlite-dev mariadb-dev duktape libzip tzdata ffmpeg \
+    gcc g++ libgcc libc-dev gdb libc6-compat git wget curl tar zip unzip binutils xz lzo cabextract iproute2 net-tools netcat-openbsd busybox-extras libatomic sdl2
+RUN apk add --no-cache --upgrade \
+    fontconfig icu-libs icu-dev libunwind libressl-dev sqlite sqlite-dev mariadb-dev duktape libzip tzdata ffmpeg
+RUN apk add --no-cache --upgrade \
     gnutls jsoncpp leveldb lua-dev luajit-dev sqlite-libs fluidsynth bzip2 zlib-dev libevent-dev
 
 RUN apk add --no-cache mono --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing && \
