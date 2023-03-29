@@ -1,9 +1,5 @@
 FROM alpine:latest
 
-## add container user
-RUN useradd -m -d /home/container container
-ENV USER=container HOME=/home/container
-
 RUN apk update
 
 RUN apk add --no-cache --upgrade \
