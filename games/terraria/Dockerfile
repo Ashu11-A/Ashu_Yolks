@@ -3,7 +3,7 @@ FROM alpine:latest
 RUN apk update
 
 RUN apk add --no-cache --upgrade \
-    iproute2 tzdata curl
+    iproute2 tzdata curl bash
 
 RUN apk add --no-cache mono --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
