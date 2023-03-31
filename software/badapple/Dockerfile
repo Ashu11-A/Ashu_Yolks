@@ -5,7 +5,7 @@ RUN apk update
 RUN apk add --no-cache --upgrade \
     iproute2 tzdata curl coreutils
 
-RUN apk add --no-cache git python3
+RUN apk add --no-cache git python3 pip
 
 
 ## configure locale
