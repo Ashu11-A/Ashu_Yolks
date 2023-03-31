@@ -16,7 +16,7 @@ ENV LANG pt_BR.UTF-8
 ENV LANGUAGE pt_BR.UTF-8
 ENV LC_ALL pt_BR.UTF-8
 
-# Esse codigo o Drylian me passou.
+# Esse codigo o Drylian me passou
 # Instala o bash
 RUN apk add --no-cache --upgrade bash
 
