@@ -23,7 +23,7 @@ jobs:
           - paneldactyl
           - proot
           - stress
-          - badapple
+          - python
     steps:
       - uses: actions/checkout@v3
         with:
