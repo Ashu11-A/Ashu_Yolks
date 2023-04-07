@@ -9,20 +9,25 @@ LABEL maintainer="chalkley"
 RUN \
  echo "**** install core packages ****" && \
  apt-get update && \
- apt-get -y install software-properties-common wget unzip && \
+ apt-get -y install software-properties-common wget unzip
+
+RUN \
  echo "**** install HandBrakeCLI package ****" && \
- add-apt-repository ppa:stebbins/handbrake-releases && \
  apt-get update && \
- apt-get -y install handbrake-cli && \
+ apt-get -y install handbrake-cli
+
+RUN \
  echo "**** install ffmpeg package ****" && \
- apt-get -y install ffmpeg && \
- echo "**** install tdarr package ****" && \
- cd /opt/tdarr  && \
+ apt-get -y install ffmpeg
+
+RUN \
+ cd /home/container  && \
+ echo "**** install tdarr package ****"  && \
  wget "https://f000.backblazeb2.com/file/tdarrs/versions/2.00.15/linux_$( dpkg --print-architecture )/Tdarr_Updater.zip" && \
  unzip Tdarr_Updater.zip && \
  ./Tdarr_Updater
 
 EXPOSE 8265 8266 8267
-VOLUME ["/opt/tdarr/configs", "/opt/tdarr/logs", "/opt/tdarr/server"]
+VOLUME ["/home/container/configs", "/home/container/logs", "/home/container/server"]
 COPY  ./entrypoint.sh /entrypoint.sh
 CMD   [ "/bin/bash", "/entrypoint.sh" ]
