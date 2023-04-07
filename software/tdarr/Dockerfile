@@ -9,7 +9,7 @@ RUN \
  apt-get update && \
  TZ=Etc/UTC && \
  apt-get -y install tzdata && \
- apt-get -y install software-properties-common curl wget locales unzip figlet git cat gem rubygems && \
+ apt-get -y install software-properties-common curl wget locales unzip figlet git iproute2 gem rubygems && \
   apt-get update && \
  gem install lolcat
 
