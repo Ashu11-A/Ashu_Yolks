@@ -7,8 +7,6 @@ LABEL build_version="tdarr-v2-aio version:- ${VERSION} Build-date:- ${BUILD_DATE
 LABEL maintainer="chalkley"
 
 RUN \
- echo "**** change file permissions ****" && \
- chmod +x /opt/tdarr/start-tdarr.sh && \
  echo "**** install core packages ****" && \
  apt-get update && \
  apt-get -y install software-properties-common wget unzip && \
@@ -20,7 +18,7 @@ RUN \
  apt-get -y install ffmpeg && \
  echo "**** install tdarr package ****" && \
  cd /opt/tdarr  && \
- wget https://f000.backblazeb2.com/file/tdarrs/versions/2.00.08/linux_x64/Tdarr_Updater.zip && \
+ wget "https://f000.backblazeb2.com/file/tdarrs/versions/2.00.15/linux_$( dpkg --print-architecture )/Tdarr_Updater.zip" && \
  unzip Tdarr_Updater.zip && \
  ./Tdarr_Updater
 
