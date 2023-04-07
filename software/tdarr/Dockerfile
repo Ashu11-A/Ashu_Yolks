@@ -1,10 +1,10 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 # Replace 1000 with your user / group id
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y git-core subversion build-essential gcc-multilib sudo fakeroot
+RUN apt-get update && apt-get install -y git-core subversion build-essential gcc-multilib g++-multilib sudo fakeroot
 
 RUN export uid=1000 gid=1000 && \
     mkdir -p /home/Tdarr && \
