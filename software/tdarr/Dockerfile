@@ -26,7 +26,7 @@ RUN \
 RUN \
  cd /home/container  && \
  echo "**** install tdarr package ****"  && \
- wget https://f000.backblazeb2.com/file/tdarrs/versions/2.00.15/linux_${dpkg --print-architecture}/Tdarr_Updater.zip && \
+ bash -c 'arch=$(dpkg --print-architecture); if [ "$arch" = "amd64" ]; then arch="x64"; fi; wget https://f000.backblazeb2.com/file/tdarrs/versions/2.00.15/linux_$arch/Tdarr_Updater.zip' && \
  unzip Tdarr_Updater.zip && \
  ./Tdarr_Updater
 
