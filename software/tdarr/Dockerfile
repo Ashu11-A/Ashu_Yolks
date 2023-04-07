@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y git-core subversion build-essential gcc-multilib sudo
+RUN apt-get update && apt-get install -y git-core subversion build-essential gcc sudo
 
 RUN export uid=1000 gid=1000 && \
     mkdir -p /home/Tdarr && \
