@@ -4,7 +4,7 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y git-core subversion build-essential gcc-multilib g++-multilib sudo fakeroot
+RUN apt-get update && apt-get install -y git-core subversion build-essential gcc sudo fakeroot
 
 RUN export uid=1000 gid=1000 && \
     mkdir -p /home/Tdarr && \
