@@ -13,7 +13,8 @@ RUN \
  echo "**** install core packages ****" && \
  apt-get update && \
  DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata && \
- apt-get -y install software-properties-common wget unzip figlet git gem && \
+ apt-get -y install software-properties-common wget unzip figlet git gem rubygems && \
+  apt-get update && \
  gem install lolcat
 
 RUN \
