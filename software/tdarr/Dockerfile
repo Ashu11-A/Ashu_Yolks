@@ -1,19 +1,15 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
-# set version label
-ARG BUILD_DATE
-ARG VERSION
-LABEL build_version="tdarr-v2-aio version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="chalkley"
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
-RUN \
-useradd -m -d /home/container -s /bin/bash container
+ENV   DEBIAN_FRONTEND noninteractive
 
 RUN \
  echo "**** install core packages ****" && \
  apt-get update && \
- DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata && \
- apt-get -y install software-properties-common curl wget unzip figlet git cat gem rubygems && \
+ TZ=Etc/UTC && \
+ apt-get -y install tzdata && \
+ apt-get -y install software-properties-common curl wget locales unzip figlet git cat gem rubygems && \
   apt-get update && \
  gem install lolcat
 
@@ -27,6 +23,12 @@ RUN \
  apt-get -y install ffmpeg
 
 VOLUME ["/home/container/configs", "/home/container/logs", "/home/container/server"]
+
+## configure locale
+RUN   update-locale lang=en_US.UTF-8 \
+        &&   dpkg-reconfigure --frontend noninteractive locales
+
 WORKDIR /home/container
+
 COPY  ./entrypoint.sh /entrypoint.sh
 CMD   [ "/bin/bash", "/entrypoint.sh" ]
