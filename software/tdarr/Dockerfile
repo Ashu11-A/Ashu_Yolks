@@ -1,62 +1,33 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
-# Replace 1000 with your user / group id
+# set version label
+ARG BUILD_DATE
+ARG VERSION
+LABEL build_version="tdarr-v2-aio version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="chalkley"
 
-ENV DEBIAN_FRONTEND=noninteractive
+# add local files
+COPY /root/opt /opt
 
-RUN apt-get update && apt-get install -y git-core subversion build-essential gcc sudo
+RUN \
+ echo "**** change file permissions ****" && \
+ chmod +x /opt/tdarr/start-tdarr.sh && \
+ echo "**** install core packages ****" && \
+ apt-get update && \
+ apt-get -y install software-properties-common wget unzip && \
+ echo "**** install HandBrakeCLI package ****" && \
+ add-apt-repository ppa:stebbins/handbrake-releases && \
+ apt-get update && \
+ apt-get -y install handbrake-cli && \
+ echo "**** install ffmpeg package ****" && \
+ apt-get -y install ffmpeg && \
+ echo "**** install tdarr package ****" && \
+ cd /opt/tdarr  && \
+ wget https://f000.backblazeb2.com/file/tdarrs/versions/2.00.08/linux_x64/Tdarr_Updater.zip && \
+ unzip Tdarr_Updater.zip && \
+ ./Tdarr_Updater
 
-RUN export uid=1000 gid=1000 && \
-    mkdir -p /home/Tdarr && \
-    mkdir -p /home/Tdarr/media && \
-    mkdir -p /home/Source && \	
-    echo "Tdarr:x:${uid}:${gid}:Tdarr,,,:/home/Tdarr:/bin/bash" >> /etc/passwd && \
-    echo "Tdarr:x:${uid}:" >> /etc/group && \
-    echo "Tdarr ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/Tdarr && \
-    chmod 0440 /etc/sudoers.d/Tdarr && \
-    chown ${uid}:${gid} -R /home/Tdarr
-
-
-RUN apt-get install dbus-x11 packagekit-gtk3-module libcanberra-gtk-module -y
-RUN apt-get install dbus libnotify4 libnss3 libxss1 xdg-utils trash-cli  trash-cli libglib2.0-bin gvfs-bin -y
-
-RUN apt install curl
-RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-RUN apt install nodejs
-
-
-
-
-RUN apt-get install -y software-properties-common && apt-get update
-RUN add-apt-repository ppa:jonathonf/ffmpeg-4 && apt-get update && apt-get -y install ubuntu-restricted-extras
-RUN apt-get -y install handbrake-cli ffmpeg libavcodec-extra libdvdnav4 libdvdread4 libavcodec-extra57 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly ubuntu-restricted-extras
-
-RUN sudo mkdir -p /data/db
-RUN sudo apt install -y mongodb-server  
-
-
-USER Tdarr
-ENV HOME /home/Tdarr
-
-RUN chown ${uid}:${gid} -R /home/Source
-WORKDIR /home/Source
-RUN sudo mkdir -p /home/Source/Tdarr
-RUN sudo git clone https://github.com/HaveAGitGat/Tdarr
-WORKDIR /home/Source/Tdarr
-
-RUN curl https://install.meteor.com/ | sh
-
-RUN sudo npm install --production
-RUN sudo meteor build --server localhost:8265 --directory /home/Source/Build/Tdarr --architecture os.linux.x86_64 --allow-superuser
-WORKDIR /home/Source/Build/Tdarr/bundle/programs/server
-RUN sudo npm install
-
-
-
-CMD sudo service mongodb start && \
- echo "Mongo started, waiting 10 seconds" && \
- sleep 10 && \
- echo "Tdarr started" && \
- sudo MONGO_URL=mongodb://localhost:27017/Tdarr PORT=8265 ROOT_URL=http://localhost/ node /home/Source/Build/Tdarr/bundle/main.js
-
-
+EXPOSE 8265 8266 8267
+VOLUME ["/opt/tdarr/configs", "/opt/tdarr/logs", "/opt/tdarr/server"]
+COPY  ./entrypoint.sh /entrypoint.sh
+CMD   [ "/bin/bash", "/entrypoint.sh" ]
