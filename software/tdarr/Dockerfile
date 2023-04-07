@@ -16,16 +16,16 @@ RUN export uid=1000 gid=1000 && \
     chmod 0440 /etc/sudoers.d/Tdarr && \
     chown ${uid}:${gid} -R /home/Tdarr
 
+RUN sudo add-apt-repository ppa:webupd8team/atom \
+    sudo apt-get update \
+    sudo apt-get install atom
 
 RUN apt-get install dbus-x11 packagekit-gtk3-module libcanberra-gtk-module -y
-RUN apt-get install dbus libnotify4 libnss3 libxss1 xdg-utils trash-cli  trash-cli libglib2.0-bin gvfs-bin -y
+RUN apt-get install dbus libnotify4 libnss3 libxss1 xdg-utils trash-cli  trash-cli libglib2.0-bin -y
 
 RUN apt install curl
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 RUN apt install nodejs
-
-
-
 
 RUN apt-get install -y software-properties-common && apt-get update
 RUN add-apt-repository ppa:jonathonf/ffmpeg-4 && apt-get update && apt-get -y install ubuntu-restricted-extras
