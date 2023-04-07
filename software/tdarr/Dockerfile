@@ -26,14 +26,6 @@ RUN \
  echo "**** install ffmpeg package ****" && \
  apt-get -y install ffmpeg
 
-RUN \
- cd /home/container  && \
- echo "**** install tdarr package ****"  && \
- bash -c 'arch=$(dpkg --print-architecture); if [ "$arch" = "amd64" ]; then arch="x64"; fi; wget https://f000.backblazeb2.com/file/tdarrs/versions/2.00.15/linux_$arch/Tdarr_Updater.zip' && \
- unzip Tdarr_Updater.zip && \
- ./Tdarr_Updater
-
-EXPOSE 8265 8266 8267
 VOLUME ["/home/container/configs", "/home/container/logs", "/home/container/server"]
 WORKDIR /home/container
 COPY  ./entrypoint.sh /entrypoint.sh
