@@ -6,9 +6,6 @@ ARG VERSION
 LABEL build_version="tdarr-v2-aio version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="chalkley"
 
-# add local files
-COPY /root/opt /opt
-
 RUN \
  echo "**** change file permissions ****" && \
  chmod +x /opt/tdarr/start-tdarr.sh && \
