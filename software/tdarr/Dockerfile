@@ -12,7 +12,8 @@ useradd -m -d /home/container -s /bin/bash container
 RUN \
  echo "**** install core packages ****" && \
  apt-get update && \
- apt-get -y install software-properties-common wget unzip
+ apt-get -y install software-properties-common wget unzip figlet git gem && \
+ gem install lolcat
 
 RUN \
  echo "**** install HandBrakeCLI package ****" && \
