@@ -7,6 +7,9 @@ LABEL build_version="tdarr-v2-aio version:- ${VERSION} Build-date:- ${BUILD_DATE
 LABEL maintainer="chalkley"
 
 RUN \
+useradd -m -d /home/container -s /bin/bash container
+
+RUN \
  echo "**** install core packages ****" && \
  apt-get update && \
  apt-get -y install software-properties-common wget unzip
@@ -29,5 +32,6 @@ RUN \
 
 EXPOSE 8265 8266 8267
 VOLUME ["/home/container/configs", "/home/container/logs", "/home/container/server"]
+WORKDIR /home/container
 COPY  ./entrypoint.sh /entrypoint.sh
 CMD   [ "/bin/bash", "/entrypoint.sh" ]
