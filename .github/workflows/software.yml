@@ -24,6 +24,7 @@ jobs:
           - proot
           - stress
           - python
+          - tdarr
     steps:
       - uses: actions/checkout@v3
         with:
