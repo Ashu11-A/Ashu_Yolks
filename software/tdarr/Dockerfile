@@ -5,6 +5,7 @@ ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="tdarr-v2-aio version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="chalkley"
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 
 RUN \
 useradd -m -d /home/container -s /bin/bash container
