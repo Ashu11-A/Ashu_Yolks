@@ -1,10 +1,10 @@
-FROM ubuntu:22.04
+FROM ubuntu:18.04
 
 # Replace 1000 with your user / group id
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y git-core subversion build-essential gcc sudo fakeroot
+RUN apt-get update && apt-get install -y git-core subversion build-essential gcc-multilib sudo
 
 RUN export uid=1000 gid=1000 && \
     mkdir -p /home/Tdarr && \
@@ -16,16 +16,16 @@ RUN export uid=1000 gid=1000 && \
     chmod 0440 /etc/sudoers.d/Tdarr && \
     chown ${uid}:${gid} -R /home/Tdarr
 
-RUN sudo add-apt-repository ppa:webupd8team/atom \
-    sudo apt-get update \
-    sudo apt-get install atom
 
 RUN apt-get install dbus-x11 packagekit-gtk3-module libcanberra-gtk-module -y
-RUN apt-get install dbus libnotify4 libnss3 libxss1 xdg-utils trash-cli  trash-cli libglib2.0-bin -y
+RUN apt-get install dbus libnotify4 libnss3 libxss1 xdg-utils trash-cli  trash-cli libglib2.0-bin gvfs-bin -y
 
 RUN apt install curl
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 RUN apt install nodejs
+
+
+
 
 RUN apt-get install -y software-properties-common && apt-get update
 RUN add-apt-repository ppa:jonathonf/ffmpeg-4 && apt-get update && apt-get -y install ubuntu-restricted-extras
@@ -58,3 +58,5 @@ CMD sudo service mongodb start && \
  sleep 10 && \
  echo "Tdarr started" && \
  sudo MONGO_URL=mongodb://localhost:27017/Tdarr PORT=8265 ROOT_URL=http://localhost/ node /home/Source/Build/Tdarr/bundle/main.js
+
+
