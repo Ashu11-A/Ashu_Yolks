@@ -16,6 +16,20 @@ RUN apk add --no-cache --upgrade \
     ca-certificates \
     ffmpeg \
     go
+RUN apk add --update \
+  openssl \
+  pcre \
+  lame \
+  libogg \
+  libass \
+  libvpx \
+  libvorbis \
+  libwebp \
+  libtheora \
+  opus \
+  rtmpdump \
+  x264-dev \
+  x265-dev
 
 # Esse codigo o Drylian me passou
 # Instala o bash a
