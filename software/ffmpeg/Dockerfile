@@ -14,7 +14,8 @@ RUN apk add --no-cache --upgrade \
     unzip \
     curl \
     ca-certificates \
-    ffmpeg
+    ffmpeg \
+    go
 
 # Esse codigo o Drylian me passou
 # Instala o bash a
@@ -29,7 +30,6 @@ COPY --from=node /usr/local/lib /usr/local/lib
 COPY --from=node /usr/local/include /usr/local/include
 COPY --from=node /usr/local/bin /usr/local/bin
 
-COPY --from=golang:alpine /usr/local/go/ /usr/local/go/
 RUN npm -g install npm@latest \
     && go install github.com/alfg/ffmpegd@latest
 
