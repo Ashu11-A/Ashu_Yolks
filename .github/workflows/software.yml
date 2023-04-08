@@ -24,7 +24,7 @@ jobs:
           - proot
           - stress
           - python
-          - tdarr
+          - ffmpeg
     steps:
       - uses: actions/checkout@v3
         with:
