@@ -25,6 +25,7 @@ jobs:
           - stress
           - python
           - ffmpeg
+          - handbrake
     steps:
       - uses: actions/checkout@v3
         with:
