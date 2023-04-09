@@ -70,7 +70,7 @@ RUN echo "**** Instalação dos PHP ****" && \
     php-iconv \
     php-tokenizer
 
-# Esse codigo o Drylian me passou
+# Esse codigo o Drylian me passou a
 # Instala o bash
 RUN apk add --no-cache bash fakeroot
 

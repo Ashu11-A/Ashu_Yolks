@@ -26,6 +26,7 @@ jobs:
           - python
           - ffmpeg
           - handbrake
+          - youtube_dl
     steps:
       - uses: actions/checkout@v3
         with:
