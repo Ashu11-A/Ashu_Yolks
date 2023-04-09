@@ -152,7 +152,7 @@ VOLUME ["/home/container/output"]
 VOLUME ["/home/container/watch"]
 VOLUME ["/home/container/trash"]
 
-# Metadata.
+# Metadata
 LABEL \
       org.label-schema.name="handbrake" \
       org.label-schema.description="Docker container for HandBrake" \

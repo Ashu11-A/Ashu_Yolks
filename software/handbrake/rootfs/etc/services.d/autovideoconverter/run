@@ -1,0 +1,501 @@
+#!/bin/bash
+
+set -u # Treat unset variables as an error.
+
+FAILED_CONVERSIONS="/config/failed_conversions"
+SUCCESSFUL_CONVERSIONS="/config/successful_conversions"
+
+HANDBRAKE_CLI="/usr/bin/HandBrakeCLI --preset-import-file /config/ghb/presets.json"
+
+# https://gist.github.com/aaomidi/0a3b5c9bd563c9e012518b495410dc0e
+VIDEO_FILE_EXTENSIONS_INTERNAL_LIST="\
+    webm mkv flv vob ogv ogg rrc gifv mng mov avi qt wmv yuv rm asf amv mp4 \
+    m4p m4v mpg mp2 mpeg mpe mpv m4v svi 3gp 3g2 mxf roq nsv flv f4v f4p f4a \
+    f4b mod"
+
+if [ "${HANDBRAKE_DEBUG:-0}" -eq 1 ]; then
+    HANDBRAKE_CLI="$HANDBRAKE_CLI --verbose=3"
+fi
+
+WATCHDIR_HASH="$(mktemp -d)"
+
+OUTPUT_DIR_TMP=""
+
+clean_exit() {
+    rm -rf "$WATCHDIR_HASH"
+    killall HandBrakeCLI 2>/dev/null
+    killall yad 2>/dev/null
+    if [ -n "${OUTPUT_DIR_TMP:-}" ]; then
+        rm -rf "$OUTPUT_DIR_TMP"
+    fi
+}
+trap "clean_exit" EXIT
+
+log() {
+    echo "$*"
+}
+
+log_hb_encode_progress() {
+    while read OUTPUT; do
+        echo "Encoding $video: $OUTPUT"
+    done | awk 'NR % 12 == 0'
+}
+
+log_hb_encode_progress_yad() {
+    # Ignore the output if GUI progress or HandBrake GUI are disabled.
+    if is-bool-val-true "$AC_NO_GUI_PROGRESS" || is-bool-val-false "${HANDBRAKE_GUI:-1}"
+    then
+        while read OUTPUT; do
+            # Do nothing with the output.
+            :
+        done
+        return
+    fi
+
+    (
+        while read OUTPUT; do
+            # This control the progress bar.
+            echo "$OUTPUT" | cut -d',' -f2- | cut -d' ' -f2 2>/dev/null
+            # This put the text inside the progress bar.
+            echo "# $OUTPUT" 2>/dev/null
+        done
+    ) | /opt/base/bin/yad \
+            --fixed \
+            --width=384 \
+            --posx=$(expr $DISPLAY_WIDTH / 2 - 384 / 2) \
+            --posy=5 \
+            --title "Automatic Video Converter" \
+            --window-icon /opt/novnc/images/icons/master_icon.png \
+            --borders 10 \
+            --text "Encoding $video..." \
+            --no-buttons \
+            --progress \
+            2>/dev/null
+}
+
+WATCHDIR_HASH_calculate() {
+    WATCHDIR="$1"
+    find "$WATCHDIR" -follow -type f -not -path '*/\.*' -printf '%T@:%s:%p:%m\n' | md5sum | cut -d' ' -f1
+}
+
+WATCHDIR_HASH_isset() {
+    WATCHDIR="$1"
+    [ -f "$WATCHDIR_HASH/$WATCHDIR/hash" ]
+}
+
+WATCHDIR_HASH_update() {
+    WATCHDIR="$1"
+    mkdir -p "$WATCHDIR_HASH/$WATCHDIR"
+    WATCHDIR_HASH_calculate "$WATCHDIR" > "$WATCHDIR_HASH/$WATCHDIR/hash"
+}
+
+WATCHDIR_HASH_changed() {
+    WATCHDIR="$1"
+    [ ! -f "$WATCHDIR_HASH/$WATCHDIR/hash" ] || \
+    [ "$(cat "$WATCHDIR_HASH/$WATCHDIR/hash")" != "$(WATCHDIR_HASH_calculate "$WATCHDIR")" ]
+}
+
+get_video_hash() {
+    video="$1"
+    if [ -f "$video" ]; then
+        stat -c '%n %s %Y' "$video" | md5sum | cut -d' ' -f1
+    else
+        find "$video" -type f -exec stat -c '%n %s %Y' {} \; | md5sum | cut -d' ' -f1
+    fi
+}
+
+get_video_titles() {
+    video="$1"
+
+    $HANDBRAKE_CLI -i "$video" \
+                   -t0 \
+                   --min-duration $AC_SOURCE_MIN_DURATION 2>&1 |
+    grep "^+ title " | sed 's/^+ title \([0-9]\+\):$/\1/'
+    return ${PIPESTATUS[0]}
+}
+
+process_video() {
+    video="$1"
+    wf="$2"
+
+    # Skip video if it doesn't exists (may have been removed while processing
+    # the watch directory).
+    if [ ! -f "$video" ] && [ ! -d "$video" ]; then
+        log "Skipping '$video': no longer exists."
+        return
+    fi
+
+    # Get hash of the video from its properties.
+    hash="$(get_video_hash "$video")"
+
+    # Skip video if it has been already successfully processed.
+    if [ -f "$SUCCESSFUL_CONVERSIONS" ] && grep -q -w "$hash" "$SUCCESSFUL_CONVERSIONS"; then
+        log "Skipping video '$video' ($hash): already processed successfully."
+        return
+    fi
+
+    # Skip video if we already failed to process it.
+    if [ -f "$FAILED_CONVERSIONS" ] && grep -q -w "$hash" "$FAILED_CONVERSIONS"; then
+        log "Skipping '$video' ($hash): already processed with failure."
+        return
+    fi
+
+    # Skip video if it is not stable.
+    log "Waiting $AC_SOURCE_STABLE_TIME seconds before processing '$video'..."
+    sleep $AC_SOURCE_STABLE_TIME
+    if [ "$hash" != "$(get_video_hash "$video")" ]; then
+        log "Skipping '$video': currently being copied."
+        return
+    fi
+
+    # Skip video if it is not readable.
+    if [ ! -r "$video" ]; then
+        log "Skipping '$video': not readable, check permissions."
+        return
+    fi
+
+    # Set the output directory.
+    case "$AC_OUTPUT_SUBDIR" in
+        UNSET)
+            OUTPUT_DIR="$AC_OUTPUT_DIR"
+            ;;
+        SAME_AS_SRC)
+            dirname="$(dirname "$video" | sed "s|^$wf||")"
+            OUTPUT_DIR="$AC_OUTPUT_DIR/$dirname"
+            ;;
+        *)
+            OUTPUT_DIR="$AC_OUTPUT_DIR/$AC_OUTPUT_SUBDIR"
+            ;;
+    esac
+    OUTPUT_DIR="$(echo "$OUTPUT_DIR" | sed 's|/\+|/|g' | sed 's|/\+$||')"
+
+    # Get the file extension.
+    VIDEO_FILE_EXT="${video##*.}"
+
+    # Determine if the extension is in the list of video file extensions.
+    if echo "$AC_VIDEO_FILE_EXTENSIONS" | grep -iwq "$VIDEO_FILE_EXT"; then
+        FILE_EXT_IN_VIDEO_LIST=true
+    else
+        FILE_EXT_IN_VIDEO_LIST=false
+    fi
+
+    # Determine if the extension is in the list of non-video file extensions.
+    if echo "$AC_NON_VIDEO_FILE_EXTENSIONS" | grep -iwq "$VIDEO_FILE_EXT"; then
+        FILE_EXT_IN_NON_VIDEO_LIST=true
+    else
+        FILE_EXT_IN_NON_VIDEO_LIST=false
+    fi
+
+    # Get video titles.
+    if $FILE_EXT_IN_VIDEO_LIST && $FILE_EXT_IN_NON_VIDEO_LIST; then
+        log "ERROR: File '${video}' (${hash}) has an extension defined as both a video and non-video file."
+        return
+    elif [ -n "$AC_VIDEO_FILE_EXTENSIONS" ] && ! $FILE_EXT_IN_VIDEO_LIST; then
+        log "File '${video}' (${hash}) has an extension not part of the inclusion list."
+        VIDEO_TITLES=UNSET
+        VIDEO_TITLES_RETVAL=1
+    elif $FILE_EXT_IN_NON_VIDEO_LIST; then
+        log "File '${video}' (${hash}) has an extension part of the exclusion list."
+        VIDEO_TITLES=UNSET
+        VIDEO_TITLES_RETVAL=1
+    else
+        # Let Handbrake detects if the file is a video or not.
+        VIDEO_TITLES="$(get_video_titles "$video")"
+        VIDEO_TITLES_RETVAL=$?
+        if [ "$VIDEO_TITLES_RETVAL" -ne 0 ]; then
+            # File is not a video.
+            VIDEO_TITLES=UNSET
+
+            if $FILE_EXT_IN_VIDEO_LIST; then
+                # The file extension is part of the video file extension list.
+                # Make sure to fail the conversion and not consider the file
+                # as a non-video.
+                VIDEO_TITLES_RETVAL=0
+            elif echo "$VIDEO_FILE_EXTENSIONS_INTERNAL_LIST" | grep -iwq "$VIDEO_FILE_EXT"; then
+                # The file extension is part of our internal list.  Make sure to
+                # fail the conversion and not consider the file as a non-video.
+                # This is a protection against Handbrake not correctly detecting
+                # a video because of a bug, crash, missing support, etc.
+                VIDEO_TITLES_RETVAL=0
+            fi
+        fi
+    fi
+
+    hb_rc=0
+
+    VIDEO_TITLES="${VIDEO_TITLES:-UNSET}"
+    if [ "$VIDEO_TITLES" != "UNSET" ]; then
+        NUM_VIDEO_TITLES="$(echo "$VIDEO_TITLES" | wc -l)"
+    else
+        NUM_VIDEO_TITLES="0"
+    fi
+
+    if [ "$VIDEO_TITLES_RETVAL" -gt 0 ] && [ "$AC_NON_VIDEO_FILE_ACTION" = "copy" ]; then
+        log "File '$video' ($hash) is not a video, copying (unchanged) to output..."
+        mkdir -p "$OUTPUT_DIR"
+        cp -p "${video}" "${OUTPUT_DIR}/$(basename "${video}")" # "-p" maintains permissions, times etc...
+    elif [ "$VIDEO_TITLES_RETVAL" -gt 0 ]; then
+        log "File '$video' ($hash) is not a video, ignoring..."
+    elif [ "$NUM_VIDEO_TITLES" -eq 0 ]; then
+        log "ERROR: Could not identify titles in '${video}' (${hash})."
+        hb_rc=1
+    else
+        # If main title detection is enabled, force the number of titles to 1.
+        if [ "$AC_SOURCE_MAIN_TITLE_DETECTION" != "0" ]; then
+            NUM_VIDEO_TITLES="1"
+        fi
+
+        log "Starting conversion of '${video}' (${hash}) using preset '${AC_PRESET}'..."
+        log "${NUM_VIDEO_TITLES} title(s) to process."
+    fi
+
+    CUR_VIDEO_TITLE=0
+
+    for TITLE in $VIDEO_TITLES; do
+        [ "$TITLE" != "UNSET" ] || continue
+
+        CUR_VIDEO_TITLE="$(expr $CUR_VIDEO_TITLE + 1)"
+        [ "$NUM_VIDEO_TITLES" -eq 1 ] || log "Processing title $TITLE ($CUR_VIDEO_TITLE/$NUM_VIDEO_TITLES)..."
+
+        # Get the output file basename: start with the one of the input file.
+        basename="$(basename "$video" | sed 's/\.[^.]*$//')"
+        # If multiple titles, add the '.title-XX' suffix.
+        [ "$NUM_VIDEO_TITLES" -eq 1 ] || basename="$basename.title-$TITLE"
+
+        # Now set the final output filename by adding the extension.
+        OUTPUT_FILE="$OUTPUT_DIR/$basename.$AC_FORMAT"
+
+        # Call pre conversion hook.
+        if [ -f /config/hooks/pre_conversion.sh ]; then
+            log "Executing pre-conversion hook..."
+            /bin/sh /config/hooks/pre_conversion.sh "$OUTPUT_FILE" "$video" "$AC_PRESET"
+            log "Pre-conversion hook exited with $?"
+        fi
+
+        # Skip video if it doesn't exists (may have been removed by the
+        # pre-conversion hook).
+        if [ ! -f "$video" ] && [ ! -d "$video" ]; then
+            log "Skipping '$video': no longer exists."
+            continue
+        fi
+
+        # Check whether destination already exists
+        if [ -f "$OUTPUT_FILE" ] && is-bool-val-false "$AC_OVERWRITE_OUTPUT"; then
+            hb_rc=1
+            log "ERROR: Destination file '$OUTPUT_FILE' already exists."
+            break
+        elif [ -f "$OUTPUT_FILE" ] && [ "$AC_OVERWRITE_OUTPUT" == "1" ]; then
+            log "WARNING: Overwriting '$OUTPUT_FILE'"
+        fi
+
+        # Set the temporary output directory: this is where the video will be
+        # actually written before being moved its final location once conversion is
+        # terminated.
+        OUTPUT_DIR_TMP="$(mktemp -d "$AC_OUTPUT_DIR/.XXXXXX")"
+        if [ ! -d "$OUTPUT_DIR_TMP" ]; then
+            hb_rc=1
+            log "ERROR: Failed to create temporary directory under '$AC_OUTPUT_DIR'."
+            break
+        fi
+
+        # Set the temporary output filename.
+        OUTPUT_FILE_TMP="$OUTPUT_DIR_TMP/$basename.$AC_FORMAT"
+
+        TITLE_ARG=""
+        if [ "$AC_SOURCE_MAIN_TITLE_DETECTION" == "0" ]; then
+            TITLE_ARG="--title $TITLE"
+        else
+            TITLE_ARG="--main-feature"
+        fi
+
+        # Invoke HandBrake.
+        echo "------- CONVERSION OUTPUT $(date) -------" >> \
+            /config/log/hb/conversion.log
+        $HANDBRAKE_CLI -i "$video" \
+                       -o "$OUTPUT_FILE_TMP" \
+                       $TITLE_ARG \
+                       --preset "$AC_PRESET" \
+                       $AC_HANDBRAKE_CUSTOM_ARGS 2>> \
+            /config/log/hb/conversion.log | \
+            /usr/bin/unbuffer -p grep "^Encoding" | \
+            stdbuf -oL cut -d' ' -f2- | \
+            tee >(log_hb_encode_progress) >(log_hb_encode_progress_yad) > /dev/null
+        hb_rc=$?
+
+        # Close YAD window.
+        killall -SIGUSR1 yad 2> /dev/null
+
+        # Make sure the output file has been generated.
+        if [ $hb_rc -eq 0 ] && [ ! -f "$OUTPUT_FILE_TMP" ]; then
+            hb_rc=1
+        fi
+
+        # Move the file to its final location if conversion terminated
+        # successfully.
+        if [ $hb_rc -eq 0 ]; then
+            mkdir -p "$OUTPUT_DIR"
+            mv -f "$OUTPUT_FILE_TMP" "$OUTPUT_FILE"
+        fi
+        rm -rf "$OUTPUT_DIR_TMP"
+        OUTPUT_DIR_TMP=""
+
+        # Call post conversion hook.
+        if [ -f /config/hooks/post_conversion.sh ]; then
+            log "Executing post-conversion hook..."
+            /bin/sh /config/hooks/post_conversion.sh $hb_rc "$OUTPUT_FILE" "$video" "$AC_PRESET"
+            log "Post-conversion hook exited with $?"
+        fi
+
+        [ $hb_rc -eq 0 ] || break
+    done
+
+    NUM_PROCESSED_FILES="$(expr $NUM_PROCESSED_FILES + 1)"
+
+    if [ $hb_rc -eq 0 ]; then
+        log "Conversion ended successfully."
+        echo "$video $hash" >> "$SUCCESSFUL_CONVERSIONS"
+        if is-bool-val-false "$AC_KEEP_SOURCE"; then
+            if [ "${AUTOMATED_CONVERSION_USE_TRASH:-0}" -eq 0 ]; then
+                rm -r "$video"
+                log "Removed $video'."
+            else
+                VIDEO_TRASH_PATH="/trash/${video#"$wf"}"
+                mkdir -p "$(dirname "$VIDEO_TRASH_PATH")"
+                log "Moving $video to trash directory..."
+                mv "$video" "$VIDEO_TRASH_PATH"
+                log "Moved $video to trash directory."
+            fi
+            # Remove directory if empty (hidden files/folders are ignored).
+            videodir="$(dirname "$video")"
+            while [ "$videodir" != "$wf" ] && [ -z "$(ls "$videodir")" ]; do
+                log "Removed directory '$videodir'."
+                rm -rf "$videodir"
+                videodir="$(dirname "$videodir")"
+            done
+        fi
+    else
+        log "Conversion failed."
+        log "For more details about the failure, see /config/log/hb/conversion.log."
+        if ! echo "$AC_PRESET" | grep -q "/"; then
+            log "NOTE: The configured preset doesn't seem to include its category.  A preset must"
+            log "      must now be identified using the following format: '<CATEGORY>/<PRESET NAME>'."
+            log "      This may be the cause of the current failure."
+        fi
+        echo "$video $hash" >> "$FAILED_CONVERSIONS"
+    fi
+}
+
+process_watch_folder() {
+    WF="$1"
+
+    NUM_PROCESSED_FILES=0
+
+    [ -d "$WF" ] || return
+    WATCHDIR_HASH_changed "$WF" || return
+
+    if WATCHDIR_HASH_isset "$WF"; then
+        log "Change detected in watch folder '$WF'."
+    fi
+
+    # Make sure to update the watch directory hash before processing it.
+    # This is to make sure we catch, on the next round, changes occuring
+    # during the processing.
+    WATCHDIR_HASH_update "$WF"
+
+    log "Processing watch folder '$WF'..."
+    FILELIST1="$(mktemp)"
+    FILELIST2="$(mktemp)"
+
+    # First, get the list of files in the watch folder, filtering all files
+    # files under VIDEO_TS or BDMV and keeping only their parent directory.
+    find "$WF" -follow -type f -not -path '*/\.*' -printf "%T@ %p\n" | \
+        sort -n | \
+        cut -d' ' -f2- | \
+        sed 's|/\([^/]*\)/VIDEO_TS/.*$|/\1|g' | \
+        sed 's|/\([^/]*\)/BDMV/.*$|/\1|g' | \
+        uniq > "$FILELIST1"
+    cp "$FILELIST1" "$FILELIST2"
+
+    # Then, remove all files under directories part of the list.  The
+    # directories from the list are video discs and their individual files
+    # should not be processed.
+    while read -u 3 FILE
+    do
+        if [ -d "$FILE" ]; then
+            sed -i "s|$FILE/.*|$FILE|g" "$FILELIST2"
+        fi
+    done 3<"$FILELIST1"
+    cat "$FILELIST2" | uniq > "$FILELIST1"
+
+    # Warn user if video disc folder structure is found at the root of the watch
+    # folder.
+    for DIR in "$WF/VIDEO_TS" "$WF/BDMV"
+    do
+        if [ -d "$DIR" ]; then
+            log "Skipping '$DIR': video disc folder structure should not be placed at the root of the watch folder."
+        fi
+    done
+
+    # Process videos files.
+    while read -u 3 FILE
+    do
+        if [ "$FILE" = "$WF" ]; then
+            continue
+        fi
+        process_video "$FILE" "$WF"
+    done 3<"$FILELIST1"
+    rm "$FILELIST1"
+    rm "$FILELIST2"
+    log "Watch folder '$WF' processing terminated."
+
+    # Call watch folder done hook.
+    if [ -f /config/hooks/post_watch_folder_processing.sh ] && [ "$NUM_PROCESSED_FILES" -gt 0 ]; then
+        log "Executing post watch folder processing hook..."
+        /bin/sh /config/hooks/post_watch_folder_processing.sh "$WF"
+        log "Post watch folder processing hook exited with $?"
+    fi
+
+}
+
+[ -f "$FAILED_CONVERSIONS" ] || touch "$FAILED_CONVERSIONS"
+[ -f "$SUCCESSFUL_CONVERSIONS" ] || touch "$SUCCESSFUL_CONVERSIONS"
+
+while true; do
+    for i in $(seq 1 ${AUTOMATED_CONVERSION_MAX_WATCH_FOLDERS:-5}); do
+        DIR="/watch$i"
+        if [ "$i" -eq 1 ]; then
+            DIR="/watch"
+        fi
+
+        # Set default settings.
+        AC_PRESET="${AUTOMATED_CONVERSION_PRESET:-Very Fast 1080p30}"
+        AC_FORMAT="${AUTOMATED_CONVERSION_FORMAT:-mp4}"
+        AC_SOURCE_STABLE_TIME="${AUTOMATED_CONVERSION_SOURCE_STABLE_TIME:-5}"
+        AC_SOURCE_MIN_DURATION="${AUTOMATED_CONVERSION_SOURCE_MIN_DURATION:-10}"
+        AC_SOURCE_MAIN_TITLE_DETECTION="${AUTOMATED_CONVERSION_SOURCE_MAIN_TITLE_DETECTION:-0}"
+        AC_OUTPUT_DIR="${AUTOMATED_CONVERSION_OUTPUT_DIR:-/output}"
+        AC_OUTPUT_SUBDIR="${AUTOMATED_CONVERSION_OUTPUT_SUBDIR:-UNSET}"
+        AC_KEEP_SOURCE="${AUTOMATED_CONVERSION_KEEP_SOURCE:-1}"
+        AC_VIDEO_FILE_EXTENSIONS="${AUTOMATED_CONVERSION_VIDEO_FILE_EXTENSIONS:-}"
+        AC_NON_VIDEO_FILE_ACTION="${AUTOMATED_CONVERSION_NON_VIDEO_FILE_ACTION:-ignore}"
+        AC_NON_VIDEO_FILE_EXTENSIONS="${AUTOMATED_CONVERSION_NON_VIDEO_FILE_EXTENSIONS:-jpg jpeg bmp png gif txt nfo}"
+        AC_NO_GUI_PROGRESS="${AUTOMATED_CONVERSION_NO_GUI_PROGRESS:-0}"
+        AC_HANDBRAKE_CUSTOM_ARGS="${AUTOMATED_CONVERSION_HANDBRAKE_CUSTOM_ARGS:-}"
+        AC_OVERWRITE_OUTPUT="${AUTOMATED_CONVERSION_OVERWRITE_OUTPUT:-0}"
+
+        # Apply per-watch folder settings.
+        if [ -n "${DIR#*/watch}" ]; then
+            for VAR in PRESET FORMAT SOURCE_STABLE_TIME SOURCE_MIN_DURATION SOURCE_MAIN_TITLE_DETECTION OUTPUT_DIR OUTPUT_SUBDIR KEEP_SOURCE VIDEO_FILE_EXTENSIONS NON_VIDEO_FILE_ACTION NON_VIDEO_FILE_EXTENSIONS NO_GUI_PROGRESS HANDBRAKE_CUSTOM_ARGS OVERWRITE_OUTPUT
+            do
+                eval "AC_$VAR=\"\${AUTOMATED_CONVERSION_${VAR}_${DIR#*/watch}:-\$AC_$VAR}\""
+            done
+        fi
+
+        # Process watch folder.
+        process_watch_folder "$DIR"
+    done
+
+    sleep "${AUTOMATED_CONVERSION_CHECK_INTERVAL:-5}"
+done
+
+# vim:ft=sh:ts=4:sw=4:et:sts=4
