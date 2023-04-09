@@ -26,7 +26,13 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     tar \
     unzip \
     curl \
-    coreutils
+    coreutils \
+    ffmpeg \
+    libmagic \
+    gcc \
+    g++ \
+    python3 \
+    py3-pip
 
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
