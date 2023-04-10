@@ -51,6 +51,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [Paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/paneldactyl) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:paneldactyl`` |
 | [Stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/stress) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:stress`` |
 | [Handbrake](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/handbrake) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:handbrake`` |
+| [Youtube-DL](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/youtube_dl) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:youtube_dl`` |
 
 
 ## 🎮 | Games
