@@ -42,15 +42,15 @@ Gostou? Então de uma 🌟 ao repositório!
 | [Box86](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box86) | ❌ | ✅ | ``ghcr.io/ashu11-a/yolks:box86`` |
 | [Debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Debian) | ✅ | ✅ | ``ghcr.io/ashu11-a/yolks:debian`` |
 | [Dotnet](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Dotnet) | ✅ | ✅ | ``ghcr.io/ashu11-a/yolks:dotnet_6`` |
-| [Emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Emby) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:emby`` |
-| [Jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Jellyfin) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:jellyfin`` |
-| [Nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Nextcloud) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:nextcloud`` |
+| [Emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/emby) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:emby`` |
+| [Jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/jellyfin) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:jellyfin`` |
+| [Nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/nextcloud) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:nextcloud`` |
 | [nodejs/19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/nodejs/19) | ✅ | ✅ | ``ghcr.io/ashu11-a/yolks:nodejs_9`` |
-| [Owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Owncloud) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:owncloud`` |
-| [PRoot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/PRoot) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:proot`` |
-| [Paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Paneldactyl) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:paneldactyl`` |
-| [Stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Stress) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:stress`` |
-| [Handbrake](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Handbrake) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:handbrake`` |
+| [Owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/owncloud) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:owncloud`` |
+| [PRoot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/proot) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:proot`` |
+| [Paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/paneldactyl) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:paneldactyl`` |
+| [Stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/stress) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:stress`` |
+| [Handbrake](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/handbrake) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:handbrake`` |
 
 
 ## 🎮 | Games
