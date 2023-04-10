@@ -50,6 +50,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [PRoot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/PRoot) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:proot`` |
 | [Paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Paneldactyl) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:paneldactyl`` |
 | [Stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Stress) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:stress`` |
+| [Handbrake](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Software/Handbrake) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:handbrake`` |
 
 
 ## 🎮 | Games
