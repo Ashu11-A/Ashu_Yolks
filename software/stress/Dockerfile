@@ -1,4 +1,4 @@
-FROM alpine:3 as build
+FROM alpine:latest as build
 
 RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk add --update \
@@ -29,7 +29,7 @@ RUN cd stress-ng && mkdir install-root && \
 
 ####### actual image ########
 
-FROM alpine:3
+FROM alpine:latest
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
