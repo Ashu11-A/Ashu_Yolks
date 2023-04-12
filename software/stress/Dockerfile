@@ -21,7 +21,9 @@ RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/re
     libmd-dev \
     libseccomp-dev \
     mesa-dev \
-    mesa-gl
+    mesa-gl \
+    mesa-gles \
+    mesa-gbm
 
 RUN git clone https://github.com/ColinIanKing/stress-ng
 
