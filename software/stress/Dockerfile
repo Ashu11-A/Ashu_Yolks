@@ -37,8 +37,26 @@ FROM alpine:latest
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    apk add --update libaio libattr libbsd libcap libcap libgcrypt jpeg judy@testing keyutils lksctp-tools libatomic zlib kmod-dev xxhash-dev && \
-    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
+    apk add --update \
+    libaio \
+    libattr \
+    libbsd \
+    libcap \
+    libcap \
+    libgcrypt \
+    jpeg \
+    judy@testing \
+    keyutils \
+    lksctp-tools \
+    libatomic \
+    zlib \
+    kmod-dev \
+    mesa-dev \
+    mesa-gl \
+    mesa-gles \
+    mesa-gbm \
+    xxhash-dev \
+    && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 
 RUN apk add --update curl bash
 
