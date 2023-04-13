@@ -19,10 +19,14 @@ RUN         apt update \
             openssl \
             ca-certificates \
             dnsutils \
-            zip  \
+            zip \
+            gdb \
             libmysqlclient-dev \
             libncursesw5-dev \
             libncursesw5 \
+            libreadline5 \
+            lib32ncursesw5 \
+            libmysqlclient16 \
             git \
             && useradd -d /home/container -m container
 
