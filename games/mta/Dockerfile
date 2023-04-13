@@ -24,7 +24,7 @@ RUN         apt update \
             libmysqlclient-dev \
             libncursesw5-dev \
             libncursesw5 \
-            libreadline5 \
+            libreadline-dev \
             lib32ncurses6 \
             libmysqlclient-dev \
             git \
