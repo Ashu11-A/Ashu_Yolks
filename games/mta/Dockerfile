@@ -30,8 +30,6 @@ RUN         apt update \
 	        libncurses5-dev \
 	        libncurses5 \
             git \
-            && apt clean \
-	        && ldconfig \
             && useradd -d /home/container -m container
 
 RUN         mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
