@@ -26,7 +26,7 @@ RUN         apt update \
             libncursesw5 \
             libreadline5 \
             lib32ncurses6 \
-            libmysqlclient16 \
+            libmysqlclient-dev \
             git \
             && useradd -d /home/container -m container
 
