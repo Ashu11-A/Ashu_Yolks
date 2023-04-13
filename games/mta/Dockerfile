@@ -7,8 +7,7 @@ RUN         apt update \
 RUN         dpkg --configure -a \
             && apt-get install -f
 
-RUN         dpkg --add-architecture i386 \
-            && apt update \
+RUN         apt update \
             && apt upgrade -y \
             && apt install -y \
             tar \
