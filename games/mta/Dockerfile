@@ -7,6 +7,8 @@ RUN         apt update \
 RUN         dpkg --configure -a \
             && apt-get install -f
 
+RUN         DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
+
 RUN         apt update \
             && apt upgrade -y \
             && apt install -y \
@@ -17,7 +19,6 @@ RUN         apt update \
             openssl \
             ca-certificates \
             dnsutils \
-            tzdata \
             zip  \
             libmysqlclient-dev \
             libncursesw5-dev \
