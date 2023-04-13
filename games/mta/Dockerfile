@@ -26,7 +26,12 @@ RUN         apt update \
             libncursesw5 \
             libreadline-dev \
             libmysqlclient-dev \
+            default-libmysqlclient-dev \
+	        libncurses5-dev \
+	        libncurses5 \
             git \
+            && apt clean \
+	        && ldconfig \
             && useradd -d /home/container -m container
 
 RUN         mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
