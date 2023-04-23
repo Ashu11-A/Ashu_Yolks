@@ -22,6 +22,8 @@ RUN apk add --no-cache --upgrade bash
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+ 
+RUN apk add --no-cache --upgrade tmux
 
 USER container
 ENV  USER container
