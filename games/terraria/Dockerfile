@@ -25,6 +25,8 @@ RUN apk add --no-cache --upgrade bash
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
+ENV LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1
+ENV DONT_FAKE_MONOTONIC=1
 
 USER container
 ENV  USER container
