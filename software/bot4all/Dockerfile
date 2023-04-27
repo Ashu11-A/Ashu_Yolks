@@ -11,8 +11,6 @@ RUN apk add --no-cache \
 
 ENV NVM_DIR /usr/local/nvm
 
-ENV NODE_VERSION 18
-
 # Esse codigo o Drylian me passou.
 # Instala o bash
 RUN apk add --no-cache --upgrade bash
@@ -24,8 +22,8 @@ RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/i
 
 # install node and npm
 RUN source $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
-    && nvm use $NODE_VERSION
+    && nvm install 18.16.0 \
+    && nvm use 18.16.0
 
 ## configure locale
 RUN echo "America/Sao_Paulo" >  /etc/timezone
