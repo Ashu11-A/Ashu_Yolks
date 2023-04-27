@@ -25,8 +25,7 @@ RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/i
 # install node and npm
 RUN source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
+    && nvm use $NODE_VERSION
 
 ## configure locale
 RUN echo "America/Sao_Paulo" >  /etc/timezone
