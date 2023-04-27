@@ -18,7 +18,7 @@ RUN apk add --no-cache --upgrade bash
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.3/install.sh | bash
 
 # install node and npm
 RUN source $NVM_DIR/nvm.sh \
