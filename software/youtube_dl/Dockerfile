@@ -34,6 +34,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     python3 \
     py3-pip
 
+RUN pip install --upgrade youtube-dl
+
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
     php \
