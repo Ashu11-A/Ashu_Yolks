@@ -28,6 +28,7 @@ jobs:
           - handbrake
           - youtube_dl
           - ass
+          - bot4all
     steps:
       - uses: actions/checkout@v3
         with:
