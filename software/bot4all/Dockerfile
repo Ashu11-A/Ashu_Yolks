@@ -7,7 +7,7 @@ RUN apk add --no-cache --upgrade \
 
 RUN apk add --no-cache \
     git jq file unzip make gcc g++ python3 python3-dev \
-    libtool nodejs nodejs-lts ffmpeg wget py3-pip
+    libtool nodejs nodejs-lts ffmpeg wget py3-pip ncurses
 
 ENV NVM_DIR /usr/local/nvm
 
