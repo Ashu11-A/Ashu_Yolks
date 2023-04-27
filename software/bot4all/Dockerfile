@@ -6,7 +6,7 @@ RUN apk add --no-cache --upgrade \
     iproute2 tzdata curl coreutils
 
 RUN apk add --no-cache \
-    git jq file unzip make gcc g++ python python-dev \
+    git jq file unzip make gcc g++ python3 python3-dev \
     libtool nodejs nodejs-lts ffmpeg wget py3-pip
 
 ENV NVM_DIR /usr/local/nvm
