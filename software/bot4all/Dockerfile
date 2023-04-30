@@ -35,7 +35,7 @@ ENV LC_ALL pt_BR.UTF-8
 
 USER container
 ENV  USER container
-ENV HOME /home/container
+ENV HOME /home/
 
 WORKDIR /home/
 
