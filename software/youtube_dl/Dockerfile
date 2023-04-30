@@ -19,7 +19,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     ffmpeg \
     python3 \
     py3-pip \
-    libmagic-dev
+    libmagic
 
 RUN set -xe \
     && apk add --no-cache -Uu attr gnupg \
