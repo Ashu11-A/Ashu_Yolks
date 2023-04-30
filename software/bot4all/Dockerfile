@@ -14,6 +14,8 @@ RUN apk add --no-cache --upgrade  \
     ca-certificates \
     libressl-dev
 
+RUN mkdir /home/container/.nvm
+
 ENV NVM_DIR /home/container/.nvm
 ENV NODE_VERSION 18.16.0
 
