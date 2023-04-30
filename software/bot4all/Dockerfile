@@ -11,7 +11,7 @@ RUN apk add --no-cache \
 
 RUN apk add --no-cache --upgrade  \
     apt-transport-https \
-    build-essential \
+    build-base \
     ca-certificates \
     libressl-dev \
 
