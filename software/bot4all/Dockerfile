@@ -33,11 +33,13 @@ ENV LANG pt_BR.UTF-8
 ENV LANGUAGE pt_BR.UTF-8
 ENV LC_ALL pt_BR.UTF-8
 
+RUN touch /home/egg_version && touch /home/nodejs_version && touch /home/nodejs_version && chmod -R 775 /home/
+
 USER container
 ENV  USER container
-ENV HOME /home/
+ENV HOME /home/container
 
-WORKDIR /home/
+WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
 
