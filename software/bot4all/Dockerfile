@@ -14,7 +14,8 @@ RUN apk add --no-cache --upgrade  \
     ca-certificates \
     libressl-dev
 
-ENV NVM_DIR /usr/local/bin/
+ENV NVM_DIR /home/container/.nvm
+ENV NODE_VERSION 18.16.0
 
 # Esse codigo o Drylian me passou.
 # Instala o bash
@@ -27,12 +28,17 @@ RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.3/i
 
 # install node and npm
 RUN source $NVM_DIR/nvm.sh \
-    && nvm install 18.16.0 \
-    && nvm use 18.16.0
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+RUN echo "source ${NVM_DIR}/nvm.sh" > /etc/profile.d/nvm.sh \
+    && echo "source ${NVM_DIR}/nvm.sh" > /home/container/.bashrc \
+    && chmod +x /etc/profile.d/nvm.sh
 
 # add node and npm to path so the commands are available
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
-ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+ENV PATH $NVM_DIR/v$NODE_VERSION/bin:$PATH
 
 ## configure locale
 RUN echo "America/Sao_Paulo" >  /etc/timezone
