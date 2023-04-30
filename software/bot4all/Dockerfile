@@ -19,6 +19,7 @@ RUN adduser -D container && \
 
 ENV NVM_DIR /home/container/.nvm
 ENV NODE_VERSION 18.16.0
+RUN mkdir -p $NVM_DIR
 
 # Esse codigo o Drylian me passou.
 # Instala o bash
