@@ -22,8 +22,8 @@ RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.3/i
 
 # install node and npm
 RUN source $NVM_DIR/nvm.sh \
-    && nvm install 18.16.0 \
-    && nvm use 18.16.0
+    && nvm install 18 \
+    && nvm use 18
 
 ## configure locale
 RUN echo "America/Sao_Paulo" >  /etc/timezone
@@ -33,6 +33,7 @@ ENV LANG pt_BR.UTF-8
 ENV LANGUAGE pt_BR.UTF-8
 ENV LC_ALL pt_BR.UTF-8
 
+RUN chmod -R 777 /home
 
 USER container
 ENV  USER container
