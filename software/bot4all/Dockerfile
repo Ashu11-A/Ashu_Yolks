@@ -3,7 +3,7 @@ FROM alpine:latest
 RUN apk update
 
 RUN apk add --no-cache --upgrade \
-    iproute2 tzdata curl
+    iproute2 tzdata curl libtool
 
 RUN apk add --no-cache \
     git jq file unzip\
