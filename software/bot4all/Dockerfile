@@ -15,9 +15,9 @@ RUN apk add --no-cache --upgrade  \
     libressl-dev
 
 RUN adduser -D container && \
-    chown container:container /home/container
+    chown container:container /mnt/server/
 
-ENV NVM_DIR /home/container/.nvm
+ENV NVM_DIR /mnt/server/.nvm
 ENV NODE_VERSION 18.16.0
 RUN mkdir -p $NVM_DIR
 
