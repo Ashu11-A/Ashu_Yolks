@@ -3,7 +3,7 @@ FROM alpine:latest
 RUN apk update
 
 RUN apk add --no-cache --upgrade \
-    iproute2 tzdata curl libtool
+    iproute2 tzdata curl
 
 RUN apk add --no-cache \
     git jq file unzip\
@@ -27,8 +27,8 @@ RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.3/i
 
 # install node and npm
 RUN source $NVM_DIR/nvm.sh \
-    && nvm install 18 \
-    && nvm use 18
+    && nvm install 18.16.0 \
+    && nvm use 18.16.0
 
 # add node and npm to path so the commands are available
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
