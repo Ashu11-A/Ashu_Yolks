@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     git jq file unzip python3 python3-dev \
     ffmpeg wget py3-pip ncurses
 
-RUN apt-get update && apt-get install -y -q --no-install-recommends \
+RUN apk add --no-cache --upgrade  \
     apt-transport-https \
     build-essential \
     ca-certificates \
