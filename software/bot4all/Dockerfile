@@ -7,7 +7,7 @@ RUN apk add --no-cache --upgrade \
 
 RUN apk add --no-cache \
     git jq file unzip make gcc g++ python3 python3-dev \
-    libtool nodejs nodejs-lts ffmpeg wget py3-pip ncurses
+    ffmpeg wget py3-pip ncurses
 
 ENV NVM_DIR /usr/local/bin/
 
@@ -23,7 +23,12 @@ RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.3/i
 # install node and npm
 RUN source $NVM_DIR/nvm.sh \
     && nvm install 18 \
-    && nvm use 18
+    && nvm alias default 18 \
+    && nvm use default
+
+# add node and npm to path so the commands are available
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 ## configure locale
 RUN echo "America/Sao_Paulo" >  /etc/timezone
