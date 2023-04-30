@@ -6,8 +6,8 @@ RUN apk add --no-cache --upgrade \
     iproute2 tzdata curl
 
 RUN apk add --no-cache \
-    git jq file unzip python3 python3-dev \
-    ffmpeg wget py3-pip ncurses
+    git jq file unzip\
+    ffmpeg wget ncurses
 
 RUN apk add --no-cache --upgrade  \
     apt-transport-https \
