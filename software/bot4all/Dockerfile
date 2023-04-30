@@ -3,24 +3,12 @@ FROM alpine:latest
 RUN apk update
 
 RUN apk add --no-cache --upgrade \
-    iproute2 tzdata curl
-
-RUN apk add --no-cache \
+    iproute2 tzdata curl \
     git jq file unzip\
-    ffmpeg wget ncurses
-
-RUN apk add --no-cache --upgrade  \
+    wget ncurses \
     build-base \
     ca-certificates \
     libressl-dev
-
-RUN adduser -D container && \
-    mkdir /mnt/server && \
-    chown container:container /mnt/server
-
-ENV NVM_DIR /mnt/server/.nvm
-ENV NODE_VERSION 18.16.0
-RUN mkdir -p $NVM_DIR
 
 # Esse codigo o Drylian me passou.
 # Instala o bash
@@ -29,17 +17,6 @@ RUN apk add --no-cache --upgrade bash
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.3/install.sh | bash
-
-# install node and npm
-RUN source $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
-
-RUN echo "source ${NVM_DIR}/nvm.sh" > /etc/profile.d/nvm.sh \
-    && echo "source ${NVM_DIR}/nvm.sh" > /mnt/server/.bashrc \
-    && chmod +x /etc/profile.d/nvm.sh
 
 # add node and npm to path so the commands are available
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
