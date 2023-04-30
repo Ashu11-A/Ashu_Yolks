@@ -33,13 +33,11 @@ ENV LANG pt_BR.UTF-8
 ENV LANGUAGE pt_BR.UTF-8
 ENV LC_ALL pt_BR.UTF-8
 
-RUN chmod -R 777 /home
-
 USER container
 ENV  USER container
 ENV HOME /home/container
 
-WORKDIR /home/container
+WORKDIR /home/
 
 COPY ./entrypoint.sh /entrypoint.sh
 
