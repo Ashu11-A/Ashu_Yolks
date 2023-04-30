@@ -14,7 +14,7 @@ RUN apk add --no-cache --upgrade  \
     ca-certificates \
     libressl-dev
 
-RUN mkdir adduser -D container && \
+RUN adduser -D container && \
     mkdir /home/container && \
     mkdir /home/container/.nvm && \
     chown container:container /home/container/.nvm
