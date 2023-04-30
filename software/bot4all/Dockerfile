@@ -32,7 +32,7 @@ ENV TZ America/Sao_Paulo
 ENV LANG pt_BR.UTF-8
 ENV LANGUAGE pt_BR.UTF-8
 ENV LC_ALL pt_BR.UTF-8
-
+RUN mkdir /home/
 RUN adduser --disabled-password --home /home/ --uid 1000 container
 RUN chown -R container:container /home/*
 
