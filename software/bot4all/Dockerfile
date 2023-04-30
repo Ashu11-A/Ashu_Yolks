@@ -10,10 +10,9 @@ RUN apk add --no-cache \
     ffmpeg wget ncurses
 
 RUN apk add --no-cache --upgrade  \
-    apt-transport-https \
     build-base \
     ca-certificates \
-    libressl-dev \
+    libressl-dev
 
 ENV NVM_DIR /usr/local/bin/
 
