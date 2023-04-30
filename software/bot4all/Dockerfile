@@ -15,7 +15,8 @@ RUN apk add --no-cache --upgrade  \
     libressl-dev
 
 RUN adduser -D container && \
-    chown container:container /mnt/server/
+    mkdir /mnt/server && \
+    chown container:container /mnt/server
 
 ENV NVM_DIR /mnt/server/.nvm
 ENV NODE_VERSION 18.16.0
@@ -37,7 +38,7 @@ RUN source $NVM_DIR/nvm.sh \
     && nvm use default
 
 RUN echo "source ${NVM_DIR}/nvm.sh" > /etc/profile.d/nvm.sh \
-    && echo "source ${NVM_DIR}/nvm.sh" > /home/container/.bashrc \
+    && echo "source ${NVM_DIR}/nvm.sh" > /mnt/server/.bashrc \
     && chmod +x /etc/profile.d/nvm.sh
 
 # add node and npm to path so the commands are available
