@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         build-essential jq unzip \
         ca-certificates iproute2 \
         git tesseract-ocr libssl-dev \
-        curl tzdata ffmpeg wget  \
+        curl tzdata ffmpeg wget openssh-server \
     && rm -rf /var/lib/apt/lists/*
 
 USER        container
