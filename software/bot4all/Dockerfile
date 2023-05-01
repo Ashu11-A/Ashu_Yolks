@@ -17,11 +17,6 @@ RUN apk add --no-cache --upgrade bash
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-
-# add node and npm to path so the commands are available
-ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
-ENV PATH $NVM_DIR/v$NODE_VERSION/bin:$PATH
-
 ## configure locale
 RUN echo "America/Sao_Paulo" >  /etc/timezone
 
