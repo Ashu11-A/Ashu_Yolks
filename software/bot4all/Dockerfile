@@ -14,10 +14,10 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 
 # Install base dependencies
 RUN apt-get update && apt-get install -y -q --no-install-recommends \
-        apt-transport-https file \
         build-essential jq unzip \
-        ca-certificates iproute2 \
-        git tesseract-ocr libssl-dev \
+        apt-transport-https file \
+        ca-certificates iproute2 figlet\
+        git tesseract-ocr libssl-dev lolcat\
         curl tzdata ffmpeg wget openssh-server \
     && rm -rf /var/lib/apt/lists/*
 
