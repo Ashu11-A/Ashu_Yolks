@@ -16,8 +16,8 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 RUN apt-get update && apt-get install -y -q --no-install-recommends \
         build-essential jq unzip \
         apt-transport-https file \
-        ca-certificates iproute2 figlet\
-        git tesseract-ocr libssl-dev lolcat\
+        ca-certificates iproute2 figlet \
+        git tesseract-ocr libssl-dev lolcat \
         curl tzdata ffmpeg wget openssh-server \
     && rm -rf /var/lib/apt/lists/*
 
