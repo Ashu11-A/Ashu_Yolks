@@ -8,7 +8,8 @@ RUN apk add --no-cache --upgrade \
     wget ncurses \
     build-base \
     ca-certificates \
-    libressl-dev
+    libressl-dev \
+    ffmpeg tesseract 
 
 # Esse codigo o Drylian me passou.
 # Instala o bash
