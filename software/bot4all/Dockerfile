@@ -9,7 +9,7 @@ RUN apk add --no-cache --upgrade \
     build-base \
     ca-certificates \
     libressl-dev \
-    ffmpeg tesseract \
+    ffmpeg tesseract-ocr \
     nodejs npm
 
 # Esse codigo o Drylian me passou.
