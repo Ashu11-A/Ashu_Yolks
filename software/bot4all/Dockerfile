@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         curl tzdata ffmpeg wget openssh-server \
     && rm -rf /var/lib/apt/lists/*
 
+ENV TERM=xterm-256color
+
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
