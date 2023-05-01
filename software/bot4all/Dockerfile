@@ -1,38 +1,29 @@
-FROM alpine:latest
+FROM        ubuntu:latest
 
-RUN apk update
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
-RUN apk add --no-cache --upgrade \
-    iproute2 tzdata curl \
-    git jq file unzip\
-    wget ncurses \
-    build-base \
-    ca-certificates \
-    libressl-dev \
-    ffmpeg tesseract-ocr \
-    nodejs npm
+RUN apt update \
+    && apt -y upgrade
+RUN dpkg --configure -a \
+    && apt-get install -f
 
-# Esse codigo o Drylian me passou.
-# Instala o bash
-RUN apk add --no-cache --upgrade bash
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 
-# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# Set debconf to run non-interactively
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-## configure locale
-RUN echo "America/Sao_Paulo" >  /etc/timezone
+# Install base dependencies
+RUN apt-get update && apt-get install -y -q --no-install-recommends \
+        apt-transport-https file \
+        build-essential jq unzip \
+        ca-certificates iproute2 \
+        git tesseract libssl-dev \
+        curl tzdata ffmpeg wget  \
+    && rm -rf /var/lib/apt/lists/*
 
-ENV TZ America/Sao_Paulo
-ENV LANG pt_BR.UTF-8
-ENV LANGUAGE pt_BR.UTF-8
-ENV LC_ALL pt_BR.UTF-8
+USER        container
+ENV         USER=container HOME=/home/container
+WORKDIR     /home/container
 
-USER container
-ENV  USER container
-ENV HOME /home/container
-
-WORKDIR /home/container
-
-COPY ./entrypoint.sh /entrypoint.sh
-
-CMD ["/bin/bash", "/entrypoint.sh"]
+COPY        ./entrypoint.sh /entrypoint.sh
+CMD         [ "/bin/bash", "/entrypoint.sh" ]
