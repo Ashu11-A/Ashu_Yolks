@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         apt-transport-https file \
         ca-certificates iproute2 figlet \
         git tesseract-ocr libssl-dev lolcat \
-        curl tzdata ffmpeg wget openssh-server \
+        curl tzdata ffmpeg wget \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt update && apt -y install \
