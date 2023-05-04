@@ -1,4 +1,4 @@
-FROM        ubuntu:latest
+FROM        node:18-bullseye-slim
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
@@ -26,6 +26,8 @@ RUN apt update && apt -y install \
         python3-dev dnsutils zip tar libtool \
         iputils-ping \
             && useradd -m -d /home/container container
+            
+RUN         npm install npm@latest -g
 
 USER        container
 ENV         USER=container HOME=/home/container
