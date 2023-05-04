@@ -21,6 +21,12 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         curl tzdata ffmpeg wget openssh-server \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt update && apt -y install \
+        sqlite3 libsqlite3-dev python3 \
+        python3-dev dnsutils zip tar libtool \
+        iputils-ping \
+            && useradd -m -d /home/container container
+
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
