@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         build-essential jq unzip \
         apt-transport-https file \
         ca-certificates iproute2 figlet \
-        git tesseract-ocr libssl-dev lolcat \
+        git tesseract-ocr lolcat \
         curl tzdata ffmpeg wget \
     && rm -rf /var/lib/apt/lists/*
 
