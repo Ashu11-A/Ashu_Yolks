@@ -17,14 +17,14 @@ RUN apk add --no-cache --upgrade \
 RUN echo "**** Instalação das dependecias ****" && \
     apk add --no-cache --update \
     build-base \
-    sqlite3 \
+    sqlite \
     fakeroot
 
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
     php \
     php-fpm \
-    php-sqlite3 \
+    php-sqlite \
     php-curl \
     php-cli \
     php-lz4 \
