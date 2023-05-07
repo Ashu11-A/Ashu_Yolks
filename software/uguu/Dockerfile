@@ -24,20 +24,22 @@ RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
     php \
     php-fpm \
-    php-sqlite \
+    php-sqlite3 \
     php-curl \
     php-cli \
-    php-lz4 \
-    php-mcrypt \
     php-pdo_mysql \
     php-mysqli \
-    php-xdebug \
     php-zip \
     php-common \
-    php8-readline \
+    php-readline \
     php-bcmath \
     php-xml \
     php-simplexml
+
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions lz4 mcrypt xdebug
 
 # Esse codigo o Drylian me passou
 # Instala o bash
