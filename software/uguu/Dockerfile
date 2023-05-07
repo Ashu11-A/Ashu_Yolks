@@ -40,7 +40,7 @@ RUN echo "**** Instalação dos PHP ****" && \
     php-simplexml
 
 # Esse codigo o Drylian me passou
-# Instala o bash a
+# Instala o bash
 RUN apk add --no-cache bash
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash

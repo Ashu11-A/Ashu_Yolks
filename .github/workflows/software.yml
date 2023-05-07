@@ -29,6 +29,7 @@ jobs:
           - youtube_dl
           - ass
           - bot4all
+          - uguu
     steps:
       - uses: actions/checkout@v3
         with:
