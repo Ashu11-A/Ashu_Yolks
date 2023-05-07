@@ -1,4 +1,4 @@
-FROM node:18-bullseye-slim
+FROM php:fpm-bullseye
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
