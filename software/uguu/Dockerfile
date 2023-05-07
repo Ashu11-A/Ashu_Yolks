@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM postgres:14-bullseye
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
