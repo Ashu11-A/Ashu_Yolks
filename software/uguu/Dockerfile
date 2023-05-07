@@ -5,7 +5,7 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ARG NODE_VERSION=18
 ARG POSTGRES_VERSION=15
 
-RUN apt-get update
+RUN apt-get update && apt-get upgrade 
 
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 RUN echo "UTC" > /etc/timezone
