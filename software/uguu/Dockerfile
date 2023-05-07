@@ -1,5 +1,5 @@
 FROM node:16.16.0-alpine AS node
-FROM php:fpm8.1-alpine
+FROM php:8.1-fpm-alpine
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
