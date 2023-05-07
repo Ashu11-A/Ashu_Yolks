@@ -1,4 +1,4 @@
-FROM postgres:14-bullseye
+FROM ubuntu:22.04
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get upgrade
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 RUN echo "UTC" > /etc/timezone
 
-RUN apt-get install -y curl ca-certificates zip unzip git sqlite3 build-essential nginx-full git lolcat figlet\
+RUN apt-get install -y curl ca-certificates zip unzip git sqlite3 build-essential nginx-full git lolcat figlet postgresql-14\
     && curl -sS 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x14aa40ec0831756756d7f66c4f4ea0aae5267a6c' | gpg --dearmor | tee /usr/share/keyrings/ppa_ondrej_php.gpg > /dev/null \
     && echo "deb [signed-by=/usr/share/keyrings/ppa_ondrej_php.gpg] https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
     && apt-get update \
