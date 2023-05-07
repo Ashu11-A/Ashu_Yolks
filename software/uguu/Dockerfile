@@ -1,63 +1,34 @@
-FROM node:16.16.0-alpine AS node
-FROM php:8.1-fpm-alpine
+FROM node:18-bullseye-slim
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
-RUN apk update
+RUN apt update \
+    && apt -y upgrade
+RUN dpkg --configure -a \
+    && apt-get install -f
 
-RUN apk add --no-cache --upgrade \
-    file \
-    git \
-    wget \
-    jq \
-    tar \
-    unzip \
-    curl
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 
-RUN echo "**** Instalação das dependecias ****" && \
-    apk add --no-cache --update \
-    build-base \
-    sqlite \
-    fakeroot
+# Set debconf to run non-interactively
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-RUN echo "**** Instalação dos PHP ****" && \
-    apk add --no-cache --update \
-    php \
-    php-fpm \
-    php-sqlite3 \
-    php-curl \
-    php-cli \
-    php-pdo_mysql \
-    php-mysqli \
-    php-zip \
-    php-common \
-    php-bcmath \
-    php-xml \
-    php-simplexml
+# Install base dependencies
+RUN apt-get update && apt-get install -y -q --no-install-recommends \
+        jq unzip iproute2 figlet \
+        lolcat curl  \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install lz4 mcrypt xdebug readline
+RUN apt update && apt -y install \
+        build-essential nginx-full php8.1-fpm php8.1 sqlite3 php8.1-sqlite3 \
+        php8.1-curl git php8.1-cli php8.1-lz4 \
+        php8.1-mcrypt php8.1-mysql php8.1-xdebug php8.1-zip \
+        php8.1-common php8.1-readline php8.1-bcmath php8.1-common php8.1-xml
+            
+RUN         npm install npm@latest -g
 
-# Esse codigo o Drylian me passou
-# Instala o bash
-RUN apk add --no-cache bash
+USER        container
+ENV         USER=container HOME=/home/container
+WORKDIR     /home/container
 
-# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
-COPY --from=node /usr/lib /usr/lib
-COPY --from=node /usr/local/share /usr/local/share
-COPY --from=node /usr/local/lib /usr/local/lib
-COPY --from=node /usr/local/include /usr/local/include
-COPY --from=node /usr/local/bin /usr/local/bin
-
-RUN echo "UTC" > /etc/timezone
-
-USER container
-ENV  USER container
-ENV HOME /home/container
-
-WORKDIR /home/container
-
-COPY ./entrypoint.sh /entrypoint.sh
-
-CMD [ "bash", "/entrypoint.sh" ]
+COPY        ./entrypoint.sh /entrypoint.sh
+CMD         [ "/bin/bash", "/entrypoint.sh" ]
