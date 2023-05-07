@@ -1,5 +1,5 @@
 FROM node:16.16.0-alpine AS node
-FROM alpine:latest
+FROM php:fpm8.1-alpine
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
@@ -35,10 +35,7 @@ RUN echo "**** Instalação dos PHP ****" && \
     php-xml \
     php-simplexml
 
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-
-RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions lz4 mcrypt xdebug readline
+RUN docker-php-ext-install lz4 mcrypt xdebug readline
 
 # Esse codigo o Drylian me passou
 # Instala o bash
