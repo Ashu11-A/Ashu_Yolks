@@ -3,7 +3,6 @@ FROM ubuntu:22.04
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 ARG NODE_VERSION=18
-ARG POSTGRES_VERSION=15
 
 RUN apt-get update && apt-get upgrade -y
 
@@ -12,7 +11,7 @@ RUN echo "UTC" > /etc/timezone
 
 RUN apt-get install -y curl ca-certificates zip unzip git \
 sqlite3 git lolcat figlet \
-postgresql-14 lsb-release apt-transport-https \
+postgres lsb-release apt-transport-https \
 software-properties-common gnupg2 cron socat
 
 RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/sury-php.list \
