@@ -31,7 +31,6 @@ RUN echo "**** Instalação dos PHP ****" && \
     php-mysqli \
     php-zip \
     php-common \
-    php-readline \
     php-bcmath \
     php-xml \
     php-simplexml
@@ -39,7 +38,7 @@ RUN echo "**** Instalação dos PHP ****" && \
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions lz4 mcrypt xdebug
+    install-php-extensions lz4 mcrypt xdebug readline
 
 # Esse codigo o Drylian me passou
 # Instala o bash
