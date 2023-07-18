@@ -19,6 +19,10 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         ca-certificates iproute2 figlet \
         git tesseract-ocr lolcat \
         curl tzdata ffmpeg wget \
+        libgconf-2-4 libatk1.0-0 \
+        libatk-bridge2.0-0 libgdk-pixbuf2.0-0 \
+        libgtk-3-0 libgbm-dev \
+        libnss3-dev libxss-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt update && apt -y install \
