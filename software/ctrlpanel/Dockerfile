@@ -29,6 +29,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     lolcat \
     figlet
 
+RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing --update lolcat figlet
+
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
     php \
