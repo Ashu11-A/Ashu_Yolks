@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM debian:buster-slim
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
