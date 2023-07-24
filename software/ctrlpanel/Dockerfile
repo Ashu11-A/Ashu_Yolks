@@ -69,18 +69,14 @@ RUN echo "**** Instalação dos PHP ****" && \
     php8.1-zlib \
     php8.1-fileinfo \
     php8.1-ftp \
-    php8.1-pcntl \
     php8.1-bz2 \
     php8.1-gd \
     php8.1-opcache \
     php8.1-gmp \
     php8.1-imap \
     php8.1-ldap \
-    php8.1-sodium \
     php8.1-exif \
-    php8.1-session \
     php8.1-soap \
-    php8.1-openssl \
     php8.1-odbc \
     php8.1-gettext \
     php8.1-iconv \
