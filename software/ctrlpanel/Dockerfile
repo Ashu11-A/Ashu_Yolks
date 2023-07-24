@@ -25,7 +25,9 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     libxml2 \
     tar \
     unzip \
-    coreutils
+    coreutils \
+    mariadb \
+    redis \
 
 RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --update lolcat figlet
 
@@ -50,8 +52,28 @@ RUN echo "**** Instalação dos PHP ****" && \
     php-zip \
     php-phar \
     php-intl \
-    mariadb \
-    redis
+    php-ctype \
+    php-json \
+    php-posix \
+    php-zlib \
+    php-fileinfo \
+    php-ftp \
+    php-pcntl \
+    php-bz2 \
+    php-gd \
+    php-opcache \
+    php-gmp \
+    php-imap \
+    php-ldap \
+    php-sodium \
+    php-exif \
+    php-session \
+    php-soap \
+    php-openssl \
+    php-odbc \
+    php-gettext \
+    php-iconv \
+    php-tokenizer
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
