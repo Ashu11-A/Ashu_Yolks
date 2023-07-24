@@ -27,7 +27,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     unzip \
     coreutils \
     mariadb \
-    redis \
+    redis
 
 RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --update lolcat figlet
 
