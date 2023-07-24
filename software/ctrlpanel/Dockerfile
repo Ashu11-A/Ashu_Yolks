@@ -48,9 +48,8 @@ RUN echo "**** Instalação dos PHP ****" && \
     php8.1-cli \
     php8.1-gd \
     php8.1-mysqli \
+    php8.1-mysql \
     php8.1-pdo \
-    php8.1-pdo_odbc \
-    php8.1-pdo_mysql \
     php8.1-mbstring \
     php8.1-tokenizer \
     php8.1-bcmath \
@@ -64,9 +63,7 @@ RUN echo "**** Instalação dos PHP ****" && \
     php8.1-phar \
     php8.1-intl \
     php8.1-ctype \
-    php8.1-json \
     php8.1-posix \
-    php8.1-zlib \
     php8.1-fileinfo \
     php8.1-ftp \
     php8.1-bz2 \
