@@ -53,8 +53,6 @@ RUN echo "**** Instalação dos PHP ****" && \
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
-# Esse codigo o Drylian me passou
-# Instala o bash a
 RUN apk add --no-cache bash fakeroot
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
