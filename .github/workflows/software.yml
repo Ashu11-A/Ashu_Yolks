@@ -30,6 +30,7 @@ jobs:
           - ass
           - bot4all
           - uguu
+          - ctrlpanel
     steps:
       - uses: actions/checkout@v3
         with:
