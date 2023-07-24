@@ -25,9 +25,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     libxml2 \
     tar \
     unzip \
-    coreutils \
-    lolcat \
-    figlet
+    coreutils
 
 RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --update lolcat figlet
 
