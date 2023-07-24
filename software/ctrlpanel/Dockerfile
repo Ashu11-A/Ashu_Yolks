@@ -1,92 +1,94 @@
-FROM node:16.19.0-alpine AS node
-FROM alpine:latest
+FROM ubuntu:22.04
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
-RUN apk --update --no-cache add curl ca-certificates nginx
-RUN apk update
+RUN   apt update \
+        &&   apt upgrade -y \
+        &&   apt-get install -y --no-install-recommends \
+        curl \
+        ca-certificates \
+        nginx \
+        gnupg \
+        software-properties-common \
+        apt-transport-https  \
+        &&   update-ca-certificates
 
-RUN apk add --no-cache --virtual=build-dependencies --upgrade \
+RUN apt-get install -y --no-install-recommends -y \
     file \
     re2c \
-    zlib-dev \
     libtool \
     git \
     gpg \
     autoconf \
     automake \
-    g++ \
-    gcc \
-    make \
+    file \
     wget \
     jq \
-    gnu-libiconv \
+    iproute2 \
     imagemagick \
     libxml2 \
     tar \
     unzip \
-    coreutils \
-    mariadb \
-    redis
+    curl \
+    libzip-dev \
+    mariadb-server \
+    redis-server \
+    lolcat \
+    figlet
 
-RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --update lolcat figlet
+RUN apt update && apt install -y wget gnupg2 lsb-release && \
+wget https://packages.sury.org/php/apt.gpg && apt-key add apt.gpg && \
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
 
 RUN echo "**** Instalação dos PHP ****" && \
-    apk add --no-cache --update \
-    php \
-    php-cli \
-    php-gd \
-    php-mysqli \
-    php-pdo \
-    php-pdo_odbc \
-    php-pdo_mysql \
-    php-mbstring \
-    php-tokenizer \
-    php-bcmath \
-    php-xml \
-    php-simplexml \
-    php-xmlwriter \
-    php-xmlreader \
-    php-fpm \
-    php-curl \
-    php-zip \
-    php-phar \
-    php-intl \
-    php-ctype \
-    php-json \
-    php-posix \
-    php-zlib \
-    php-fileinfo \
-    php-ftp \
-    php-pcntl \
-    php-bz2 \
-    php-gd \
-    php-opcache \
-    php-gmp \
-    php-imap \
-    php-ldap \
-    php-sodium \
-    php-exif \
-    php-session \
-    php-soap \
-    php-openssl \
-    php-odbc \
-    php-gettext \
-    php-iconv \
-    php-tokenizer
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+    php8.1 \
+    php8.1-cli \
+    php8.1-gd \
+    php8.1-mysqli \
+    php8.1-pdo \
+    php8.1-pdo_odbc \
+    php8.1-pdo_mysql \
+    php8.1-mbstring \
+    php8.1-tokenizer \
+    php8.1-bcmath \
+    php8.1-xml \
+    php8.1-simplexml \
+    php8.1-xmlwriter \
+    php8.1-xmlreader \
+    php8.1-fpm \
+    php8.1-curl \
+    php8.1-zip \
+    php8.1-phar \
+    php8.1-intl \
+    php8.1-ctype \
+    php8.1-json \
+    php8.1-posix \
+    php8.1-zlib \
+    php8.1-fileinfo \
+    php8.1-ftp \
+    php8.1-pcntl \
+    php8.1-bz2 \
+    php8.1-gd \
+    php8.1-opcache \
+    php8.1-gmp \
+    php8.1-imap \
+    php8.1-ldap \
+    php8.1-sodium \
+    php8.1-exif \
+    php8.1-session \
+    php8.1-soap \
+    php8.1-openssl \
+    php8.1-odbc \
+    php8.1-gettext \
+    php8.1-iconv \
+    php8.1-tokenizer
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
-RUN apk add --no-cache bash fakeroot
-
-# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
-COPY --from=node /usr/lib /usr/lib
-COPY --from=node /usr/local/share /usr/local/share
-COPY --from=node /usr/local/lib /usr/local/lib
-COPY --from=node /usr/local/include /usr/local/include
-COPY --from=node /usr/local/bin /usr/local/bin
+RUN apt-get install -y --no-install-recommends fakeroot
 
 RUN echo "UTC" > /etc/timezone
 
