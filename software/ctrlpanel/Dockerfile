@@ -48,6 +48,7 @@ RUN echo "**** Instalação dos PHP ****" && \
     php-fpm \
     php-curl \
     php-zip \
+    php-intl \
     mariadb \
     redis
 
