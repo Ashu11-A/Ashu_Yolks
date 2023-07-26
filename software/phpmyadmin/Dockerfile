@@ -70,10 +70,7 @@ RUN echo "**** Instalação dos PHP ****" && \
     php-iconv \
     php-tokenizer
 
-RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    apk add --update \
-    lolcat \
-    figlet
+RUN apk add --no-cache lolcat figlet --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
 RUN apk add --no-cache bash fakeroot
 
