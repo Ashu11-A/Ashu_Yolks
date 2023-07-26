@@ -82,9 +82,6 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN echo "UTC" > /etc/timezone
 
-COPY ./crontab_test.sh /
-RUN chmod 777 /crontab_test.sh
-
 USER container
 ENV  USER container
 ENV HOME /home/container
