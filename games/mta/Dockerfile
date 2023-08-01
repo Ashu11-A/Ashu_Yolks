@@ -29,7 +29,6 @@ RUN         apt update \
 	        libncurses5-dev \
 	        libncurses5 \
             git \
-            mysql-client \
             lsb-release \
             wget \
             gnupg \
@@ -44,7 +43,7 @@ RUN curl -OL https://dev.mysql.com/get/mysql-apt-config_0.8.16-1_all.deb && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 467B942D3A79BD29
 
 RUN apt-get update && \
-    apt-get install -y mysql-client=8.0.*
+    apt-get install -y mysql-client
 
 COPY        ./libmysqlclient.so.16 /usr/lib
 
