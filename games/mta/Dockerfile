@@ -38,13 +38,13 @@ RUN         apt update \
 RUN         mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 RUN         rm -rf /var/lib/apt/lists/*
 
-# Installer une version compatible du client MySQL (par exemple, MySQL 5.7)
 RUN curl -OL https://dev.mysql.com/get/mysql-apt-config_0.8.16-1_all.deb && \
-    echo "mysql-apt-config mysql-apt-config/select-server select mysql-5.7" | debconf-set-selections && \
+    echo "mysql-apt-config mysql-apt-config/select-server select mysql-8.0" | debconf-set-selections && \
     DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.16-1_all.deb && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 467B942D3A79BD29 && \
-    apt-get update && \
-    apt-get install -y mysql-client=5.7.*
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 467B942D3A79BD29
+
+RUN apt-get update && \
+    apt-get install -y mysql-client=8.0.*
 
 COPY        ./libmysqlclient.so.16 /usr/lib
 
