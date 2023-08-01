@@ -35,6 +35,8 @@ RUN         apt update \
 RUN         mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 RUN         rm -rf /var/lib/apt/lists/*
 
+COPY        ./libmysqlclient.so.15 /usr/lib
+COPY        ./libmysqlclient.so.16 /usr/lib
 
 USER        container
 ENV         USER=container HOME=/home/container
