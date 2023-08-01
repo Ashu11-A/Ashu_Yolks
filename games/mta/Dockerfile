@@ -29,7 +29,6 @@ RUN         apt update \
 	        libncurses5-dev \
 	        libncurses5 \
             git \
-            mysql \
             mysql-client \
             && useradd -d /home/container -m container
 
