@@ -30,6 +30,7 @@ RUN         apt update \
 	        libncurses5 \
             git \
             mysql-client \
+            lsb-release \
             && useradd -d /home/container -m container
 
 RUN         mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
