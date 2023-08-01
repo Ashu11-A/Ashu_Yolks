@@ -21,7 +21,6 @@ RUN         apt update \
             dnsutils \
             zip \
             gdb \
-            libmysqlclient-dev \
             libncursesw5-dev \
             libncursesw5 \
             libreadline-dev \
@@ -30,12 +29,13 @@ RUN         apt update \
 	        libncurses5-dev \
 	        libncurses5 \
             git \
+            mysql \
+            mysql-client \
             && useradd -d /home/container -m container
 
 RUN         mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 RUN         rm -rf /var/lib/apt/lists/*
 
-COPY        ./libmysqlclient.so.15 /usr/lib
 COPY        ./libmysqlclient.so.16 /usr/lib
 
 USER        container
