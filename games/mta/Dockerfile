@@ -41,7 +41,9 @@ RUN         rm -rf /var/lib/apt/lists/*
 RUN curl -OL https://dev.mysql.com/get/mysql-apt-config_0.8.16-1_all.deb && \
     echo "mysql-apt-config mysql-apt-config/select-server select mysql-8.0" | debconf-set-selections && \
     DEBIAN_FRONTEND=noninteractive dpkg -i mysql-apt-config_0.8.16-1_all.deb && \
-    apt-get update && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <MYSQL_GPG_KEY>
+
+RUN apt-get update && \
     apt-get install -y mysql-client=8.0.*
 
 COPY        ./libmysqlclient.so.16 /usr/lib
