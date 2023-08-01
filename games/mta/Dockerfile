@@ -32,6 +32,7 @@ RUN         apt update \
             mysql-client \
             lsb-release \
             wget \
+            gnupg \
             && useradd -d /home/container -m container
 
 RUN         mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
