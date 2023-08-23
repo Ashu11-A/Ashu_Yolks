@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgbm-dev \
         libnss3-dev libxss-dev \
         gconf-service \
-        libasound2 \
+        libasound2 gnupg \
         libc6 libcairo2 libcups2 \
         libdbus-1-3 libexpat1 libfontconfig1 \
         libgcc1 \
