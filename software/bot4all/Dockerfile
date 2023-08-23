@@ -23,8 +23,13 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         libatk-bridge2.0-0 libgdk-pixbuf2.0-0 \
         libgtk-3-0 libgbm-dev \
         libnss3-dev libxss-dev \
-        google-chrome-stable \
     && rm -rf /var/lib/apt/lists/*
+
+RUN sudo sh -c 'echo "deb [arch=$( dpkg --print-architecture )] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
+    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
+    sudo apt-get update && \
+    sudo apt-get install google-chrome-stable
+
 
 RUN apt update && apt -y install \
         sqlite3 libsqlite3-dev python3 \
