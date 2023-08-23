@@ -34,8 +34,8 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         libxext6 libxfixes3 libxi6 libxrandr2 \
         libxrender1 libxss1 libxtst6 \
         fonts-liberation libappindicator1 libnss3 \
-        lsb-release xdg-utils
-    && rm -rf /var/lib/apt/lists/*
+        lsb-release xdg-utils \
+        && rm -rf /var/lib/apt/lists/*
 
 RUN sh -c 'echo "deb [arch=$( dpkg --print-architecture )] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
     wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
