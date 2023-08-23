@@ -37,14 +37,6 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
     lsb-release xdg-utils \
     && rm -rf /var/lib/apt/lists/*
 
-RUN if [[ -z "$arg" ]] ; sh -c 'echo "deb [arch=$( dpkg --print-architecture )] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
-    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    apt-get update && \
-    apt-get install google-chrome-stable -y ; apt install chromium-browser ; fi
-
-RUN 
-
-
 RUN apt update && apt -y install \
     sqlite3 libsqlite3-dev python3 \
     python3-dev dnsutils zip tar libtool \
