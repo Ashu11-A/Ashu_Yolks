@@ -20,6 +20,7 @@ RUN         apt -f install
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         curl \
+        bash \
         git \
         wget \
         libsdl2-dev \
