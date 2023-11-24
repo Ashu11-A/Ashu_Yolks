@@ -1,7 +1,7 @@
 FROM node:18-bullseye-slim
 RUN apt-get -qy update \
     && apt-get -qy --no-install-recommends install \
-    openssl git lolcat figlet \
+    openssl git lolcat figlet fakeroot \
     && apt-get autoremove -yq \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
