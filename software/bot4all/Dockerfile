@@ -54,7 +54,7 @@ RUN apt-get update && apt-get install --force-yes -yy \
 
 # Change memory allocator to avoid leaks
 ENV ARCH=$(uname -m)
-ENV LD_PRELOAD=/usr/lib/${ARCH}-linux-gnu/libjemalloc.so
+ENV LD_PRELOAD=/usr/lib/$(ARCH)-linux-gnu/libjemalloc.so
 
 RUN apt update && apt -y install \
     sqlite3 libsqlite3-dev python3 \
