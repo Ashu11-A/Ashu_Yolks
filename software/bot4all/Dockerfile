@@ -48,6 +48,14 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
     librsvg2-dev \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install --force-yes -yy \
+  libjemalloc1 \
+  && rm -rf /var/lib/apt/lists/*
+
+# Change memory allocator to avoid leaks
+RUN ARCH=$(uname -m)
+ENV LD_PRELOAD=/usr/lib/${ARCH}-linux-gnu/libjemalloc.so.1
+
 RUN apt update && apt -y install \
     sqlite3 libsqlite3-dev python3 \
     python3-dev dnsutils zip tar libtool \
