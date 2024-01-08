@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install --force-yes -yy \
-  libjemalloc1 \
+  libjemalloc2 \
   && rm -rf /var/lib/apt/lists/*
 
 # Change memory allocator to avoid leaks
