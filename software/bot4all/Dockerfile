@@ -35,6 +35,17 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
     libxrender1 libxss1 libxtst6 \
     fonts-liberation libappindicator1 libnss3 \
     lsb-release xdg-utils \
+    build-essential \
+    wget \
+    python3 \
+    make \
+    gcc \ 
+    libc6-dev \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt update && apt -y install \
