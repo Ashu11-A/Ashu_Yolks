@@ -46,6 +46,7 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
     libjpeg-dev \
     libgif-dev \
     librsvg2-dev \
+    libvips-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install --force-yes -yy \
