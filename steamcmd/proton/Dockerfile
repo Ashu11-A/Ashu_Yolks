@@ -42,8 +42,7 @@ RUN	        wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/Wi
 RUN         cd /tmp/ \
             && curl -LOJ "$(curl https://api.github.com/repos/gorcon/rcon-cli/releases/latest | grep browser_download_url | grep $(dpkg --print-architecture) | grep $([ "$(dpkg --print-architecture)" == "amd64" ] && echo "linux" || echo "darwin" ) | cut -d\" -f4 | egrep .tar.gz)"
 RUN         cd /tmp/ \
-            tar xvf ./rcon-*.tar.gz \
-            && mv ./rcon-*/rcon /usr/local/bin/
+            tar -xvf rcon-*.tar.gz -C /usr/local/bin/
 
 RUN         $([ "$(uname -m)" == "aarch64" ] && echo "apt install cmake clang-6.0 bison flex xz-utils libfuse-dev libudev-dev pkg-config \
             libc6-dev-i386 libcap2-bin git git-lfs libglu1-mesa-dev libcairo2-dev \
