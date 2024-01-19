@@ -16,7 +16,7 @@ RUN         apt install -y lolcat figlet
 
 ## install required packages
 RUN         
-RUN         apt install -y --no-install-recommends wget iproute2 gnupg2 software-properties-common libntlm0 winbind xvfb xauth libncurses5-dev libncurses6 dbus libgdiplus lib32gcc-s1
+RUN         apt install -y --no-install-recommends wget iproute2 gnupg2 software-properties-common libntlm0 winbind xvfb xauth libncurses5-dev libncurses6 dbus libgdiplus
 RUN         apt install -y alsa-tools libpulse0 pulseaudio libpulse-dev libasound2 libao-common gnutls-bin gnupg locales numactl cabextract curl python3 python3-pip python3-setuptools
 RUN         useradd -d /home/container -m container
 
@@ -44,11 +44,11 @@ RUN         cd /tmp/ \
 RUN         cd /tmp/ \
             tar -xvf rcon-*.tar.gz -C /usr/local/bin/
 
-RUN         $([ "$(dpkg --print-architecture)" == "arm64" ] && echo "apt install cmake clang-6.0 bison flex xz-utils libfuse-dev libudev-dev pkg-config \
+RUN         $([ "$(dpkg --print-architecture)" == "arm64" ] && echo "apt install -y cmake clang-6.0 bison flex xz-utils libfuse-dev libudev-dev pkg-config \
             libc6-dev-i386 libcap2-bin git git-lfs libglu1-mesa-dev libcairo2-dev \
             libgl1-mesa-dev libtiff5-dev libfreetype6-dev libxml2-dev libegl1-mesa-dev libfontconfig1-dev \
             libbsd-dev libxrandr-dev libxcursor-dev libgif-dev libpulse-dev libavformat-dev libavcodec-dev \
-            libswresample-dev libdbus-1-dev libxkbfile-dev libssl-dev llvm-dev" || echo "" )
+            libswresample-dev libdbus-1-dev libxkbfile-dev libssl-dev llvm-dev" || echo "apt install -y lib32gcc-s1" )
 
             
 USER        container
