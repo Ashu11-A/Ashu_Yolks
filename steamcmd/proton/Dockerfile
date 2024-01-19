@@ -40,9 +40,16 @@ RUN	        wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/Wi
 
 ## install rcon
 RUN         cd /tmp/ \
-            && curl -sLOJ "$(curl -s https://api.github.com/repos/gorcon/rcon-cli/releases/latest | grep browser_download_url | grep $([ "$(uname -m)" == "x86_64" ] && echo "amd64" || echo "arm64") | grep linux | cut -d\" -f4 | egrep .tar.gz)"
+            && curl -sLOJ "$(curl -s https://api.github.com/repos/gorcon/rcon-cli/releases/latest | grep browser_download_url | grep $([ "$(uname -m)" == "x86_64" ] && echo "amd64" || echo "arm64") | cut -d\" -f4 | egrep .tar.gz)"
 RUN         tar xvf rcon*.tar.gz \
             && mv rcon*/rcon /usr/local/bin/
+
+RUN         $([ "$(uname -m)" == "x86_64" ] && echo "" || echo "apt install cmake clang-6.0 bison flex xz-utils libfuse-dev libudev-dev pkg-config \
+            libc6-dev-i386 libcap2-bin git git-lfs libglu1-mesa-dev libcairo2-dev \
+            libgl1-mesa-dev libtiff5-dev libfreetype6-dev libxml2-dev libegl1-mesa-dev libfontconfig1-dev \
+            libbsd-dev libxrandr-dev libxcursor-dev libgif-dev libpulse-dev libavformat-dev libavcodec-dev \
+            libswresample-dev libdbus-1-dev libxkbfile-dev libssl-dev llvm-dev")
+
             
 USER        container
 ENV         USER=container HOME=/home/container
