@@ -5,9 +5,18 @@ FROM        debian:bullseye-slim
 
 LABEL       author="Torsten Widmann" maintainer="info@goover.de"
 
+# Config
+RUN         apt update \
+            && apt -y upgrade
+RUN         dpkg --configure -a \
+            && apt-get install -f
+
+# Style
+RUN         apt install -y lolcat figlet
+
 ## install required packages
-RUN         apt update
-RUN         apt install -y --no-install-recommends wget iproute2 gnupg2 software-properties-common libntlm0 winbind xvfb xauth libncurses5-dev:i386 libncurses6 dbus libgdiplus lib32gcc-s1
+RUN         
+RUN         apt install -y --no-install-recommends wget iproute2 gnupg2 software-properties-common libntlm0 winbind xvfb xauth libncurses5-dev libncurses6 dbus libgdiplus lib32gcc-s1
 RUN         apt install -y alsa-tools libpulse0 pulseaudio libpulse-dev libasound2 libao-common gnutls-bin gnupg locales numactl cabextract curl python3 python3-pip python3-setuptools
 RUN         useradd -d /home/container -m container
 
