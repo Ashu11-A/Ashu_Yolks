@@ -40,7 +40,7 @@ RUN	        wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/Wi
 
 ## install rcon
 RUN         cd /tmp/ \
-            && curl -sLOJ "$(curl -s https://api.github.com/repos/gorcon/rcon-cli/releases/latest | grep browser_download_url | grep $(dpkg --print-architecture) | cut -d\" -f4 | egrep .tar.gz)" \
+            && curl -LOJ "$(curl https://api.github.com/repos/gorcon/rcon-cli/releases/latest | grep browser_download_url | grep $(dpkg --print-architecture) | cut -d\" -f4 | egrep .tar.gz)" \
             tar xvf rcon*.tar.gz \
             && mv rcon*/rcon /usr/local/bin/
 
