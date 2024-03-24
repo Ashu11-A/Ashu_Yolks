@@ -30,6 +30,9 @@ RUN apt-get update \
         ffmpeg \
 	      gnupg2 \
         locales \
+        tar \
+        zip \
+        unzip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN dpkg --configure -a && \
@@ -43,9 +46,6 @@ RUN wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.
 
 RUN apt update && apt upgrade -y \
     && apt install -y \
-      tar \
-      zip \
-      unzip \
       cec-utils \
       libasound2 \
       libatomic1 \
@@ -53,7 +53,25 @@ RUN apt update && apt upgrade -y \
       libegl1 \
       libgcc-s1 \
       libpulse0 \
-      libstdc++6
+      libstdc++6 \
+      binutils \
+      xz-utils \
+      cabextract \
+      iproute2 \
+      net-tools \
+      netcat \
+      telnet \
+      icu-devtools \
+      sqlite3 \
+      locales \
+      ffmpeg \
+      gnupg2 \
+      apt-transport-https software-properties-common ca-certificates \
+      tzdata \
+      libsqlite3-0 \
+      libfontconfig1 \
+      libfreetype6 \
+      libsqlite3-dev
 
 
 RUN   echo "**** cleanup ****" && \
