@@ -59,7 +59,6 @@ RUN apt update && apt upgrade -y \
       cabextract \
       iproute2 \
       net-tools \
-      netcat \
       telnet \
       icu-devtools \
       sqlite3 \
