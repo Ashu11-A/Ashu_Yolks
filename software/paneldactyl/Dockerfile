@@ -30,47 +30,47 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     curl \
     coreutils
 
-RUN echo "**** Instalação dos php8.1 ****" && \
+RUN echo "**** Instalação dos php81 ****" && \
     apk add --no-cache --update \
-    php8.1 \
-    php8.1-ctype \
-    php8.1-json \
-    php8.1-posix \
-    php8.1-zlib \
-    php8.1-fileinfo \
-    php8.1-ftp \
-    php8.1-pcntl \
-    php8.1-phar \
-    php8.1-fpm \
-    php8.1-dom \
-    php8.1-xml \
-    php8.1-simplexml \
-    php8.1-mbstring \
-    php8.1-xmlwriter \
-    php8.1-xmlreader \
-    php8.1-pdo_mysql \
-    php8.1-mysqli \
-    php8.1-bcmath \
-    php8.1-bz2 \
-    php8.1-curl \
-    php8.1-gd \
-    php8.1-opcache \
-    php8.1-gmp \
-    php8.1-imap \
-    php8.1-intl \
-    php8.1-ldap \
-    php8.1-sodium \
-    php8.1-zip \
-    php8.1-exif \
-    php8.1-session \
-    php8.1-soap \
-    php8.1-openssl \
-    php8.1-pdo_odbc \
-    php8.1-pdo \
-    php8.1-odbc \
-    php8.1-gettext \
-    php8.1-iconv \
-    php8.1-tokenizer
+    php81 \
+    php81-ctype \
+    php81-json \
+    php81-posix \
+    php81-zlib \
+    php81-fileinfo \
+    php81-ftp \
+    php81-pcntl \
+    php81-phar \
+    php81-fpm \
+    php81-dom \
+    php81-xml \
+    php81-simplexml \
+    php81-mbstring \
+    php81-xmlwriter \
+    php81-xmlreader \
+    php81-pdo_mysql \
+    php81-mysqli \
+    php81-bcmath \
+    php81-bz2 \
+    php81-curl \
+    php81-gd \
+    php81-opcache \
+    php81-gmp \
+    php81-imap \
+    php81-intl \
+    php81-ldap \
+    php81-sodium \
+    php81-zip \
+    php81-exif \
+    php81-session \
+    php81-soap \
+    php81-openssl \
+    php81-pdo_odbc \
+    php81-pdo \
+    php81-odbc \
+    php81-gettext \
+    php81-iconv \
+    php81-tokenizer
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
