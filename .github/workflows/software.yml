@@ -27,12 +27,10 @@ jobs:
           - ffmpeg
           - handbrake
           - youtube_dl
-          - ass
           - bot4all
           - uguu
           - ctrlpanel
           - phpmyadmin
-          - typebot
     steps:
       - uses: actions/checkout@v4
         with:
