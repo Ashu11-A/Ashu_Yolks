@@ -23,14 +23,6 @@ RUN add-apt-repository universe \
     && apt update \
     && mkdir -p /etc/apt/keyrings \
     && curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg \
-    && cat <<EOF | sudo tee /etc/apt/sources.list.d/jellyfin.sources \
-Types: deb \
-URIs: https://repo.jellyfin.org/${VERSION_OS} \
-Suites: ${VERSION_CODENAME} \
-Components: main \
-Architectures: ${DPKG_ARCHITECTURE} \
-Signed-By: /etc/apt/keyrings/jellyfin.gpg \
-EOF \
     && apt update \
     && apt install -y jellyfin-ffmpeg
 
