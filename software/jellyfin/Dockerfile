@@ -1,48 +1,48 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:6.0.10-bullseye-slim
+FROM $REPO:8.0.3-bookworm-slim
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
-ENV         DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
+ENV DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
+ENV DEBIAN_FRONTEND noninteractive
 
-ENV          DEBIAN_FRONTEND noninteractive
-
-RUN          ln -s /home/container/ /nonexistent
-
-ENV          USER=container HOME=/home/container
-
-## Update base packages
-RUN          apt update \
-             && apt upgrade -y
+ARG VERSION_OS="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
+ARG VERSION_CODENAME="$( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release )"
+ARG DPKG_ARCHITECTURE="$( dpkg --print-architecture )"
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends -y \
-         wget ffmpeg locales
+    && apt-get install -y --no-install-recommends \
+      wget \
+      curl \
+      ffmpeg \
+      locales \
+      iproute2 \
+      gnupg
+
+RUN add-apt-repository universe \
+    && apt update \
+    && mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg \
+    && cat <<EOF | sudo tee /etc/apt/sources.list.d/jellyfin.sources
+Types: deb
+URIs: https://repo.jellyfin.org/${VERSION_OS}
+Suites: ${VERSION_CODENAME}
+Components: main
+Architectures: ${DPKG_ARCHITECTURE}
+Signed-By: /etc/apt/keyrings/jellyfin.gpg
+EOF \
+    && apt update \
+    && apt install -y jellyfin-ffmpeg
+
+RUN  dpkg --configure -a
+RUN  apt clean
+RUN  apt --fix-missing update
+RUN  apt update -y
+RUN  apt -f install
 
 
-ENV          DEBIAN_FRONTEND noninteractive
-
-RUN          useradd -m -d /home/container -s /bin/bash container
-
-RUN          ln -s /home/container/ /nonexistent
-
-ENV          USER=container HOME=/home/container
-
-RUN          apt install -y curl iproute2 gnupg \
-             && curl -fsSL https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/jellyfin.gpg \
-             && echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release ) $( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release ) main" | tee /etc/apt/sources.list.d/jellyfin.list \
-             && apt update \
-             && apt install -y jellyfin-ffmpeg
-
-RUN      dpkg --configure -a && \
-         apt clean && \
-         apt --fix-missing update && \
-         apt -f install && \
-         apt upgrade -y
-
-
-RUN         wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh \
-            && bash dotnet-install.sh
+RUN wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh \
+    && bash dotnet-install.sh
 
 RUN   echo "**** cleanup ****" && \
   rm -rf \
@@ -50,14 +50,13 @@ RUN   echo "**** cleanup ****" && \
     /var/lib/apt/lists/* \
     /var/tmp/*
 
-
-
 ## Configure locale
-RUN          update-locale lang=en_US.UTF-8 \
-             && dpkg-reconfigure --frontend noninteractive locales
+RUN update-locale lang=en_US.UTF-8 \
+    && dpkg-reconfigure --frontend noninteractive locales
 
 
-WORKDIR     /home/container
+ENV USER=container HOME=/home/container
+WORKDIR /home/container
 
-COPY        ./entrypoint.sh /entrypoint.sh
-CMD         [ "/bin/bash", "/entrypoint.sh" ]
+COPY ./entrypoint.sh /entrypoint.sh
+CMD [ "/bin/bash", "/entrypoint.sh" ]
