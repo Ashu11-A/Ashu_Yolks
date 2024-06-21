@@ -6,10 +6,6 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 ENV DEBIAN_FRONTEND noninteractive
 
-ARG VERSION_OS="$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release )"
-ARG VERSION_CODENAME="$( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release )"
-ARG DPKG_ARCHITECTURE="$( dpkg --print-architecture )"
-
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
       wget \
@@ -20,12 +16,12 @@ RUN apt-get update \
       gnupg \
       software-properties-common
 
-RUN add-apt-repository universe \
-    && apt update \
-    && mkdir -p /etc/apt/keyrings \
-    && curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg \
-    && apt update \
-    && apt install -y jellyfin-ffmpeg
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && \
+    wget -q -O /tmp/jellyfin-ffmpeg.deb "https://repo.jellyfin.org/files/ffmpeg/debian/latest-6.x/${arch}/jellyfin-ffmpeg6_6.0.1-7-bookworm_${arch}.deb" \
+    && dpkg -i /tmp/jellyfin-ffmpeg.deb \
+    && rm /tmp/jellyfin-ffmpeg.deb
+  
 
 RUN  dpkg --configure -a
 RUN  apt clean
