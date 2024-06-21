@@ -17,7 +17,8 @@ RUN apt-get update \
       ffmpeg \
       locales \
       iproute2 \
-      gnupg
+      gnupg \
+      software-properties-common
 
 RUN add-apt-repository universe \
     && apt update \
