@@ -14,7 +14,8 @@ RUN apt-get update \
       locales \
       iproute2 \
       gnupg \
-      software-properties-common
+      software-properties-common \
+      libllvm16
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && \
