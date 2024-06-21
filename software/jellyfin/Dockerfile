@@ -18,7 +18,9 @@ RUN apt-get update \
       libllvm16 \
       ca-certificates \
       nginx \
-      git
+      git \
+      xz-utils \
+      tar
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && \
