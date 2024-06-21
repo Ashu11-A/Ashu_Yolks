@@ -50,7 +50,7 @@ RUN   echo "**** cleanup ****" && \
     /var/lib/apt/lists/* \
     /var/tmp/*
 
-## Configure locale
+## Configure locale.
 RUN update-locale lang=en_US.UTF-8 \
     && dpkg-reconfigure --frontend noninteractive locales
 
