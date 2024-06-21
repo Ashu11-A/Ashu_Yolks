@@ -15,7 +15,9 @@ RUN apt-get update \
       iproute2 \
       gnupg \
       software-properties-common \
-      libllvm16
+      libllvm16 \
+      ca-certificates \
+      nginx
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && \
