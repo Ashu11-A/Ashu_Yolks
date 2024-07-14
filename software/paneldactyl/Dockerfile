@@ -72,6 +72,7 @@ RUN echo "**** Instalação dos php81 ****" && \
     php81-iconv \
     php81-tokenizer
 
+RUN ln -s /usr/bin/php81 /usr/bin/php
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 # Esse codigo o Drylian me passou
