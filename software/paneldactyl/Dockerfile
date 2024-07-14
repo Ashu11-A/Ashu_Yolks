@@ -1,5 +1,5 @@
-FROM node:16.19.0-alpine AS node
-FROM alpine:latest
+FROM node:20-alpine AS node
+FROM alpine:3.19
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
