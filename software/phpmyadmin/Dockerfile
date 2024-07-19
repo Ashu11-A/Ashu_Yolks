@@ -21,7 +21,7 @@ RUN apk add --no-cache --upgrade \
 
 RUN apk add --no-cache lolcat figlet --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
-ENV PHP_VERSION="74"
+ENV PHP_VERSION="7"
 
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
