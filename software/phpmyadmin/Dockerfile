@@ -31,18 +31,13 @@ RUN echo "**** Instalação dos PHP ****" && \
     php${PHP_VERSION}-ctype \
     php${PHP_VERSION}-curl \
     php${PHP_VERSION}-gd \
-    php${PHP_VERSION}-iconv
-    
-# Adicionar pacote php-zip
-RUN apk add --no-cache libzip-dev && \
-    docker-php-ext-configure zip --with-libzip=/usr/include && \
-    docker-php-ext-install \
-    zip \
-    mysqli \
-    openssl \
-    mbstring \
-    session \
-    xmlwriter
+    php${PHP_VERSION}-iconv \
+    php${PHP_VERSION}-zip \
+    php${PHP_VERSION}-mysqli \
+    php${PHP_VERSION}-openssl \
+    php${PHP_VERSION}-mbstring \
+    php${PHP_VERSION}-session \
+    php${PHP_VERSION}-xmlwriter
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
