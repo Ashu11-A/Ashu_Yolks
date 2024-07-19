@@ -5,7 +5,7 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 RUN apk --update --no-cache add curl ca-certificates nginx \
     && apk update
 
-RUN apk add --no-cache --virtual=build-dependencies --upgrade \
+RUN apk add --no-cache --upgrade \
     file \
     bash \
     re2c \
