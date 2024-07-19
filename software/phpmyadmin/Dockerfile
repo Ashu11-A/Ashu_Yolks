@@ -41,7 +41,7 @@ RUN echo "**** Instalação dos PHP ****" && \
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-RUN ln -s /usr/bin/php${PHP_VERSION} /usr/bin/php
+# RUN ln -s /usr/bin/php${PHP_VERSION} /usr/bin/php
 
 RUN echo "UTC" > /etc/timezone
 
