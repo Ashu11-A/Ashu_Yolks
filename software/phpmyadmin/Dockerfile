@@ -1,5 +1,4 @@
-FROM node:16.19.0-alpine AS node
-FROM alpine:latest
+FROM alpine:3.14
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
@@ -8,16 +7,13 @@ RUN apk --update --no-cache add curl ca-certificates nginx \
 
 RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     file \
+    bash \
     re2c \
     zlib-dev \
     libtool \
     git \
     gpg \
     autoconf \
-    automake \
-    g++ \
-    gcc \
-    make \
     wget \
     jq \
     gnu-libiconv \
@@ -28,54 +24,55 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     curl \
     coreutils
 
-RUN echo "**** Instalação dos PHP ****" && \
-    apk add --no-cache --update \
-    php \
-    php-ctype \
-    php-json \
-    php-posix \
-    php-zlib \
-    php-fileinfo \
-    php-ftp \
-    php-pcntl \
-    php-phar \
-    php-fpm \
-    php-dom \
-    php-xml \
-    php-simplexml \
-    php-mbstring \
-    php-xmlwriter \
-    php-xmlreader \
-    php-pdo_mysql \
-    php-mysqli \
-    php-bcmath \
-    php-bz2 \
-    php-curl \
-    php-gd \
-    php-opcache \
-    php-gmp \
-    php-imap \
-    php-intl \
-    php-ldap \
-    php-sodium \
-    php-zip \
-    php-exif \
-    php-session \
-    php-soap \
-    php-openssl \
-    php-pdo_odbc \
-    php-pdo \
-    php-odbc \
-    php-gettext \
-    php-iconv \
-    php-tokenizer
-
 RUN apk add --no-cache lolcat figlet --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
-RUN apk add --no-cache bash fakeroot
+ENV PHP_VERSION="74"
+
+RUN echo "**** Instalação dos PHP ****" && \
+    apk add --no-cache --update \
+    php${PHP_VERSION} \
+    php${PHP_VERSION}-ctype \
+    php${PHP_VERSION}-json \
+    php${PHP_VERSION}-posix \
+    php${PHP_VERSION}-zlib \
+    php${PHP_VERSION}-fileinfo \
+    php${PHP_VERSION}-ftp \
+    php${PHP_VERSION}-pcntl \
+    php${PHP_VERSION}-phar \
+    php${PHP_VERSION}-fpm \
+    php${PHP_VERSION}-dom \
+    php${PHP_VERSION}-xml \
+    php${PHP_VERSION}-simplexml \
+    php${PHP_VERSION}-mbstring \
+    php${PHP_VERSION}-xmlwriter \
+    php${PHP_VERSION}-xmlreader \
+    php${PHP_VERSION}-pdo_mysql \
+    php${PHP_VERSION}-mysqli \
+    php${PHP_VERSION}-bcmath \
+    php${PHP_VERSION}-bz2 \
+    php${PHP_VERSION}-curl \
+    php${PHP_VERSION}-gd \
+    php${PHP_VERSION}-opcache \
+    php${PHP_VERSION}-gmp \
+    php${PHP_VERSION}-imap \
+    php${PHP_VERSION}-intl \
+    php${PHP_VERSION}-ldap \
+    php${PHP_VERSION}-sodium \
+    php${PHP_VERSION}-zip \
+    php${PHP_VERSION}-exif \
+    php${PHP_VERSION}-session \
+    php${PHP_VERSION}-soap \
+    php${PHP_VERSION}-openssl \
+    php${PHP_VERSION}-pdo_odbc \
+    php${PHP_VERSION}-pdo \
+    php${PHP_VERSION}-odbc \
+    php${PHP_VERSION}-gettext \
+    php${PHP_VERSION}-iconv \
+    php${PHP_VERSION}-tokenizer
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN ln -s /usr/bin/php${PHP_VERSION} /usr/bin/php
 
 RUN echo "UTC" > /etc/timezone
 
