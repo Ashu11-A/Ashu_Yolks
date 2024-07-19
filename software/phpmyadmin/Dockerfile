@@ -12,7 +12,6 @@ RUN apk add --no-cache --upgrade \
     zlib-dev \
     libtool \
     git \
-    gpg \
     autoconf \
     wget \
     jq \
