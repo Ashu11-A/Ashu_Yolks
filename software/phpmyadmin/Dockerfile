@@ -36,7 +36,7 @@ RUN echo "**** Instalação dos PHP ****" && \
 # Adicionar pacote php-zip
 RUN apk add --no-cache libzip-dev && \
     docker-php-ext-configure zip --with-libzip=/usr/include && \
-    docker-php-ext-install
+    docker-php-ext-install \
     zip \
     mysqli \
     openssl \
