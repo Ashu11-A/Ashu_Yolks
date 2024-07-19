@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM alpine:3.20
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
@@ -21,7 +21,7 @@ RUN apk add --no-cache --upgrade \
 
 RUN apk add --no-cache lolcat figlet --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
-ENV PHP_VERSION="7"
+ENV PHP_VERSION="83"
 
 RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
