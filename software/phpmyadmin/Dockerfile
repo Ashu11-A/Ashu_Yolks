@@ -27,22 +27,22 @@ RUN echo "**** Instalação dos PHP ****" && \
     apk add --no-cache --update \
     php${PHP_VERSION} \
     php${PHP_VERSION}-fpm \
-    php${PHP_VERSION}-mbstring \
-    php${PHP_VERSION}-mysqli \
     php${PHP_VERSION}-bz2 \
     php${PHP_VERSION}-ctype \
     php${PHP_VERSION}-curl \
     php${PHP_VERSION}-gd \
-    php${PHP_VERSION}-iconv \
-    php${PHP_VERSION}-openssl \
-    php${PHP_VERSION}-session \
-    php${PHP_VERSION}-xmlwriter
+    php${PHP_VERSION}-iconv
     
 # Adicionar pacote php-zip
 RUN apk add --no-cache libzip-dev && \
     docker-php-ext-configure zip --with-libzip=/usr/include && \
-    docker-php-ext-install zip
-    
+    docker-php-ext-install
+    zip \
+    mysqli \
+    openssl \
+    mbstring \
+    session \
+    xmlwriter
 
 # Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
