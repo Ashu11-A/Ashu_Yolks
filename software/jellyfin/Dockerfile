@@ -49,9 +49,11 @@ RUN   echo "**** cleanup ****" && \
 RUN update-locale lang=en_US.UTF-8 \
     && dpkg-reconfigure --frontend noninteractive locales
 
+RUN useradd -m -d /home/container container
 
-ENV USER=container HOME=/home/container
-WORKDIR /home/container
+USER        container
+ENV         USER=container HOME=/home/container
+WORKDIR     /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
 CMD [ "/bin/bash", "/entrypoint.sh" ]
