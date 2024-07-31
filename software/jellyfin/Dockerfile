@@ -24,7 +24,7 @@ RUN apt-get update \
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && \
-    wget -q -O /tmp/jellyfin-ffmpeg.deb "https://repo.jellyfin.org/files/ffmpeg/debian/latest-6.x/${arch}/jellyfin-ffmpeg6_6.0.1-7-bookworm_${arch}.deb" \
+    wget -q -O /tmp/jellyfin-ffmpeg.deb "https://repo.jellyfin.org/files/ffmpeg/debian/latest-6.x/${arch}/jellyfin-ffmpeg6_6.0.1-8-bookworm_${arch}.deb" \
     && dpkg -i /tmp/jellyfin-ffmpeg.deb \
     && rm /tmp/jellyfin-ffmpeg.deb
   
