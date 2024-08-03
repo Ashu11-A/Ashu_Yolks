@@ -9,6 +9,9 @@
 ![Comitts Year](https://img.shields.io/github/commit-activity/y/Ashu11-A/Ashu_Yolks?style=for-the-badge&colorA=302D41&colorB=f9e2af&logoColor=f9e2af)
 ![reposize-info](https://img.shields.io/github/repo-size/Ashu11-A/Ashu_Yolks?style=for-the-badge&colorA=302D41&colorB=89dceb)
 
+![Build on change](https://img.shields.io/github/actions/workflow/status/Ashu11-A/Ashu_Yolks/build.yml?style=for-the-badge&colorA=302D41&colorB=05b06c&label=Build+on+change)
+![Build cron](https://img.shields.io/github/actions/workflow/status/Ashu11-A/Ashu_Yolks/build.yml?style=for-the-badge&colorA=302D41&colorB=0596b0&label=Build+cron)
+
 </div>
 <div align="left">
 
