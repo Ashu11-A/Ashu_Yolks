@@ -26,10 +26,11 @@ for (const path of formattedPaths) {
         return path
     }
 
-    if (changed.length > 0 && await exist(join(path, 'Dockerfile'))) {
-        console.log(`🔎 detected changes in docker: ${path}`)
+    if (await exist(join(path, 'Dockerfile'))) {
+        if (changed.length > 0) console.log(`🔎 detected changes in docker: ${path}`)
         const archs = JSON.parse(await readFile(`${path}/metadata.json`, { encoding: 'utf-8' }))
         modifiedFolders.push(Object.assign({
+            changed: changed.length > 0,
             path,
             // if path: node/19 then: node_19
             // or path: samp/amd64 then: samp_amd64
