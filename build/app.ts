@@ -17,13 +17,17 @@ const modifiedFolders = []
 for (const path of formattedPaths) {
     const changed = await git.diff({ '--name-only': null, 'HEAD^': null, 'HEAD': null, [path]: null })
 
-    function format(path: string) {
+    function getTag(path: string) {
         // If the path is numerous, return a folder afterwards
-        if (!Number.isNaN(Number(basename(path)))) { return format(join(path, '..')) }
+        if (!Number.isNaN(Number(basename(path)))) { return getTag(join(path, '..')) }
 
         // If the path has arm64 or amd64 in the name, return a folder afterwards
-        if (path.toLowerCase().includes('amd') || path.toLowerCase().includes('arm')) { return format(join(path, '..')) }
+        if (path.toLowerCase().includes('amd') || path.toLowerCase().includes('arm')) { return getTag(join(path, '..')) }
         return path
+    }
+
+    function getType(path: string) {
+        return path.split('/')[1]
     }
 
     if (await exist(join(path, 'Dockerfile'))) {
@@ -32,11 +36,14 @@ for (const path of formattedPaths) {
         modifiedFolders.push(Object.assign({
             changed: changed.length > 0,
             path,
+            type: getType(path),
             // if path: node/19 then: node_19
             // or path: samp/amd64 then: samp_amd64
-            tag: basename(format(path)) === basename(path) ? basename(path) : `${basename(format(path))}_${basename(path)}`,
+            tag: basename(getTag(path)) === basename(path) ? basename(path) : `${basename(getTag(path))}_${basename(path)}`,
         }, archs))
     }
 }
+
+console.log(modifiedFolders)
 
 await writeFile('metadata.json', JSON.stringify(modifiedFolders, null, 2))

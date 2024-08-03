@@ -6,35 +6,35 @@ on:
     - cron: "0 0 * * 1"
 jobs:
   prepare:
-    name: Get all modified Dockers
+    name: Get all Dockers
     runs-on: ubuntu-latest
     outputs:
         paths: ${{ steps.paths.outputs.paths }}
-    strategy:
-        matrix:
-          node-version: [22]
     steps:
       - name: Clone repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Build Module
+      - name: Use nodejs
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22
           cache: 'npm'
           check-latest: true
-      - run: |
-          npm ci &&
-          npm run dev
+
+      - name: Install deps
+        run: npm ci
+  
+      - name: Run javascript code
+        run: npm run dev
 
       - uses: actions/github-script@v7
         name: List paths
         id: paths
         with:
           script: |
-            const fs = require('fs/promises');
+            const fs = require('fs/promises')
 
             const data = await fs.readFile('metadata.json', { encoding: 'utf-8' })
             const paths = JSON.parse(data)
@@ -52,7 +52,7 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetch all git history
+          fetch-depth: 0
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -77,4 +77,37 @@ jobs:
           platforms: ${{ matrix.data.arch }}
           push: true
           tags: |
-            ghcr.io/ashu11-a/software:${{ matrix.data.tag }}
+            ghcr.io/ashu11-a/${{ matrix.data.type }}:${{ matrix.data.tag }}
+
+
+  # clean:
+  #   name: "Delete all useless docker images"
+  #   runs-on: ubuntu-latest
+  #   needs: prepare
+  #   continue-on-error: true
+  #   strategy:
+  #     matrix:
+  #       data: ${{ fromJson(needs.prepare.outputs.paths) }}
+  #   steps:
+  #     - name: Login to GitHub Container Registry
+  #       uses: docker/login-action@v3.0.0
+  #       with:
+  #         registry: ghcr.io
+  #         username: ${{ github.actor }}
+  #         password: ${{ secrets.GITHUB_TOKEN }}
+
+  #     - name: Fetch multi-platform package version SHAs
+  #       id: multi-arch-digests
+  #       run: |
+  #         package=$(docker manifest inspect ghcr.io/ashu11-a/${{ matrix.data.type }}:${{ matrix.data.tag }} | jq -r '.manifests.[] | .digest' | paste -s -d ' ' -)
+  #         echo "multi-arch-digests=$package" >> $GITHUB_OUTPUT
+
+  #     - uses: snok/container-retention-policy@v3.0.0
+  #       with:
+  #         account: Ashu11-A
+  #         skip-shas: ${{ steps.multi-arch-digests.outputs.multi-arch-digests }}
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         image-names: ${{ matrix.data.type }}
+  #         image-tags: ${{ matrix.data.tag }}  # target any image that has a tag starting with the word test or dev
+  #         cut-off: 2w 3d
+  #         dry-run: true
