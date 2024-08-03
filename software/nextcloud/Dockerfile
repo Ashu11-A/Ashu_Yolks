@@ -4,7 +4,7 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 RUN apk --update --no-cache add curl ca-certificates nginx
 RUN apk update
-
+# test
 ENV NEXTCLOUD_PATH="/home/container/webroot" \
   LD_PRELOAD="/usr/lib/preloadable_libiconv.so" \
   PHP_VERSION="83"
