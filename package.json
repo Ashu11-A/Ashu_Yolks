@@ -1,0 +1,30 @@
+{
+  "name": "ashu_yolks",
+  "version": "1.0.0",
+  "description": "Returns only the paths that should be built",
+  "main": "main/app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx build/app.ts",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashu11-A/Ashu_Yolks.git"
+  },
+  "author": "ashu11-a",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ashu11-A/Ashu_Yolks/issues"
+  },
+  "homepage": "https://github.com/Ashu11-A/Ashu_Yolks#readme",
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "tsx": "^4.16.5",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "glob": "^11.0.0",
+    "simple-git": "^3.25.0"
+  }
+}
