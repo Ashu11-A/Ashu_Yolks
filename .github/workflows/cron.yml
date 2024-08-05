@@ -41,7 +41,7 @@ jobs:
 
             core.setOutput('paths', paths)
   build:
-    name: Build
+    name: Build ${{ matrix.data.tag }}
     runs-on: ubuntu-latest
     needs: prepare
     continue-on-error: true
