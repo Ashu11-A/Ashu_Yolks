@@ -6,6 +6,7 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 ENV PHP_VERSION="82"
 
+RUN apk add --no-cache lolcat --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     ca-certificates \
     wget \
@@ -14,6 +15,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     curl \
     nginx \
     unzip \
+    figlet \
     git
 
     RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
@@ -39,10 +41,14 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     php${PHP_VERSION}-sodium \
     php${PHP_VERSION}-tokenizer \
     php${PHP_VERSION}-xml \
-    php${PHP_VERSION}-zip
+    php${PHP_VERSION}-zip \
+    php${PHP_VERSION}-iconv \
+    php${PHP_VERSION}-openssl \
+    php${PHP_VERSION}-mysqlnd
     
 
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
+
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 # Esse codigo o Drylian me passou
