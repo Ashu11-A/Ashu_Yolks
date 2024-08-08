@@ -50,10 +50,12 @@ RUN update-locale lang=en_US.UTF-8 \
     && dpkg-reconfigure --frontend noninteractive locales
 
 RUN useradd -m -d /home/container container
+RUN chown -R container:container /home/container
 
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
-COPY ./entrypoint.sh /entrypoint.sh
+COPY        --chown=container:container ./entrypoint.sh /entrypoint.sh
+RUN         chmod +x /entrypoint.sh
 CMD [ "/bin/bash", "/entrypoint.sh" ]
