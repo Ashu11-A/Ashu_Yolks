@@ -50,6 +50,10 @@ RUN update-locale lang=en_US.UTF-8 \
     && dpkg-reconfigure --frontend noninteractive locales
 
 RUN useradd -m -d /home/container container
+RUN useradd -m -d /home/container www-data
+RUN useradd -m -d /home/container jellyfin
+
+RUN chown -R www-data:www-data /home/container
 RUN chown -R jellyfin:jellyfin /home/container
 
 USER        container
