@@ -79,6 +79,8 @@ jobs:
           file: ${{ matrix.data.path }}/Dockerfile
           platforms: ${{ matrix.data.arch }}
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: |
             ghcr.io/ashu11-a/${{ matrix.data.type }}:${{ matrix.data.tag }}
 
