@@ -50,7 +50,7 @@ RUN update-locale lang=en_US.UTF-8 \
     && dpkg-reconfigure --frontend noninteractive locales
 
 RUN useradd -m -d /home/container container
-RUN chown -R container:container /home/container
+RUN chown -R jellyfin:jellyfin /home/container
 
 USER        container
 ENV         USER=container HOME=/home/container
