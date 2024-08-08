@@ -40,29 +40,12 @@ Gostou? Então de uma 🌟 ao repositório!
 
 <!--start-docker-->
 
-## 🖥 | Software
-| Service | AMD64 | ARM64 | Docker |
-|--|--|--|--|
-| [Box64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box64) | ❌ | ✅ | ``ghcr.io/ashu11-a/yolks:box64`` |
-| [Box86](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Box86) | ❌ | ✅ | ``ghcr.io/ashu11-a/yolks:box86`` |
-| [Debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Debian) | ✅ | ✅ | ``ghcr.io/ashu11-a/yolks:debian`` |
-| [Dotnet](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Dotnet) | ✅ | ✅ | ``ghcr.io/ashu11-a/yolks:dotnet_6`` |
-| [Emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/emby) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:emby`` |
-| [Jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/jellyfin) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:jellyfin`` |
-| [Nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/nextcloud) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:nextcloud`` |
-| [nodejs/19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/nodejs/19) | ✅ | ✅ | ``ghcr.io/ashu11-a/yolks:nodejs_9`` |
-| [Owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/owncloud) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:owncloud`` |
-| [PRoot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/proot) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:proot`` |
-| [Paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/paneldactyl) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:paneldactyl`` |
-| [Stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/stress) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:stress`` |
-| [Handbrake](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/software/handbrake) | ✅ | ✅ | ``ghcr.io/ashu11-a/software:handbrake`` |
+## Yolks
+| Service | AMD64 | ARM64 | Build Success | Build Time | Docker
+|--|--|--|--|--|--|
+| [nodejs_20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/20) | ✅ | ✅ | ✅ | 0 mins and 54 seconds | ghcr.io/ashu11-a/yolks:nodejs_20
 
-
-## 🎮 | Games
-| Game | AMD64 | ARM64 | Docker |
-|--|--|--|--|
-| [SA-MP](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Games/SA-MP) | ✅ | ✅ | AMD64: ``ghcr.io/ashu11-a/games:samp-amd64`` ARM64: ``ghcr.io/ashu11-a/games:samp-arm64`` |
-
+Last update: 8/8/2024, 9:46:17 PM
 <!--end-docker-->
 
 ✅ • Funcionando.    
