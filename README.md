@@ -38,6 +38,8 @@ Gostou? Então de uma 🌟 ao repositório!
 
 </div>
 
+<!--start-docker-->
+
 ## 🖥 | Software
 | Service | AMD64 | ARM64 | Docker |
 |--|--|--|--|
@@ -61,6 +63,7 @@ Gostou? Então de uma 🌟 ao repositório!
 |--|--|--|--|
 | [SA-MP](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/Games/SA-MP) | ✅ | ✅ | AMD64: ``ghcr.io/ashu11-a/games:samp-amd64`` ARM64: ``ghcr.io/ashu11-a/games:samp-arm64`` |
 
+<!--end-docker-->
 
 ✅ • Funcionando.    
 ❔ • Ainda não testado, mas deve funcionar.  
