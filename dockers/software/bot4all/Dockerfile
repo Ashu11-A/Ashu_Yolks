@@ -9,7 +9,7 @@ RUN dpkg --configure -a \
 
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 
-# Set debconf to run non-interactively
+# Set debconf to run non-interactively.
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Install base dependencies
