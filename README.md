@@ -64,7 +64,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [ffmpeg](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ffmpeg) | ✅ | ✅ | ✅ | 3 mins and 23 seconds | ghcr.io/ashu11-a/software:ffmpeg
 | [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | ✅ | 8 mins and 8 seconds | ghcr.io/ashu11-a/software:emby
 | [ctrlpanel](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ctrlpanel) | ✅ | ✅ | ✅ | 1 min and 36 seconds | ghcr.io/ashu11-a/software:ctrlpanel
-| [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ❌ | 0 mins and 5 seconds | ghcr.io/ashu11-a/software:bot4all
+| [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ✅ | 9 mins and 25 seconds | ghcr.io/ashu11-a/software:bot4all
 ## Installers
 | Service | AMD64 | ARM64 | Build Success | Build Time | Docker
 |--|--|--|--|--|--|
@@ -88,7 +88,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | ✅ | 6 mins and 43 seconds | ghcr.io/ashu11-a/distro:debian
 | [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | ✅ | 1 min and 9 seconds | ghcr.io/ashu11-a/distro:alpine
 
-Last update: 8/8/2024, 11:24:01 PM
+Last update: 8/10/2024, 6:09:19 AM
 <!--end-docker-->
 
 ✅ • Funcionando.    

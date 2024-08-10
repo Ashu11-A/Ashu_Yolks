@@ -20,7 +20,7 @@
     "| [ffmpeg](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ffmpeg) | ✅ | ✅ | ✅ | 3 mins and 23 seconds | ghcr.io/ashu11-a/software:ffmpeg",
     "| [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | ✅ | 8 mins and 8 seconds | ghcr.io/ashu11-a/software:emby",
     "| [ctrlpanel](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ctrlpanel) | ✅ | ✅ | ✅ | 1 min and 36 seconds | ghcr.io/ashu11-a/software:ctrlpanel",
-    "| [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ❌ | 0 mins and 5 seconds | ghcr.io/ashu11-a/software:bot4all"
+    "| [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ✅ | 9 mins and 25 seconds | ghcr.io/ashu11-a/software:bot4all"
   ],
   "installers": [
     "| [ubuntu](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/ubuntu) | ✅ | ✅ | ✅ | 3 mins and 34 seconds | ghcr.io/ashu11-a/installers:ubuntu",
