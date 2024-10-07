@@ -1,4 +1,4 @@
-FROM node:20-alpine AS node
+FROM node:16-alpine AS node
 FROM alpine:3.19
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
@@ -20,22 +20,7 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     unzip \
     git \
     bash \
-    ca-certificates \
-    openssl \
-    ncurses \
-    coreutils \
-    python3 \
-    make \
-    gcc \
-    g++ \
-    libgcc \
-    linux-headers \
-    grep \
-    util-linux \
-    binutils \
-    findutils
-
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+    ca-certificates
 
 
 RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
