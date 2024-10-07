@@ -1,16 +1,11 @@
-FROM node:20-alpine AS node
-FROM alpine:3.19
+FROM debian:buster-slim
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
-ENV PHP_VERSION="82"
+ENV PHP_VERSION="8.2"
 
-COPY --from=node /usr/lib /usr/lib
-COPY --from=node /usr/local/share /usr/local/share
-COPY --from=node /usr/local/lib /usr/local/lib
-COPY --from=node /usr/local/include /usr/local/include
-COPY --from=node /usr/local/bin /usr/local/bin
-
-RUN apk add --no-cache --virtual=build-dependencies --upgrade \
+RUN apt update \
+    && apt upgrade -y \
+    && apt-get install -y --no-install-recommends -y \
     ca-certificates \
     wget \
     jq \
@@ -20,10 +15,15 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     unzip \
     git \
     bash \
-    ca-certificates
+    ca-certificates \
+    fakeroot
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
-    apk add --no-cache --update \
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends -y \
     php${PHP_VERSION} \
     php${PHP_VERSION}-bcmath \
     php${PHP_VERSION}-cli \
@@ -50,8 +50,6 @@ RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
-# Esse codigo o Drylian me passou
-RUN apk add --no-cache fakeroot
 RUN echo "UTC" > /etc/timezone
 
 COPY ./crontab_test.sh /
