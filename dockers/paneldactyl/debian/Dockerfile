@@ -1,7 +1,10 @@
-FROM debian:buster-slim
+
+FROM php:8.2-fpm
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV PHP_VERSION="8.2"
+
+ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN apt update \
     && apt upgrade -y \
@@ -16,36 +19,36 @@ RUN apt update \
     git \
     bash \
     ca-certificates \
-    fakeroot
+    fakeroot \
+    libsodium-dev \
+    # Zip
+    libzip-dev \
+    zip \
+    libpng-dev \
+    libicu-dev
+
+RUN docker-php-ext-install \
+    zip \
+    intl \
+    sodium \
+    pdo_mysql \
+    pdo \
+    mysqli \
+    gd \
+    bcmath
+    # xml \
+    # tokenizer \
+    # simplexml \
+    # session \
+    # posix \
+    # phar \
+    # mbstring \
+    # fileinfo \
+    # curl \
+    # dom \
+    # common \
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-
-RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
-    apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends -y \
-    php${PHP_VERSION} \
-    php${PHP_VERSION}-bcmath \
-    php${PHP_VERSION}-cli \
-    php${PHP_VERSION}-common \
-    php${PHP_VERSION}-dom \
-    php${PHP_VERSION}-curl \
-    php${PHP_VERSION}-intl \
-    php${PHP_VERSION}-fileinfo \
-    php${PHP_VERSION}-fpm \
-    php${PHP_VERSION}-gd \
-    php${PHP_VERSION}-mbstring \
-    php${PHP_VERSION}-mysqli \
-    php${PHP_VERSION}-pdo \
-    php${PHP_VERSION}-pdo_mysql \
-    php${PHP_VERSION}-phar \
-    php${PHP_VERSION}-posix \
-    php${PHP_VERSION}-session \
-    php${PHP_VERSION}-simplexml \
-    php${PHP_VERSION}-sodium \
-    php${PHP_VERSION}-tokenizer \
-    php${PHP_VERSION}-xml \
-    php${PHP_VERSION}-zip
 
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
