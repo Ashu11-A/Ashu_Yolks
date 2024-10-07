@@ -50,7 +50,7 @@ RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
-# Esse codigo o Drylian me passou
+# Esse codigo o Drylian me passou.
 RUN apk add --no-cache fakeroot
 RUN echo "UTC" > /etc/timezone
 
