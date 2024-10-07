@@ -57,7 +57,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [python](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/python) | ✅ | ✅ | ✅ | 0 mins and 37 seconds | ghcr.io/ashu11-a/software:python
 | [proot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/proot) | ✅ | ✅ | ✅ | 3 mins and 37 seconds | ghcr.io/ashu11-a/software:proot
 | [phpmyadmin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/phpmyadmin) | ✅ | ✅ | ✅ | 0 mins and 44 seconds | ghcr.io/ashu11-a/software:phpmyadmin
-| [paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/paneldactyl) | ✅ | ✅ | ✅ | 1 min and 9 seconds | ghcr.io/ashu11-a/software:paneldactyl
+| [paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/paneldactyl) | ✅ | ✅ | ✅ | 0 mins and 38 seconds | ghcr.io/ashu11-a/software:paneldactyl
 | [owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/owncloud) | ✅ | ✅ | ✅ | 1 min and 38 seconds | ghcr.io/ashu11-a/software:owncloud
 | [nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/nextcloud) | ✅ | ✅ | ✅ | 1 min and 26 seconds | ghcr.io/ashu11-a/software:nextcloud
 | [jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/jellyfin) | ✅ | ✅ | ✅ | 7 mins and 14 seconds | ghcr.io/ashu11-a/software:jellyfin
@@ -88,7 +88,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | ✅ | 7 mins and 58 seconds | ghcr.io/ashu11-a/distro:debian
 | [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | ✅ | 1 min and 17 seconds | ghcr.io/ashu11-a/distro:alpine
 
-Last update: 10/7/2024, 1:14:49 AM
+Last update: 10/7/2024, 10:25:29 PM
 <!--end-docker-->
 
 ✅ • Funcionando.    
