@@ -32,15 +32,19 @@ for (const path of formattedPaths) {
 
   if (await exist(join(path, 'Dockerfile'))) {
     if (changed.length > 0) console.log(`🔎 detected changes in docker: ${path}`)
-    const archs = JSON.parse(await readFile(`${path}/metadata.json`, { encoding: 'utf-8' }))
-    modifiedFolders.push(Object.assign({
-      changed: changed.length > 0,
-      path,
-      type: getType(path),
-      // if path: node/19 then: node_19
-      // or path: samp/amd64 then: samp_amd64
-      tag: basename(getTag(path)) === basename(path) ? basename(path) : `${basename(getTag(path))}_${basename(path)}`,
-    }, archs))
+    try {
+      const archs = JSON.parse(await readFile(`${path}/metadata.json`, { encoding: 'utf-8' }))
+      modifiedFolders.push(Object.assign({
+        changed: changed.length > 0,
+        path,
+        type: getType(path),
+        // if path: node/19 then: node_19
+        // or path: samp/amd64 then: samp_amd64
+        tag: basename(getTag(path)) === basename(path) ? basename(path) : `${basename(getTag(path))}_${basename(path)}`,
+      }, archs))
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
