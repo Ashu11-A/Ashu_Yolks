@@ -25,7 +25,8 @@ RUN apt update \
     libzip-dev \
     zip \
     libpng-dev \
-    libicu-dev
+    libicu-dev \
+    yarn
 
 RUN docker-php-ext-install \
     zip \

@@ -20,7 +20,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     unzip \
     git \
     bash \
-    ca-certificates
+    ca-certificates \
+    yarn
 
 RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
     apk add --no-cache --update \
