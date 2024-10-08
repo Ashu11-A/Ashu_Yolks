@@ -48,7 +48,7 @@ RUN docker-php-ext-install \
     # curl \
     # dom \
     # common \
-
+# build
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
