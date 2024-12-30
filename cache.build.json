@@ -1,48 +1,48 @@
 {
   "yolks": [
-    "| [nodejs_20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/20) | ✅ | ✅ | ✅ | 0 mins and 56 seconds | ghcr.io/ashu11-a/yolks:nodejs_20",
-    "| [nodejs_22](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/22) | ✅ | ✅ | ✅ | 0 mins and 47 seconds | ghcr.io/ashu11-a/yolks:nodejs_22",
-    "| [nodejs_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/21) | ✅ | ✅ | ✅ | 1 min and 11 seconds | ghcr.io/ashu11-a/yolks:nodejs_21",
-    "| [nodejs_19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/19) | ✅ | ✅ | ✅ | 1 min and 11 seconds | ghcr.io/ashu11-a/yolks:nodejs_19",
-    "| [nodejs_18](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/18) | ✅ | ✅ | ✅ | 1 min and 15 seconds | ghcr.io/ashu11-a/yolks:nodejs_18",
-    "| [dotnet_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/8) | ✅ | ✅ | ✅ | 4 mins and 20 seconds | ghcr.io/ashu11-a/yolks:dotnet_8",
+    "| [nodejs_20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/20) | ✅ | ✅ | ✅ | 1 min and 2 seconds | ghcr.io/ashu11-a/yolks:nodejs_20",
+    "| [nodejs_22](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/22) | ✅ | ✅ | ✅ | 0 mins and 46 seconds | ghcr.io/ashu11-a/yolks:nodejs_22",
+    "| [nodejs_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/21) | ✅ | ✅ | ✅ | 0 mins and 51 seconds | ghcr.io/ashu11-a/yolks:nodejs_21",
+    "| [nodejs_19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/19) | ✅ | ✅ | ✅ | 0 mins and 59 seconds | ghcr.io/ashu11-a/yolks:nodejs_19",
+    "| [nodejs_18](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/18) | ✅ | ✅ | ✅ | 0 mins and 45 seconds | ghcr.io/ashu11-a/yolks:nodejs_18",
+    "| [dotnet_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/8) | ✅ | ✅ | ✅ | 4 mins and 23 seconds | ghcr.io/ashu11-a/yolks:dotnet_8",
     "| [dotnet_6](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/6) | ✅ | ✅ | ✅ | 4 mins and 9 seconds | ghcr.io/ashu11-a/yolks:dotnet_6"
   ],
   "software": [
-    "| [stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/stress) | ✅ | ✅ | ✅ | 32 mins and 51 seconds | ghcr.io/ashu11-a/software:stress",
-    "| [python](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/python) | ✅ | ✅ | ✅ | 0 mins and 58 seconds | ghcr.io/ashu11-a/software:python",
-    "| [proot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/proot) | ✅ | ✅ | ✅ | 3 mins and 29 seconds | ghcr.io/ashu11-a/software:proot",
-    "| [phpmyadmin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/phpmyadmin) | ✅ | ✅ | ✅ | 1 min and 7 seconds | ghcr.io/ashu11-a/software:phpmyadmin",
+    "| [stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/stress) | ✅ | ✅ | ✅ | 33 mins and 20 seconds | ghcr.io/ashu11-a/software:stress",
+    "| [python](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/python) | ✅ | ✅ | ✅ | 1 min and 7 seconds | ghcr.io/ashu11-a/software:python",
+    "| [proot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/proot) | ✅ | ✅ | ✅ | 3 mins and 26 seconds | ghcr.io/ashu11-a/software:proot",
+    "| [phpmyadmin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/phpmyadmin) | ✅ | ✅ | ✅ | 0 mins and 49 seconds | ghcr.io/ashu11-a/software:phpmyadmin",
     "| [paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/paneldactyl) | ✅ | ✅ | ✅ | 0 mins and 38 seconds | ghcr.io/ashu11-a/software:paneldactyl",
-    "| [owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/owncloud) | ✅ | ✅ | ✅ | 2 mins and 18 seconds | ghcr.io/ashu11-a/software:owncloud",
-    "| [nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/nextcloud) | ✅ | ✅ | ✅ | 1 min and 24 seconds | ghcr.io/ashu11-a/software:nextcloud",
-    "| [jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/jellyfin) | ✅ | ✅ | ✅ | 7 mins and 35 seconds | ghcr.io/ashu11-a/software:jellyfin",
-    "| [ffmpeg](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ffmpeg) | ✅ | ✅ | ✅ | 3 mins and 38 seconds | ghcr.io/ashu11-a/software:ffmpeg",
-    "| [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | ✅ | 8 mins and 5 seconds | ghcr.io/ashu11-a/software:emby",
-    "| [ctrlpanel](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ctrlpanel) | ✅ | ✅ | ✅ | 1 min and 30 seconds | ghcr.io/ashu11-a/software:ctrlpanel",
-    "| [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ❌ | 1 min and 35 seconds | ghcr.io/ashu11-a/software:bot4all"
+    "| [owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/owncloud) | ✅ | ✅ | ✅ | 2 mins and 2 seconds | ghcr.io/ashu11-a/software:owncloud",
+    "| [nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/nextcloud) | ✅ | ✅ | ✅ | 1 min and 22 seconds | ghcr.io/ashu11-a/software:nextcloud",
+    "| [jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/jellyfin) | ✅ | ✅ | ✅ | 7 mins and 17 seconds | ghcr.io/ashu11-a/software:jellyfin",
+    "| [ffmpeg](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ffmpeg) | ✅ | ✅ | ✅ | 4 mins and 15 seconds | ghcr.io/ashu11-a/software:ffmpeg",
+    "| [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | ✅ | 8 mins and 45 seconds | ghcr.io/ashu11-a/software:emby",
+    "| [ctrlpanel](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ctrlpanel) | ✅ | ✅ | ✅ | 1 min and 6 seconds | ghcr.io/ashu11-a/software:ctrlpanel",
+    "| [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ❌ | 1 min and 42 seconds | ghcr.io/ashu11-a/software:bot4all"
   ],
   "installers": [
-    "| [ubuntu](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/ubuntu) | ✅ | ✅ | ✅ | 2 mins and 4 seconds | ghcr.io/ashu11-a/installers:ubuntu",
-    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/debian) | ✅ | ✅ | ✅ | 2 mins and 58 seconds | ghcr.io/ashu11-a/installers:debian",
-    "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/alpine) | ✅ | ✅ | ✅ | 0 mins and 32 seconds | ghcr.io/ashu11-a/installers:alpine"
+    "| [ubuntu](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/ubuntu) | ✅ | ✅ | ✅ | 2 mins and 6 seconds | ghcr.io/ashu11-a/installers:ubuntu",
+    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/debian) | ✅ | ✅ | ✅ | 2 mins and 43 seconds | ghcr.io/ashu11-a/installers:debian",
+    "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/alpine) | ✅ | ✅ | ✅ | 0 mins and 41 seconds | ghcr.io/ashu11-a/installers:alpine"
   ],
   "games": [
-    "| [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | ✅ | 0 mins and 58 seconds | ghcr.io/ashu11-a/games:terraria",
+    "| [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | ✅ | 1 min and 30 seconds | ghcr.io/ashu11-a/games:terraria",
     "| [samp_ARM64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/samp/ARM64) | ❌ | ✅ | ✅ | 23 mins and 38 seconds | ghcr.io/ashu11-a/games:samp_ARM64"
   ],
   "emulation": [
-    "| [proton](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/emulation/proton) | ✅ | ✅ | ✅ | 9 mins and 56 seconds | ghcr.io/ashu11-a/emulation:proton",
-    "| [box86](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/emulation/box86) | ❌ | ✅ | ✅ | 23 mins and 25 seconds | ghcr.io/ashu11-a/emulation:box86",
-    "| [box64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/emulation/box64) | ❌ | ✅ | ✅ | 47 mins and 40 seconds | ghcr.io/ashu11-a/emulation:box64"
+    "| [proton](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/emulation/proton) | ✅ | ✅ | ✅ | 9 mins and 7 seconds | ghcr.io/ashu11-a/emulation:proton",
+    "| [box86](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/emulation/box86) | ❌ | ✅ | ✅ | 23 mins and 14 seconds | ghcr.io/ashu11-a/emulation:box86",
+    "| [box64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/emulation/box64) | ❌ | ✅ | ✅ | 45 mins and 1 second | ghcr.io/ashu11-a/emulation:box64"
   ],
   "distro": [
-    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | ✅ | 6 mins and 41 seconds | ghcr.io/ashu11-a/distro:debian",
-    "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | ✅ | 1 min and 14 seconds | ghcr.io/ashu11-a/distro:alpine"
+    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | ✅ | 6 mins and 46 seconds | ghcr.io/ashu11-a/distro:debian",
+    "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | ✅ | 1 min and 19 seconds | ghcr.io/ashu11-a/distro:alpine"
   ],
   "paneldactyl": [
-    "| [alpine-20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-20) | ✅ | ✅ | ✅ | 1 min and 18 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-20",
+    "| [alpine-20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-20) | ✅ | ✅ | ✅ | 1 min and 5 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-20",
     "| [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | ✅ | 1 min and 1 second | ghcr.io/ashu11-a/paneldactyl:alpine-16",
-    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ✅ | 24 mins and 49 seconds | ghcr.io/ashu11-a/paneldactyl:debian"
+    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ✅ | 24 mins and 43 seconds | ghcr.io/ashu11-a/paneldactyl:debian"
   ]
 }
