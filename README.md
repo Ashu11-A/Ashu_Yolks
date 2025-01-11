@@ -64,7 +64,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [ffmpeg](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ffmpeg) | ✅ | ✅ | ✅ | 4 mins and 4 seconds | ghcr.io/ashu11-a/software:ffmpeg
 | [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | ✅ | 8 mins and 17 seconds | ghcr.io/ashu11-a/software:emby
 | [ctrlpanel](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ctrlpanel) | ✅ | ✅ | ✅ | 1 min and 32 seconds | ghcr.io/ashu11-a/software:ctrlpanel
-| [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ❌ | 1 min and 41 seconds | ghcr.io/ashu11-a/software:bot4all
+| [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ✅ | 6 mins and 24 seconds | ghcr.io/ashu11-a/software:bot4all
 ## Installers
 | Service | AMD64 | ARM64 | Build Success | Build Time | Docker
 |--|--|--|--|--|--|
@@ -94,7 +94,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | ✅ | 0 mins and 58 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-16
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ✅ | 24 mins and 38 seconds | ghcr.io/ashu11-a/paneldactyl:debian
 
-Last update: 1/6/2025, 1:16:10 AM
+Last update: 1/11/2025, 5:42:21 PM
 <!--end-docker-->
 
 ✅ • Funcionando.    
