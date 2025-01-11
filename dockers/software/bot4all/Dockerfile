@@ -1,4 +1,4 @@
-FROM        node:18-bullseye-slim
+FROM node:20
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
