@@ -28,7 +28,7 @@
     "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/alpine) | ✅ | ✅ | ✅ | 0 mins and 42 seconds | ghcr.io/ashu11-a/installers:alpine"
   ],
   "games": [
-    "| [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | ❌ | 0 mins and 30 seconds | ghcr.io/ashu11-a/games:terraria",
+    "| [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | ✅ | 1 min and 32 seconds | ghcr.io/ashu11-a/games:terraria",
     "| [samp_ARM64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/samp/ARM64) | ❌ | ✅ | ✅ | 27 mins and 40 seconds | ghcr.io/ashu11-a/games:samp_ARM64",
     "| [samp_AMD64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/samp/AMD64) | ✅ | ❌ | ✅ | 1 min and 8 seconds | ghcr.io/ashu11-a/games:samp_AMD64"
   ],

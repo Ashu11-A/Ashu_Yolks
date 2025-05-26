@@ -74,7 +74,7 @@ Gostou? Então de uma 🌟 ao repositório!
 ## Games
 | Service | AMD64 | ARM64 | Build Success | Build Time | Docker
 |--|--|--|--|--|--|
-| [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | ❌ | 0 mins and 30 seconds | ghcr.io/ashu11-a/games:terraria
+| [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | ✅ | 1 min and 32 seconds | ghcr.io/ashu11-a/games:terraria
 | [samp_ARM64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/samp/ARM64) | ❌ | ✅ | ✅ | 27 mins and 40 seconds | ghcr.io/ashu11-a/games:samp_ARM64
 | [samp_AMD64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/samp/AMD64) | ✅ | ❌ | ✅ | 1 min and 8 seconds | ghcr.io/ashu11-a/games:samp_AMD64
 ## Emulation
@@ -95,7 +95,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | ✅ | 1 min and 3 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-16
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ✅ | 28 mins and 36 seconds | ghcr.io/ashu11-a/paneldactyl:debian
 
-Last update: 5/26/2025, 1:21:32 AM
+Last update: 5/26/2025, 2:04:01 PM
 <!--end-docker-->
 
 ✅ • Funcionando.    
