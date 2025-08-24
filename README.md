@@ -44,7 +44,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | Service | AMD64 | ARM64 | Build Success | Build Time | Docker
 |--|--|--|--|--|--|
 | [nodejs_20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/20) | ✅ | ✅ | ✅ | 1 min and 12 seconds | ghcr.io/ashu11-a/yolks:nodejs_20
-| [nodejs_22](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/22) | ✅ | ✅ | ✅ | 1 min and 6 seconds | ghcr.io/ashu11-a/yolks:nodejs_22
+| [nodejs_22](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/22) | ✅ | ✅ | ✅ | 1 min and 32 seconds | ghcr.io/ashu11-a/yolks:nodejs_22
 | [nodejs_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/21) | ✅ | ✅ | ✅ | 1 min and 6 seconds | ghcr.io/ashu11-a/yolks:nodejs_21
 | [nodejs_19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/19) | ✅ | ✅ | ✅ | 1 min and 20 seconds | ghcr.io/ashu11-a/yolks:nodejs_19
 | [nodejs_18](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/18) | ✅ | ✅ | ✅ | 0 mins and 54 seconds | ghcr.io/ashu11-a/yolks:nodejs_18
@@ -95,7 +95,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | ✅ | 1 min and 25 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-16
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ❌ | 0 mins and 45 seconds | ghcr.io/ashu11-a/paneldactyl:debian
 
-Last update: 8/18/2025, 1:27:22 AM
+Last update: 8/24/2025, 1:33:30 PM
 <!--end-docker-->
 
 ✅ • Funcionando.    

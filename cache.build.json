@@ -1,7 +1,7 @@
 {
   "yolks": [
     "| [nodejs_20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/20) | ✅ | ✅ | ✅ | 1 min and 12 seconds | ghcr.io/ashu11-a/yolks:nodejs_20",
-    "| [nodejs_22](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/22) | ✅ | ✅ | ✅ | 1 min and 6 seconds | ghcr.io/ashu11-a/yolks:nodejs_22",
+    "| [nodejs_22](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/22) | ✅ | ✅ | ✅ | 1 min and 32 seconds | ghcr.io/ashu11-a/yolks:nodejs_22",
     "| [nodejs_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/21) | ✅ | ✅ | ✅ | 1 min and 6 seconds | ghcr.io/ashu11-a/yolks:nodejs_21",
     "| [nodejs_19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/19) | ✅ | ✅ | ✅ | 1 min and 20 seconds | ghcr.io/ashu11-a/yolks:nodejs_19",
     "| [nodejs_18](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/18) | ✅ | ✅ | ✅ | 0 mins and 54 seconds | ghcr.io/ashu11-a/yolks:nodejs_18",
