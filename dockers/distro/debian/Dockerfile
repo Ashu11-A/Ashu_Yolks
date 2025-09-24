@@ -1,13 +1,10 @@
-FROM         debian:bullseye-slim
+FROM         debian:12-slim
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
-
 ENV          DEBIAN_FRONTEND noninteractive
 
 RUN          useradd -m -d /home/container -s /bin/bash container
-
 RUN          ln -s /home/container/ /nonexistent
-
 ENV          USER=container HOME=/home/container
 
 ## Update base packages
