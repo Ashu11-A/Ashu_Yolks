@@ -38,7 +38,7 @@
     "| [box64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/emulation/box64) | ❌ | ✅ | ✅ | 55 mins and 44 seconds | ghcr.io/ashu11-a/emulation:box64"
   ],
   "distro": [
-    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | ✅ | 9 mins and 3 seconds | ghcr.io/ashu11-a/distro:debian",
+    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | ✅ | 8 mins and 52 seconds | ghcr.io/ashu11-a/distro:debian",
     "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | ✅ | 1 min and 25 seconds | ghcr.io/ashu11-a/distro:alpine"
   ],
   "paneldactyl": [
