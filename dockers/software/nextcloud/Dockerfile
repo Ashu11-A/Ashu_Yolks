@@ -51,7 +51,6 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
         php${PHP_VERSION}-gettext \
         php${PHP_VERSION}-gmp \
         php${PHP_VERSION}-iconv \
-        php${PHP_VERSION}-imagick \
         php${PHP_VERSION}-imap \
         php${PHP_VERSION}-intl \
         php${PHP_VERSION}-ldap \
