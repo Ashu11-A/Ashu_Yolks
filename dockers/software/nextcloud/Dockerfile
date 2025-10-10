@@ -28,16 +28,19 @@ RUN apk add --no-cache \
         gnu-libiconv \
         icu-dev \
         imagemagick \
+        librsvg \
         libgomp \
         libxml2 \
         libzip-dev \
         nginx \
+        redis \
+        memcached \
         samba-client \
         sudo \
         tar \
         unzip
 
-# Instala PHP e extensões necessárias/recomendadas pelo Nextcloud
+# Instala PHP e extensões
 RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
     apk add --no-cache \
         php${PHP_VERSION} \
@@ -71,10 +74,12 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
         php${PHP_VERSION}-phar \
         php${PHP_VERSION}-posix \
         php${PHP_VERSION}-redis \
+        php${PHP_VERSION}-pecl-memcached \
         php${PHP_VERSION}-session \
         php${PHP_VERSION}-simplexml \
         php${PHP_VERSION}-soap \
         php${PHP_VERSION}-sodium \
+        php${PHP_VERSION}-sysvsem \
         php${PHP_VERSION}-tokenizer \
         php${PHP_VERSION}-xml \
         php${PHP_VERSION}-xmlreader \
@@ -82,11 +87,12 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
         php${PHP_VERSION}-zip \
         php${PHP_VERSION}-zlib
 
-# Remove dependências de compilação para manter a imagem limpa
+# Remove dependências de compilação
 RUN apk del .build-deps
 
-# Configurações customizadas do PHP para uploads.
-COPY uploads.ini /etc/php${PHP_VERSION}/conf.d/99-uploads.ini
+# Configurações customizadas do PHP
+COPY uploads.ini /etc/php${PHP_VERSION}/conf.d/98-uploads.ini
+COPY opcache.ini /etc/php${PHP_VERSION}/conf.d/99-opcache.ini
 
 # Copia o Composer
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
