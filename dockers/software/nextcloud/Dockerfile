@@ -90,7 +90,7 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
 # Remove dependências de compilação.
 RUN apk del .build-deps
 
-# Configurações customizadas do PHP
+# Configurações customizadas do PHP.
 COPY uploads.ini /etc/php${PHP_VERSION}/conf.d/98-uploads.ini
 COPY opcache.ini /etc/php${PHP_VERSION}/conf.d/99-opcache.ini
 
