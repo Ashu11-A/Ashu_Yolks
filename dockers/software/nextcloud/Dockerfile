@@ -61,7 +61,6 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
         php${PHP_VERSION}-json \
         php${PHP_VERSION}-ldap \
         php${PHP_VERSION}-mbstring \
-        php${PHP_VERSION}-memcached \
         php${PHP_VERSION}-mysqli \
         php${PHP_VERSION}-opcache \
         php${PHP_VERSION}-openssl \
