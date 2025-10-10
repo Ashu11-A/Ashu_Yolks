@@ -75,17 +75,18 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
         php${PHP_VERSION}-zip \
         php${PHP_VERSION}-zlib
 
-RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm && \
-    apk del .build-deps
+RUN apk del .build-deps
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
+
+RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 
 USER container
-ENV  USER=container
-ENV  HOME=/home/container
+ENV  USER container
+ENV HOME /home/container
+
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 
 CMD ["/bin/ash", "/entrypoint.sh"]
