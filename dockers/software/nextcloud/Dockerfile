@@ -16,9 +16,9 @@ RUN apk add --no-cache --virtual .build-deps \
         make \
         re2c \
         samba-dev \
-        zlib-dev \
-    && \
-    apk add --no-cache \
+        zlib-dev
+
+RUN apk add --no-cache \
         ca-certificates \
         curl \
         ffmpeg \
@@ -70,6 +70,7 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
         php${PHP_VERSION}-soap \
         php${PHP_VERSION}-sodium \
         php${PHP_VERSION}-tokenizer \
+        php${PHP_VERSION}-xml \
         php${PHP_VERSION}-xmlreader \
         php${PHP_VERSION}-xmlwriter \
         php${PHP_VERSION}-zip \
