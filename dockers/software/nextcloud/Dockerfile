@@ -85,6 +85,9 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
 # Remove dependências de compilação para manter a imagem limpa
 RUN apk del .build-deps
 
+# Configurações customizadas do PHP para uploads
+COPY uploads.ini /etc/php${PHP_VERSION}/conf.d/99-uploads.ini
+
 # Copia o Composer
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
