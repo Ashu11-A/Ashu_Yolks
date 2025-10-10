@@ -5,6 +5,7 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 ENV PHP_VERSION="83"
 
+# Instala dependências de compilação
 RUN apk add --no-cache --virtual .build-deps \
         autoconf \
         automake \
@@ -18,6 +19,7 @@ RUN apk add --no-cache --virtual .build-deps \
         samba-dev \
         zlib-dev
 
+# Instala pacotes principais
 RUN apk add --no-cache \
         ca-certificates \
         curl \
@@ -35,11 +37,13 @@ RUN apk add --no-cache \
         tar \
         unzip
 
+# Instala PHP e extensões necessárias/recomendadas pelo Nextcloud
 RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
     apk add --no-cache \
         php${PHP_VERSION} \
         php${PHP_VERSION}-apcu \
         php${PHP_VERSION}-bcmath \
+        php${PHP_VERSION}-bz2 \
         php${PHP_VERSION}-ctype \
         php${PHP_VERSION}-curl \
         php${PHP_VERSION}-dom \
@@ -51,10 +55,13 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
         php${PHP_VERSION}-gettext \
         php${PHP_VERSION}-gmp \
         php${PHP_VERSION}-iconv \
+        php${PHP_VERSION}-pecl-imagick \
         php${PHP_VERSION}-imap \
         php${PHP_VERSION}-intl \
+        php${PHP_VERSION}-json \
         php${PHP_VERSION}-ldap \
         php${PHP_VERSION}-mbstring \
+        php${PHP_VERSION}-memcached \
         php${PHP_VERSION}-mysqli \
         php${PHP_VERSION}-opcache \
         php${PHP_VERSION}-openssl \
@@ -76,10 +83,13 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
         php${PHP_VERSION}-zip \
         php${PHP_VERSION}-zlib
 
+# Remove dependências de compilação para manter a imagem limpa
 RUN apk del .build-deps
 
+# Copia o Composer
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
+# Cria um link simbólico para o php-fpm
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 
 USER container
