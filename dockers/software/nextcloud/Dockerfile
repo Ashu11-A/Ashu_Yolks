@@ -87,7 +87,7 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
         php${PHP_VERSION}-zip \
         php${PHP_VERSION}-zlib
 
-# Remove dependências de compilação
+# Remove dependências de compilação.
 RUN apk del .build-deps
 
 # Configurações customizadas do PHP
