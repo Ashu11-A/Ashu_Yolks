@@ -59,7 +59,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [phpmyadmin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/phpmyadmin) | ✅ | ✅ | ✅ | 1 min and 19 seconds | ghcr.io/ashu11-a/software:phpmyadmin
 | [paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/paneldactyl) | ✅ | ✅ | ✅ | 0 mins and 38 seconds | ghcr.io/ashu11-a/software:paneldactyl
 | [owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/owncloud) | ✅ | ✅ | ✅ | 1 min and 39 seconds | ghcr.io/ashu11-a/software:owncloud
-| [nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/nextcloud) | ✅ | ✅ | ✅ | 1 min and 52 seconds | ghcr.io/ashu11-a/software:nextcloud
+| [nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/nextcloud) | ✅ | ✅ | ✅ | 0 mins and 47 seconds | ghcr.io/ashu11-a/software:nextcloud
 | [jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/jellyfin) | ✅ | ✅ | ✅ | 11 mins and 16 seconds | ghcr.io/ashu11-a/software:jellyfin
 | [ffmpeg](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ffmpeg) | ✅ | ✅ | ✅ | 5 mins and 7 seconds | ghcr.io/ashu11-a/software:ffmpeg
 | [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | ✅ | 12 mins and 26 seconds | ghcr.io/ashu11-a/software:emby
@@ -95,7 +95,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | ✅ | 1 min and 46 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-16
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ❌ | 0 mins and 31 seconds | ghcr.io/ashu11-a/paneldactyl:debian
 
-Last update: 10/11/2025, 1:34:37 AM
+Last update: 10/11/2025, 1:57:52 AM
 <!--end-docker-->
 
 ✅ • Funcionando.    
