@@ -88,6 +88,11 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
         php${PHP_VERSION}-zip \
         php${PHP_VERSION}-zlib
 
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.20/community" >> /etc/apk/repositories && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+    apk update && \
+    apk add --no-cache figlet lolcat
+
 # Remove dependências de compilação
 RUN apk del .build-deps
 
