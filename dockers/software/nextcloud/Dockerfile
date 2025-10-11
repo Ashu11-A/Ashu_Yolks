@@ -38,7 +38,8 @@ RUN apk add --no-cache \
         samba-client \
         sudo \
         tar \
-        unzip
+        unzip \
+        supervisor
 
 # Instala PHP e extensões
 RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
