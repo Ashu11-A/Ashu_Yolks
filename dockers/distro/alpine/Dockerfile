@@ -1,36 +1,25 @@
-FROM alpine:latest
+FROM alpine:3.20
 
-RUN apk update
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
-RUN apk add --no-cache --upgrade \
-    gcc g++ libgcc libc-dev gdb libc6-compat git wget curl tar zip unzip binutils xz lzo cabextract iproute2 net-tools netcat-openbsd busybox-extras libatomic sdl2 \
-    fontconfig icu-libs icu-dev libunwind openssl-dev sqlite sqlite-dev mariadb-dev duktape libzip tzdata ffmpeg \
-    gnutls jsoncpp leveldb lua-dev luajit-dev sqlite-libs fluidsynth bzip2 zlib-dev libevent-dev
+RUN apk update && \
+  apk install --no-cache \
+  ca-certificates \
+  curl \
+  git \
+  tar \
+  unzip
 
-## configure locale
-RUN echo "America/Sao_Paulo" >  /etc/timezone
-
-ENV TZ America/Sao_Paulo
-ENV LANG pt_BR.UTF-8
-ENV LANGUAGE pt_BR.UTF-8
-ENV LC_ALL pt_BR.UTF-8
-
-# Esse codigo o Drylian me passou
-# Instala o bash
 RUN apk add --no-cache --upgrade bash
-
-# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
- 
-## Test stuff
-# RUN ln -sf /.local/share/Terraria /home/container
+
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.20/community" >> /etc/apk/repositories && \
+  echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+  apk update && \
+  apk add --no-cache figlet lolcat
 
 USER container
-ENV  USER container
-ENV HOME /home/container
-
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
-
 CMD ["/bin/bash", "/entrypoint.sh"]
