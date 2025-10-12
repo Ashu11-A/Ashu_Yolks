@@ -23,9 +23,9 @@
     "| [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ✅ | 6 mins and 43 seconds | ghcr.io/ashu11-a/software:bot4all"
   ],
   "installers": [
-    "| [ubuntu](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/ubuntu) | ✅ | ✅ | ✅ | 2 mins and 48 seconds | ghcr.io/ashu11-a/installers:ubuntu",
+    "| [ubuntu](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/ubuntu) | ✅ | ✅ | ✅ | 3 mins and 1 second | ghcr.io/ashu11-a/installers:ubuntu",
     "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/debian) | ✅ | ✅ | ✅ | 4 mins and 54 seconds | ghcr.io/ashu11-a/installers:debian",
-    "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/alpine) | ✅ | ✅ | ✅ | 0 mins and 53 seconds | ghcr.io/ashu11-a/installers:alpine"
+    "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/alpine) | ✅ | ✅ | ✅ | 0 mins and 52 seconds | ghcr.io/ashu11-a/installers:alpine"
   ],
   "games": [
     "| [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | ✅ | 1 min and 59 seconds | ghcr.io/ashu11-a/games:terraria",

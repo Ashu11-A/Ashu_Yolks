@@ -68,9 +68,9 @@ Gostou? Então de uma 🌟 ao repositório!
 ## Installers
 | Service | AMD64 | ARM64 | Build Success | Build Time | Docker
 |--|--|--|--|--|--|
-| [ubuntu](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/ubuntu) | ✅ | ✅ | ✅ | 2 mins and 48 seconds | ghcr.io/ashu11-a/installers:ubuntu
+| [ubuntu](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/ubuntu) | ✅ | ✅ | ✅ | 3 mins and 1 second | ghcr.io/ashu11-a/installers:ubuntu
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/debian) | ✅ | ✅ | ✅ | 4 mins and 54 seconds | ghcr.io/ashu11-a/installers:debian
-| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/alpine) | ✅ | ✅ | ✅ | 0 mins and 53 seconds | ghcr.io/ashu11-a/installers:alpine
+| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/alpine) | ✅ | ✅ | ✅ | 0 mins and 52 seconds | ghcr.io/ashu11-a/installers:alpine
 ## Games
 | Service | AMD64 | ARM64 | Build Success | Build Time | Docker
 |--|--|--|--|--|--|
@@ -95,7 +95,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | ✅ | 1 min and 46 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-16
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ❌ | 0 mins and 31 seconds | ghcr.io/ashu11-a/paneldactyl:debian
 
-Last update: 10/11/2025, 1:57:52 AM
+Last update: 10/12/2025, 11:00:52 PM
 <!--end-docker-->
 
 ✅ • Funcionando.    
