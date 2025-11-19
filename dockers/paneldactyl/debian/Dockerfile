@@ -1,4 +1,3 @@
-
 FROM php:8.2-fpm
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
@@ -25,8 +24,7 @@ RUN apt update \
     libzip-dev \
     zip \
     libpng-dev \
-    libicu-dev \
-    yarn
+    libicu-dev
 
 RUN docker-php-ext-install \
     zip \
@@ -50,6 +48,8 @@ RUN docker-php-ext-install \
     # common \
 # build
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+RUN npm install --global yarn
 
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
