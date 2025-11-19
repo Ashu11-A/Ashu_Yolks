@@ -87,7 +87,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | Service | AMD64 | ARM64 | Build Success | Build Time | Docker
 |--|--|--|--|--|--|
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | ✅ | 8 mins and 43 seconds | ghcr.io/ashu11-a/distro:debian
-| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | ❌ | 0 mins and 18 seconds | ghcr.io/ashu11-a/distro:alpine
+| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | ✅ | 0 mins and 43 seconds | ghcr.io/ashu11-a/distro:alpine
 ## Paneldactyl
 | Service | AMD64 | ARM64 | Build Success | Build Time | Docker
 |--|--|--|--|--|--|
@@ -95,7 +95,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | ✅ | 1 min and 35 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-16
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ❌ | 0 mins and 45 seconds | ghcr.io/ashu11-a/paneldactyl:debian
 
-Last update: 11/17/2025, 12:54:24 AM
+Last update: 11/19/2025, 11:18:05 AM
 <!--end-docker-->
 
 ✅ • Funcionando.    

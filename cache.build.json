@@ -39,7 +39,7 @@
   ],
   "distro": [
     "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | ✅ | 8 mins and 43 seconds | ghcr.io/ashu11-a/distro:debian",
-    "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | ❌ | 0 mins and 18 seconds | ghcr.io/ashu11-a/distro:alpine"
+    "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | ✅ | 0 mins and 43 seconds | ghcr.io/ashu11-a/distro:alpine"
   ],
   "paneldactyl": [
     "| [alpine-20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-20) | ✅ | ✅ | ✅ | 1 min and 42 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-20",
