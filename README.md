@@ -93,9 +93,9 @@ Gostou? Então de uma 🌟 ao repositório!
 |--|--|--|--|--|--|
 | [alpine-20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-20) | ✅ | ✅ | ✅ | 1 min and 42 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-20
 | [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | ✅ | 1 min and 35 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-16
-| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ✅ | 32 mins and 29 seconds | ghcr.io/ashu11-a/paneldactyl:debian
+| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ✅ | 31 mins and 14 seconds | ghcr.io/ashu11-a/paneldactyl:debian
 
-Last update: 11/19/2025, 12:04:46 PM
+Last update: 11/19/2025, 1:05:16 PM
 <!--end-docker-->
 
 ✅ • Funcionando.    
