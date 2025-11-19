@@ -3,7 +3,7 @@ FROM alpine:3.20
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 RUN apk update && \
-  apk install --no-cache \
+  apk add --no-cache \
   ca-certificates \
   curl \
   git \
