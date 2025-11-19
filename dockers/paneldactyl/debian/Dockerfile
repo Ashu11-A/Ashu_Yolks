@@ -47,9 +47,7 @@ RUN docker-php-ext-install \
     # dom \
     # common \
 # build
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-
-RUN npm install --global yarn
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
