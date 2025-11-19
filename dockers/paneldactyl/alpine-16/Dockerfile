@@ -1,8 +1,10 @@
 FROM node:16-alpine AS node
-FROM alpine:3.19
+FROM alpine:3.20
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV PHP_VERSION="82"
+ENV USER=container
+ENV HOME=/home/container
 
 COPY --from=node /usr/lib /usr/lib
 COPY --from=node /usr/local/share /usr/local/share
@@ -22,7 +24,11 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     bash \
     ca-certificates \
     yarn
-# build
+
+RUN apk add --no-cache \
+    --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community \
+    --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    figlet lolcat
 
 RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
     apk add --no-cache --update \
@@ -52,19 +58,17 @@ RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
-# Esse codigo o Drylian me passou
 RUN apk add --no-cache fakeroot
 RUN echo "UTC" > /etc/timezone
 
-COPY ./crontab_test.sh /
-RUN chmod 777 /crontab_test.sh
+COPY ./crontab_test.sh /crontab_test.sh
+RUN chmod +x /crontab_test.sh
 
-USER container
-ENV  USER container
-ENV HOME /home/container
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 WORKDIR /home/container
-
+USER container
 COPY ./entrypoint.sh /entrypoint.sh
 
 CMD [ "bash", "/entrypoint.sh" ]
