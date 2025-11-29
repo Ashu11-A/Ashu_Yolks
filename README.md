@@ -60,7 +60,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/paneldactyl) | ✅ | ✅ | ✅ | 0 mins and 38 seconds | ghcr.io/ashu11-a/software:paneldactyl
 | [owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/owncloud) | ✅ | ✅ | ✅ | 1 min and 39 seconds | ghcr.io/ashu11-a/software:owncloud
 | [nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/nextcloud) | ✅ | ✅ | ✅ | 1 min and 45 seconds | ghcr.io/ashu11-a/software:nextcloud
-| [jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/jellyfin) | ✅ | ✅ | ✅ | 0 mins and 23 seconds | ghcr.io/ashu11-a/software:jellyfin
+| [jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/jellyfin) | ✅ | ✅ | ✅ | 5 mins and 5 seconds | ghcr.io/ashu11-a/software:jellyfin
 | [ffmpeg](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ffmpeg) | ✅ | ✅ | ✅ | 5 mins and 17 seconds | ghcr.io/ashu11-a/software:ffmpeg
 | [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | ✅ | 11 mins and 37 seconds | ghcr.io/ashu11-a/software:emby
 | [ctrlpanel](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ctrlpanel) | ✅ | ✅ | ✅ | 1 min and 12 seconds | ghcr.io/ashu11-a/software:ctrlpanel
@@ -94,8 +94,13 @@ Gostou? Então de uma 🌟 ao repositório!
 | [alpine-20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-20) | ✅ | ✅ | ✅ | 1 min and 30 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-20
 | [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | ✅ | 1 min and 35 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-16
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ✅ | 0 mins and 39 seconds | ghcr.io/ashu11-a/paneldactyl:debian
+## Jellyfin
+| Service | AMD64 | ARM64 | Build Success | Build Time | Docker
+|--|--|--|--|--|--|
+| [jellyfin_9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/9) | ✅ | ✅ | ✅ | 5 mins and 4 seconds | ghcr.io/ashu11-a/jellyfin:jellyfin_9
+| [jellyfin_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/8) | ✅ | ✅ | ✅ | 6 mins and 14 seconds | ghcr.io/ashu11-a/jellyfin:jellyfin_8
 
-Last update: 11/29/2025, 5:33:13 PM
+Last update: 11/29/2025, 6:11:01 PM
 <!--end-docker-->
 
 ✅ • Funcionando.    
