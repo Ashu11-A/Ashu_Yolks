@@ -45,6 +45,6 @@ COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 WORKDIR /home/container
-ENV USER=container HOME=/home/container
+ENV USER=container HOME=/home/container 
 
 CMD [ "/bin/bash", "/entrypoint.sh" ]
