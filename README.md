@@ -97,10 +97,10 @@ Gostou? Então de uma 🌟 ao repositório!
 ## Jellyfin
 | Service | AMD64 | ARM64 | Build Success | Build Time | Docker
 |--|--|--|--|--|--|
-| [jellyfin_9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/9) | ✅ | ✅ | ✅ | 5 mins and 4 seconds | ghcr.io/ashu11-a/jellyfin:jellyfin_9
-| [jellyfin_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/8) | ✅ | ✅ | ✅ | 6 mins and 14 seconds | ghcr.io/ashu11-a/jellyfin:jellyfin_8
+| [9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/9) | ✅ | ✅ | ✅ | 5 mins and 52 seconds | ghcr.io/ashu11-a/jellyfin:9
+| [8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/8) | ✅ | ✅ | ✅ | 0 mins and 27 seconds | ghcr.io/ashu11-a/jellyfin:8
 
-Last update: 11/29/2025, 6:11:01 PM
+Last update: 11/29/2025, 6:55:33 PM
 <!--end-docker-->
 
 ✅ • Funcionando.    
