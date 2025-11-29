@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   nginx \
   xz-utils \
   tar \
-  # for jellyfin-ffmpeg
+  # for jellyfin-ffmpeg 
   ocl-icd-libopencl1 \ 
   && rm -rf /var/lib/apt/lists/*
 
