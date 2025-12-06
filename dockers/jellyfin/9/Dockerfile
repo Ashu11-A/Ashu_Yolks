@@ -35,7 +35,7 @@ RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && \
   apt-get install -y /tmp/jellyfin-ffmpeg.deb && \
   rm /tmp/jellyfin-ffmpeg.deb
 
-COPY ../entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 WORKDIR /home/container
