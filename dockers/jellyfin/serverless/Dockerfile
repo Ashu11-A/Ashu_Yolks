@@ -15,7 +15,11 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
   curl \
   icu-libs \
   tzdata \
-  jellyfin-web
+  git \
+  nginx \
+  jellyfin \
+  jellyfin-web \
+  jellyfin-ffmpeg
 
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
