@@ -99,8 +99,9 @@ Gostou? Então de uma 🌟 ao repositório!
 |--|--|--|--|--|--|
 | [9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/9) | ✅ | ✅ | ✅ | 0 mins and 21 seconds | ghcr.io/ashu11-a/jellyfin:9
 | [8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/8) | ✅ | ✅ | ✅ | 5 mins and 38 seconds | ghcr.io/ashu11-a/jellyfin:8
+| [serverless](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/serverless) | ✅ | ✅ | ✅ | 1 min and 20 seconds | ghcr.io/ashu11-a/jellyfin:serverless
 
-Last update: 12/6/2025, 4:31:48 AM
+Last update: 12/6/2025, 5:42:36 AM
 <!--end-docker-->
 
 ✅ • Funcionando.    
