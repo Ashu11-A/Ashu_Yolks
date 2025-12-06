@@ -53,7 +53,7 @@ Gostou? Então de uma 🌟 ao repositório!
 ## Software
 | Service | AMD64 | ARM64 | Build Success | Build Time | Docker
 |--|--|--|--|--|--|
-| [stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/stress) | ✅ | ✅ | ✅ | 43 mins and 32 seconds | ghcr.io/ashu11-a/software:stress
+| [stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/stress) | ✅ | ✅ | ✅ | 22 mins and 14 seconds | ghcr.io/ashu11-a/software:stress
 | [python](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/python) | ✅ | ✅ | ✅ | 1 min and 2 seconds | ghcr.io/ashu11-a/software:python
 | [proot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/proot) | ✅ | ✅ | ✅ | 4 mins and 42 seconds | ghcr.io/ashu11-a/software:proot
 | [phpmyadmin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/phpmyadmin) | ✅ | ✅ | ✅ | 0 mins and 54 seconds | ghcr.io/ashu11-a/software:phpmyadmin
@@ -101,7 +101,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/8) | ✅ | ✅ | ✅ | 5 mins and 38 seconds | ghcr.io/ashu11-a/jellyfin:8
 | [serverless](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/serverless) | ✅ | ✅ | ✅ | 1 min and 34 seconds | ghcr.io/ashu11-a/jellyfin:serverless
 
-Last update: 12/6/2025, 12:08:00 PM
+Last update: 12/6/2025, 7:50:30 PM
 <!--end-docker-->
 
 ✅ • Funcionando.    
