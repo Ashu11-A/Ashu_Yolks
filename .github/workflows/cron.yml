@@ -16,18 +16,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Use nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
-          check-latest: true
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install deps
-        run: npm ci
+        run: bun i
   
       - name: Run javascript code
-        run: npm run dev -- --detect-change
+        run: bun run dev -- --detect-change
 
       - uses: actions/github-script@v7
         name: List paths
@@ -92,18 +87,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Use nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
-          check-latest: true
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install deps
-        run: npm ci
+        run: bun i
 
       - name: Run javascript code
-        run: npm run dev -- --generate-readme ${{ github.run_id }}
+        run: bun run dev -- --generate-readme ${{ github.run_id }}
 
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v4

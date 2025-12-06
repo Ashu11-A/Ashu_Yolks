@@ -1,7 +1,7 @@
 FROM node:22-alpine as node
 from alpine:latest
 
-LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com" 
 
 RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     file \
