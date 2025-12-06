@@ -3,7 +3,7 @@ FROM alpine:latest
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 
-# Configurações de Globalização (Recomendado manter para suporte a caracteres/culturas)
+# Configurações de Globalização (Recomendado manter para suporte a caracteres/culturas) 
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
   LC_ALL=en_US.UTF-8 \
   LANG=en_US.UTF-8
