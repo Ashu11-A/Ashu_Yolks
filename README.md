@@ -60,7 +60,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [paneldactyl](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/paneldactyl) | ✅ | ✅ | ✅ | 0 mins and 38 seconds | ghcr.io/ashu11-a/software:paneldactyl
 | [owncloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/owncloud) | ✅ | ✅ | ✅ | 1 min and 39 seconds | ghcr.io/ashu11-a/software:owncloud
 | [nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/nextcloud) | ✅ | ✅ | ✅ | 1 min and 47 seconds | ghcr.io/ashu11-a/software:nextcloud
-| [jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/jellyfin) | ✅ | ✅ | ✅ | 0 mins and 25 seconds | ghcr.io/ashu11-a/software:jellyfin
+| [jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/jellyfin) | ✅ | ✅ | ✅ | 5 mins and 4 seconds | ghcr.io/ashu11-a/software:jellyfin
 | [ffmpeg](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ffmpeg) | ✅ | ✅ | ✅ | 5 mins and 10 seconds | ghcr.io/ashu11-a/software:ffmpeg
 | [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | ✅ | 12 mins and 36 seconds | ghcr.io/ashu11-a/software:emby
 | [ctrlpanel](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ctrlpanel) | ✅ | ✅ | ✅ | 1 min and 33 seconds | ghcr.io/ashu11-a/software:ctrlpanel
@@ -100,7 +100,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/9) | ✅ | ✅ | ✅ | 0 mins and 21 seconds | ghcr.io/ashu11-a/jellyfin:9
 | [8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/8) | ✅ | ✅ | ✅ | 5 mins and 38 seconds | ghcr.io/ashu11-a/jellyfin:8
 
-Last update: 12/1/2025, 1:37:00 AM
+Last update: 12/6/2025, 4:31:48 AM
 <!--end-docker-->
 
 ✅ • Funcionando.    
