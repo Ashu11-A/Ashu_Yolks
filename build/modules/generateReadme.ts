@@ -41,7 +41,6 @@ export async function generate (id: string) {
   console.log(`Generating Readme for Run ID: ${id}`)
   const readme = await readFile('README.md', { encoding: 'utf-8' })
   const cache = await exist('cache.build.json') ? JSON.parse(await readFile('cache.build.json', { encoding: 'utf-8' })) : {}
-  const regex = /[\s\S]*?/g;
 
   const request = await fetch(`https://api.github.com/repos/Ashu11-A/Ashu_Yolks/actions/runs/${id}/jobs`, { method: 'GET' })
   const builds = await request.json() as JobsData
@@ -95,6 +94,37 @@ export async function generate (id: string) {
     text += data.join('\n')
   }
 
-  const newReadme = readme.replace(regex, `\n${text}\n\nLast update: ${new Date().toLocaleString()}\n`)
+  // Gera o novo conteúdo
+  const newContent = `\n${text}\n\nLast update: ${new Date().toLocaleString()}\n`;
+  
+  // Usa os marcadores <!--start-docker--> e <!--end-docker--> para substituir o conteúdo gerado
+  const startMarker = '<!--start-docker-->';
+  const endMarker = '<!--end-docker-->';
+  
+  const startIndex = readme.indexOf(startMarker);
+  const endIndex = readme.indexOf(endMarker);
+  
+  let newReadme: string;
+  if (startIndex !== -1 && endIndex !== -1) {
+    // Substitui o conteúdo entre os marcadores
+    const beforeContent = readme.substring(0, startIndex + startMarker.length);
+    const afterContent = readme.substring(endIndex);
+    newReadme = `${beforeContent}${newContent}${afterContent}`;
+  } else if (startIndex !== -1) {
+    // Se só encontrar o marcador de início, substitui tudo a partir daí
+    const beforeContent = readme.substring(0, startIndex + startMarker.length);
+    newReadme = `${beforeContent}${newContent}\n${endMarker}`;
+  } else {
+    // Se não encontrar os marcadores, tenta encontrar a primeira seção ##
+    const firstSectionIndex = readme.indexOf('\n## ');
+    if (firstSectionIndex !== -1) {
+      const beforeContent = readme.substring(0, firstSectionIndex);
+      newReadme = `${beforeContent}\n${startMarker}${newContent}${endMarker}`;
+    } else {
+      // Último recurso: adiciona no final
+      newReadme = `${readme.trim()}\n${startMarker}${newContent}${endMarker}`;
+    }
+  }
+    
   await writeFile('README.md', newReadme)
 }
