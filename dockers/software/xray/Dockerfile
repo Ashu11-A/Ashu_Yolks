@@ -15,8 +15,12 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.20/community" >> /etc/apk/repo
   figlet \
   lolcat
 
-COPY --from=xray-source /usr/bin/xray /usr/local/bin/xray
-COPY --from=xray-source /usr/share/xray /usr/local/share/xray
+# Binário Executável
+COPY --from=xray-source /usr/local/bin/xray /usr/local/bin/xray
+# Arquivos de Recursos (GeoIP / GeoSite)
+COPY --from=xray-source /usr/local/share/xray /usr/local/share/xray
+# Arquivos de Configuração Padrão (00_log.json, 01_api.json, etc.)
+COPY --from=xray-source /usr/local/etc/xray /usr/local/etc/xray
 COPY ./entrypoint.sh /entrypoint.sh
 
 USER container
