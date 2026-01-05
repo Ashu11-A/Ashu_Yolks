@@ -1,0 +1,25 @@
+FROM azul/zulu-openjdk-alpine:21-jre-headless-latest
+
+LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+
+RUN apk add --no-cache --update \
+    curl \
+    wget \
+    bash \
+    ca-certificates \
+    git \
+    openssl \
+    tar \
+    tzdata
+
+# Configuração de variáveis de ambiente para Locale
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+
+USER container
+ENV USER=container HOME=/home/container
+WORKDIR /home/container
+
+COPY ./entrypoint.sh /entrypoint.sh
+CMD [ "/bin/bash", "/entrypoint.sh" ]
