@@ -41,8 +41,8 @@ Gostou? Então de uma 🌟 ao repositório!
 <!--start-docker-->
 
 ## Yolks
-| Service | AMD64 | ARM64 | Build Success | Build Time | Docker
-|--|--|--|--|--|--|
+| Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker
+|--|--|--|--|--|--|--|
 | [nodejs_20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/20) | ✅ | ✅ | ✅ | 1 min and 23 seconds | ghcr.io/ashu11-a/yolks:nodejs_20
 | [nodejs_22](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/22) | ✅ | ✅ | ✅ | 1 min and 32 seconds | ghcr.io/ashu11-a/yolks:nodejs_22
 | [nodejs_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/21) | ✅ | ✅ | ✅ | 1 min and 6 seconds | ghcr.io/ashu11-a/yolks:nodejs_21
@@ -51,8 +51,8 @@ Gostou? Então de uma 🌟 ao repositório!
 | [dotnet_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/8) | ✅ | ✅ | ✅ | 5 mins and 20 seconds | ghcr.io/ashu11-a/yolks:dotnet_8
 | [dotnet_6](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/6) | ✅ | ✅ | ✅ | 5 mins and 33 seconds | ghcr.io/ashu11-a/yolks:dotnet_6
 ## Software
-| Service | AMD64 | ARM64 | Build Success | Build Time | Docker
-|--|--|--|--|--|--|
+| Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker
+|--|--|--|--|--|--|--|
 | [stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/stress) | ✅ | ✅ | ✅ | 22 mins and 14 seconds | ghcr.io/ashu11-a/software:stress
 | [python](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/python) | ✅ | ✅ | ✅ | 1 min and 2 seconds | ghcr.io/ashu11-a/software:python
 | [proot](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/proot) | ✅ | ✅ | ✅ | 4 mins and 42 seconds | ghcr.io/ashu11-a/software:proot
@@ -65,43 +65,44 @@ Gostou? Então de uma 🌟 ao repositório!
 | [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | ✅ | 12 mins and 36 seconds | ghcr.io/ashu11-a/software:emby
 | [ctrlpanel](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ctrlpanel) | ✅ | ✅ | ✅ | 1 min and 33 seconds | ghcr.io/ashu11-a/software:ctrlpanel
 | [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ✅ | 7 mins and 4 seconds | ghcr.io/ashu11-a/software:bot4all
+| [xray](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/xray) | ✅ | ✅ | ✅ | 0 mins and 25 seconds | Unknown | ghcr.io/ashu11-a/software:xray
 ## Installers
-| Service | AMD64 | ARM64 | Build Success | Build Time | Docker
-|--|--|--|--|--|--|
+| Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker
+|--|--|--|--|--|--|--|
 | [ubuntu](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/ubuntu) | ✅ | ✅ | ✅ | 2 mins and 36 seconds | ghcr.io/ashu11-a/installers:ubuntu
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/debian) | ✅ | ✅ | ✅ | 4 mins and 12 seconds | ghcr.io/ashu11-a/installers:debian
 | [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/alpine) | ✅ | ✅ | ✅ | 0 mins and 49 seconds | ghcr.io/ashu11-a/installers:alpine
 ## Games
-| Service | AMD64 | ARM64 | Build Success | Build Time | Docker
-|--|--|--|--|--|--|
+| Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker
+|--|--|--|--|--|--|--|
 | [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | ✅ | 1 min and 29 seconds | ghcr.io/ashu11-a/games:terraria
 | [samp_ARM64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/samp/ARM64) | ❌ | ✅ | ✅ | 27 mins and 40 seconds | ghcr.io/ashu11-a/games:samp_ARM64
 | [samp_AMD64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/samp/AMD64) | ✅ | ❌ | ✅ | 1 min and 8 seconds | ghcr.io/ashu11-a/games:samp_AMD64
 ## Emulation
-| Service | AMD64 | ARM64 | Build Success | Build Time | Docker
-|--|--|--|--|--|--|
+| Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker
+|--|--|--|--|--|--|--|
 | [proton](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/emulation/proton) | ✅ | ✅ | ✅ | 11 mins and 20 seconds | ghcr.io/ashu11-a/emulation:proton
 | [box86](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/emulation/box86) | ❌ | ✅ | ✅ | 25 mins and 42 seconds | ghcr.io/ashu11-a/emulation:box86
 | [box64](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/emulation/box64) | ❌ | ✅ | ✅ | 55 mins and 44 seconds | ghcr.io/ashu11-a/emulation:box64
 ## Distro
-| Service | AMD64 | ARM64 | Build Success | Build Time | Docker
-|--|--|--|--|--|--|
+| Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker
+|--|--|--|--|--|--|--|
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | ✅ | 10 mins and 16 seconds | ghcr.io/ashu11-a/distro:debian
 | [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | ✅ | 0 mins and 42 seconds | ghcr.io/ashu11-a/distro:alpine
 ## Paneldactyl
-| Service | AMD64 | ARM64 | Build Success | Build Time | Docker
-|--|--|--|--|--|--|
+| Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker
+|--|--|--|--|--|--|--|
 | [alpine-20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-20) | ✅ | ✅ | ✅ | 1 min and 55 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-20
 | [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | ✅ | 1 min and 38 seconds | ghcr.io/ashu11-a/paneldactyl:alpine-16
 | [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | ✅ | 31 mins and 45 seconds | ghcr.io/ashu11-a/paneldactyl:debian
 ## Jellyfin
-| Service | AMD64 | ARM64 | Build Success | Build Time | Docker
-|--|--|--|--|--|--|
+| Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker
+|--|--|--|--|--|--|--|
 | [9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/9) | ✅ | ✅ | ✅ | 0 mins and 21 seconds | ghcr.io/ashu11-a/jellyfin:9
 | [8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/8) | ✅ | ✅ | ✅ | 5 mins and 38 seconds | ghcr.io/ashu11-a/jellyfin:8
 | [serverless](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/serverless) | ✅ | ✅ | ✅ | 1 min and 34 seconds | ghcr.io/ashu11-a/jellyfin:serverless
 
-Last update: 12/6/2025, 7:50:30 PM
+Last update: 1/5/2026, 12:01:46 AM
 <!--end-docker-->
 
 ✅ • Funcionando.    
