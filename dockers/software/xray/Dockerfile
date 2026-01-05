@@ -15,7 +15,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.20/community" >> /etc/apk/repo
   figlet \
   lolcat
 
-# Binário Executável
+# Binário Executável.
 COPY --from=xray-source /usr/local/bin/xray /usr/local/bin/xray
 # Arquivos de Recursos (GeoIP / GeoSite)
 COPY --from=xray-source /usr/local/share/xray /usr/local/share/xray
