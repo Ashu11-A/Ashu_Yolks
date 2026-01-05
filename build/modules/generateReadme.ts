@@ -22,17 +22,46 @@ async function getImageSize(image: string): Promise<string> {
       manifest = data;
     }
 
-    // Soma o tamanho das layers (se o manifesto tiver SchemaV2Manifest, senão tenta direto nas layers)
-    const layers = manifest?.SchemaV2Manifest?.layers || manifest?.layers || [];
-    const sizeBytes = layers.reduce((acc: number, layer: any) => acc + (layer.size || 0), 0);
+    if (!manifest) {
+      return 'Unknown';
+    }
 
-    if (sizeBytes === 0) return 'Unknown';
+    // Tenta diferentes caminhos na estrutura JSON (OCI primeiro, depois Docker v2, depois direto)
+    let layers: any[] = [];
+    
+    if (manifest.OCIManifest?.layers) {
+      layers = manifest.OCIManifest.layers;
+    } else if (manifest.SchemaV2Manifest?.layers) {
+      layers = manifest.SchemaV2Manifest.layers;
+    } else if (manifest.layers) {
+      layers = manifest.layers;
+    } else if (manifest.Manifest?.layers) {
+      layers = manifest.Manifest.layers;
+    }
+
+    if (layers.length === 0) {
+      return 'Unknown';
+    }
+
+    // Soma o tamanho das layers
+    const sizeBytes = layers.reduce((acc: number, layer: any) => {
+      const layerSize = layer.size || 0;
+      return acc + layerSize;
+    }, 0);
+
+    if (sizeBytes === 0) {
+      return 'Unknown';
+    }
 
     // Converte bytes para Mebibytes (MiB)
     const sizeMiB = sizeBytes / (1024 * 1024);
     return `${sizeMiB.toFixed(2)} MiB`;
-  } catch (error) {
+  } catch (error: any) {
     // Caso a imagem não exista ou dê erro no comando
+    // Log do erro apenas em modo debug (pode ser removido em produção)
+    if (process.env.DEBUG) {
+      console.error(`Erro ao obter tamanho de ${image}:`, error.message);
+    }
     return 'Pending';
   }
 }
