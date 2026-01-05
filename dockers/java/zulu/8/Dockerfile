@@ -12,7 +12,7 @@ RUN apk add --no-cache --update \
     tar \
     tzdata
 
-# Configuração de variáveis de ambiente para Locale
+# Configuração de variáveis de ambiente para Locale 
 ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8

@@ -47,7 +47,7 @@ for (const dirPath of formattedPaths) {
       // Lógica condicional:
       // Apenas aplica a regra "pai_filho" se estiver dentro da pasta 'yolks'
       // E se o getTag encontrou um pai diferente do atual (ex: versionamento)
-      const isYolks = dirPath.includes('yolks')
+      const isYolks = dirPath.includes('yolks') || dirPath.includes('java')
       const isNested = parentTag !== currentName
       const finalTag = (isYolks && isNested) ? `${parentTag}_${currentName}` : currentName
 
