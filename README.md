@@ -65,7 +65,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | ✅ | 11 mins and 48 seconds | 599.48 MiB | ghcr.io/ashu11-a/software:emby
 | [ctrlpanel](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ctrlpanel) | ✅ | ✅ | ✅ | 1 min and 20 seconds | 88.51 MiB | ghcr.io/ashu11-a/software:ctrlpanel
 | [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | ✅ | 6 mins and 45 seconds | 671.85 MiB | ghcr.io/ashu11-a/software:bot4all
-| [xray](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/xray) | ✅ | ✅ | ✅ | 0 mins and 49 seconds | 26.71 MiB | ghcr.io/ashu11-a/software:xray
+| [xray](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/xray) | ✅ | ✅ | ✅ | 0 mins and 46 seconds | 28.90 MiB | ghcr.io/ashu11-a/software:xray
 ## Installers
 | Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker
 |--|--|--|--|--|--|--|
@@ -102,7 +102,7 @@ Gostou? Então de uma 🌟 ao repositório!
 | [8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/8) | ✅ | ✅ | ✅ | 5 mins and 13 seconds | 247.14 MiB | ghcr.io/ashu11-a/jellyfin:8
 | [serverless](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/serverless) | ✅ | ✅ | ✅ | 1 min and 36 seconds | 179.29 MiB | ghcr.io/ashu11-a/jellyfin:serverless
 
-Last update: 1/5/2026, 1:14:11 AM
+Last update: 1/5/2026, 1:52:04 AM
 <!--end-docker-->
 
 ✅ • Funcionando.    
