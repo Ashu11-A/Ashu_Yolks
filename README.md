@@ -101,8 +101,16 @@ Gostou? Então de uma 🌟 ao repositório!
 | [8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/8) | ✅ | ✅ | ✅ | 5 mins and 12 seconds | 247.14 MiB | ghcr.io/ashu11-a/jellyfin:8
 | [8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/8) | ✅ | ✅ | ✅ | 5 mins and 13 seconds | 247.14 MiB | ghcr.io/ashu11-a/jellyfin:8
 | [serverless](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/serverless) | ✅ | ✅ | ✅ | 1 min and 36 seconds | 179.29 MiB | ghcr.io/ashu11-a/jellyfin:serverless
+## Java
+| Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker
+|--|--|--|--|--|--|--|
+| [zulu_25](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/java/zulu/25) | ✅ | ✅ | ✅ | 0 mins and 41 seconds | 92.80 MiB | ghcr.io/ashu11-a/java:zulu_25
+| [zulu_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/java/zulu/8) | ✅ | ✅ | ✅ | 0 mins and 42 seconds | 53.60 MiB | ghcr.io/ashu11-a/java:zulu_8
+| [zulu_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/java/zulu/21) | ✅ | ✅ | ✅ | 1 min and 2 seconds | 78.95 MiB | ghcr.io/ashu11-a/java:zulu_21
+| [zulu_11](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/java/zulu/11) | ✅ | ✅ | ✅ | 0 mins and 45 seconds | 69.84 MiB | ghcr.io/ashu11-a/java:zulu_11
+| [zulu_17](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/java/zulu/17) | ✅ | ✅ | ✅ | 0 mins and 38 seconds | 74.04 MiB | ghcr.io/ashu11-a/java:zulu_17
 
-Last update: 1/5/2026, 1:52:04 AM
+Last update: 1/5/2026, 8:33:24 AM
 <!--end-docker-->
 
 ✅ • Funcionando.    
