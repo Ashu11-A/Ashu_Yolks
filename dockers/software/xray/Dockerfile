@@ -7,7 +7,8 @@ RUN apk update
 RUN apk add --no-cache \
   bash \
   ca-certificates \
-  tzdata 
+  tzdata \
+  curl
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.20/community" >> /etc/apk/repositories \
   && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
