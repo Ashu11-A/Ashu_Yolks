@@ -25,7 +25,7 @@
     "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/alpine) | ✅ | ✅ | ✅ | 0 mins and 33 seconds | 12.39 MiB | ghcr.io/ashu11-a/installers:alpine"
   ],
   "games": [
-    "| [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | ✅ | 1 min and 46 seconds | 113.36 MiB | ghcr.io/ashu11-a/games:terraria",
+    "| [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | ✅ | 1 min and 46 seconds | 113.36 MiB | ghcr.io/ashu11-a/games:terraria"
   ],
   "distro": [
     "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | ✅ | 8 mins and 48 seconds | 437.35 MiB | ghcr.io/ashu11-a/distro:debian",
