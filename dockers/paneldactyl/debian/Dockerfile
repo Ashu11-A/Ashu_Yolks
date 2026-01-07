@@ -2,8 +2,6 @@ FROM php:8.2-fpm
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV PHP_VERSION="8.2"
-ENV USER=container
-ENV HOME=/home/container
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
@@ -58,10 +56,13 @@ RUN echo "UTC" > /etc/timezone
 COPY ./crontab_test.sh /crontab_test.sh
 RUN chmod +x /crontab_test.sh
 
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
-WORKDIR /home/container
 USER container
+ENV USER=container HOME=/home/container
+WORKDIR /home/container
 
-CMD [ "bash", "/entrypoint.sh" ]
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/bin/bash", "/entrypoint.sh"]

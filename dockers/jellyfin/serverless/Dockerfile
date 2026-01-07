@@ -1,12 +1,7 @@
 FROM alpine:latest
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
-ENV DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
-
-# Configurações de Globalização (Recomendado manter para suporte a caracteres/culturas) 
-ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
-  LC_ALL=en_US.UTF-8 \
-  LANG=en_US.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
   && apk update \
@@ -21,12 +16,13 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
   jellyfin-web \
   jellyfin-ffmpeg
 
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
+USER container
+ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
-RUN adduser -D -h /home/container container
-ENV USER=container HOME=/home/container
-
-CMD [ "/bin/bash", "/entrypoint.sh" ]
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/bin/bash", "/entrypoint.sh"]

@@ -2,10 +2,7 @@ ARG REPO=mcr.microsoft.com/dotnet/aspnet
 FROM $REPO:9.0-bookworm-slim
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
-ENV DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
 ENV DEBIAN_FRONTEND=noninteractive
-ENV LANG=C.UTF-8 \
-  LC_ALL=C.UTF-8
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   wget \
@@ -35,10 +32,13 @@ RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && \
   apt-get install -y /tmp/jellyfin-ffmpeg.deb && \
   rm /tmp/jellyfin-ffmpeg.deb
 
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
-WORKDIR /home/container
+USER container
 ENV USER=container HOME=/home/container
+WORKDIR /home/container
 
-CMD [ "/bin/bash", "/entrypoint.sh" ]
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/bin/bash", "/entrypoint.sh"]

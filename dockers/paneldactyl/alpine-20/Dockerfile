@@ -3,8 +3,6 @@ FROM alpine:3.20
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV PHP_VERSION="82"
-ENV USER=container
-ENV HOME=/home/container
 
 COPY --from=node /usr/lib /usr/lib
 COPY --from=node /usr/local/share /usr/local/share
@@ -65,10 +63,13 @@ RUN echo "UTC" > /etc/timezone
 COPY ./crontab_test.sh /crontab_test.sh
 RUN chmod +x /crontab_test.sh
 
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
-WORKDIR /home/container
 USER container
+ENV USER=container HOME=/home/container
+WORKDIR /home/container
 
-CMD [ "bash", "/entrypoint.sh" ]
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/bin/bash", "/entrypoint.sh"]

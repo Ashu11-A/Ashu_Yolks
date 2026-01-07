@@ -1,8 +1,16 @@
-FROM ubuntu:focal
+FROM ubuntu:latest
+
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+ENV DEBIAN_FRONTEND=noninteractive
 
-ENV         DEBIAN_FRONTEND=noninteractive
-
-RUN         apt update \
-  && apt upgrade -y \
-  && apt -y --no-install-recommends install ca-certificates curl git unzip zip tar jq
+RUN apt update
+RUN apt upgrade -y
+RUN apt -y --no-install-recommends install \
+  ca-certificates \
+  curl \
+  wget \
+  git \
+  unzip \
+  zip \
+  tar \
+  jq

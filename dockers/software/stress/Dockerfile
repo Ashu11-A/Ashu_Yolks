@@ -61,12 +61,13 @@ RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/a
 # Copia apenas os binários compilados do estágio de build
 COPY --from=build /stress-ng/install-root/ /
 
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
+USER container
+ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
-RUN adduser -D -h /home/container container
-ENV USER=container HOME=/home/container
-
-CMD [ "/bin/bash", "/entrypoint.sh" ]
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/bin/bash", "/entrypoint.sh"]

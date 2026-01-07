@@ -7,7 +7,7 @@ ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 ENV PHP_VERSION="82"
 
 RUN apk add --no-cache lolcat --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
-RUN apk add --no-cache --virtual=build-dependencies --upgrade \
+RUN apk add --no-cache --upgrade \
     ca-certificates \
     wget \
     jq \
@@ -16,7 +16,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     nginx \
     unzip \
     figlet \
-    git
+    git \
+    bash
 
     RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
     apk add --no-cache --update \
@@ -51,12 +52,6 @@ RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
-# Esse codigo o Drylian me passou
-# Instala o bash a
-RUN apk add --no-cache bash fakeroot
-# Remove o link simbólico para o shell padrão e cria um novo link simbólico para o bash
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
 COPY --from=node /usr/lib /usr/lib
 COPY --from=node /usr/local/share /usr/local/share
 COPY --from=node /usr/local/lib /usr/local/lib
@@ -68,17 +63,16 @@ RUN set -eux \
         --no-cache \
         yarn
 
-RUN echo "UTC" > /etc/timezone
-
 COPY ./crontab_test.sh /
 RUN chmod 777 /crontab_test.sh
 
-USER container
-ENV  USER container
-ENV HOME /home/container
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
+USER container
+ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
-
-CMD [ "bash", "/entrypoint.sh" ]
+CMD ["/bin/bash", "/entrypoint.sh"]

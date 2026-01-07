@@ -1,16 +1,7 @@
 FROM node:20
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
-
-RUN apt update \
-    && apt -y upgrade
-RUN dpkg --configure -a \
-    && apt-get install -f
-
-RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
-
-# Set debconf to run non-interactively.
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive
 
 # Install base dependencies
 RUN apt-get update && apt-get install -y -q --no-install-recommends \
@@ -65,9 +56,13 @@ RUN apt update && apt -y install \
 
 RUN         npm install npm@latest -g
 
-USER        container
-ENV         USER=container HOME=/home/container
-WORKDIR     /home/container
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
-COPY        ./entrypoint.sh /entrypoint.sh
-CMD         [ "/bin/bash", "/entrypoint.sh" ]
+USER container
+ENV USER=container HOME=/home/container
+WORKDIR /home/container
+
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/bin/bash", "/entrypoint.sh"]

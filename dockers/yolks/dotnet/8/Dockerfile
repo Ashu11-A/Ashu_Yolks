@@ -2,38 +2,31 @@ ARG REPO=mcr.microsoft.com/dotnet/aspnet
 FROM $REPO:8.0.3-bookworm-slim
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
+ENV DEBIAN_FRONTEND=noninteractive
 
-ENV         DOCKER_PLATFORMS=linux/amd64,linux/armhf,linux/arm64
-ENV         DEBIAN_FRONTEND noninteractive
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
+  curl \
+  bash \
+  git \
+  wget \
+  libsdl2-dev \
+  libc6 \
+  libgcc1 \
+  libgssapi-krb5-2 \
+  libstdc++6 \
+  zlib1g \
+  iproute2
 
-RUN         dpkg --configure -a
-RUN         apt clean
-RUN         apt --fix-missing update
-RUN         apt update -y
-RUN         apt -f install
+RUN rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        curl \
-        bash \
-        git \
-        wget \
-        libsdl2-dev \
-        libc6 \
-        libgcc1 \
-        libgssapi-krb5-2 \
-        libstdc++6 \
-        zlib1g \
-        iproute2 \
-    && rm -rf /var/lib/apt/lists/*
+ENV LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
-RUN         apt upgrade -y
-RUN         apt install -y wget
-RUN         wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh \
-            && bash dotnet-install.sh
+USER container
+ENV USER=container HOME=/home/container
+WORKDIR /home/container
 
-ENV         USER=container HOME=/home/container
-WORKDIR     /home/container
-
-COPY        ./entrypoint.sh /entrypoint.sh
-CMD         [ "/bin/bash", "/entrypoint.sh" ]
+COPY ./entrypoint.sh /entrypoint.sh
+CMD ["/bin/bash", "/entrypoint.sh"]
