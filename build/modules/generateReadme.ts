@@ -97,8 +97,22 @@ export async function generate (id: string) {
     // Busca o peso da imagem (apenas se o build foi sucesso)
     const size = sucess ? await getImageSize(imageName) : 'N/A';
 
-    // Adicionado coluna de Size (MiB)
-    const text = `| [${tag}](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/${path}) | ${arch.includes('amd') ? '✅' : '❌'} | ${arch.includes('arm') ? '✅' : '❌'} | ${sucess ? '✅' : '❌'} | ${time} | ${size} | ${imageName}`
+    // Determina o texto da arquitetura
+    const hasAmd64 = arch.includes('amd64');
+    const hasArm64 = arch.includes('arm64');
+    let archText: string;
+    if (hasAmd64 && hasArm64) {
+      archText = '✅';
+    } else if (hasAmd64) {
+      archText = 'Only AMD64';
+    } else if (hasArm64) {
+      archText = 'Only ARM64';
+    } else {
+      archText = 'Unknown';
+    }
+
+    // Formato atualizado com coluna Arch unificada
+    const text = `| [${tag}](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/${path}) | ${archText} | ${sucess ? '✅' : '❌'} | ${time} | ${size} | ${imageName}`
 
     if (!Array.isArray(dockers[type])) dockers[type] = []
     const index = dockers[type].findIndex((value) => value.includes(tag)) // Procura apenas pela tag para evitar duplicatas
@@ -114,17 +128,36 @@ export async function generate (id: string) {
 
   let text = ''
 
+  // Função auxiliar para obter título formatado com emoji
+  async function getSectionTitle(type: string): Promise<string> {
+    const metadataPath = `dockers/${type}/metadata.json`;
+    try {
+      if (await exist(metadataPath)) {
+        const metadata = JSON.parse(await readFile(metadataPath, { encoding: 'utf-8' }));
+        const emoji = metadata.emoji || '';
+        const title = metadata.title || type.charAt(0).toUpperCase() + type.slice(1);
+        return emoji ? `${emoji} ${title}` : title;
+      }
+    } catch (error) {
+      // Se houver erro, usa fallback
+    }
+    // Fallback: primeira letra maiúscula
+    return type.charAt(0).toUpperCase() + type.slice(1);
+  }
+
   for (const [key, data] of Object.entries(dockers)) {
     text += '\n'
-    text += `## ${key.charAt(0).toUpperCase() + key.slice(1)}\n`
-    // Cabeçalho atualizado com Size (MiB)
-    text += '| Service | AMD64 | ARM64 | Build Success | Build Time | Size (MiB) | Docker\n'
-    text += '|--|--|--|--|--|--|--|\n'
+    const sectionTitle = await getSectionTitle(key);
+    text += `## ${sectionTitle}\n`
+    // Cabeçalho atualizado com coluna Arch unificada
+    text += '| Service | Arch | Build Success | Build Time | Size (MiB) | Docker\n'
+    text += '|--|--|--|--|--|--|\n'
     text += data.join('\n')
   }
 
-  // Gera o novo conteúdo
-  const newContent = `\n${text}\n\nLast update: ${new Date().toLocaleString()}\n`;
+  // Gera o novo conteúdo com formato HTML para Last update
+  const lastUpdate = new Date().toLocaleString();
+  const newContent = `\n${text}\n\n<br>\n\n<div align="right">\n  <sub>Last update: ${lastUpdate}</sub>\n</div>\n`;
   
   // Usa os marcadores <!--start-docker--> e <!--end-docker--> para substituir o conteúdo gerado
   const startMarker = '<!--start-docker-->';
