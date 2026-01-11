@@ -1,0 +1,46 @@
+{
+  "software": [
+    "| [xray](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/xray) | ✅ | ✅ | 0 mins and 47 seconds | 28.90 MiB | ghcr.io/ashu11-a/software:xray",
+    "| [jellyfin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/jellyfin) | ✅ | ✅ | 5 mins and 52 seconds | 249.80 MiB | ghcr.io/ashu11-a/software:jellyfin",
+    "| [ffmpeg](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ffmpeg) | ✅ | ✅ | 5 mins and 14 seconds | 258.26 MiB | ghcr.io/ashu11-a/software:ffmpeg",
+    "| [phpmyadmin](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/phpmyadmin) | ✅ | ✅ | 0 mins and 55 seconds | 39.29 MiB | ghcr.io/ashu11-a/software:phpmyadmin",
+    "| [stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/stress) | ✅ | ✅ | 23 mins and 12 seconds | 11.81 MiB | ghcr.io/ashu11-a/software:stress",
+    "| [emby](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/emby) | ✅ | ✅ | 8 mins and 57 seconds | 371.32 MiB | ghcr.io/ashu11-a/software:emby",
+    "| [nextcloud](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/nextcloud) | ✅ | ✅ | 2 mins and 1 second | 200.28 MiB | ghcr.io/ashu11-a/software:nextcloud",
+    "| [ctrlpanel](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/ctrlpanel) | ✅ | ✅ | 2 mins and 1 second | 88.45 MiB | ghcr.io/ashu11-a/software:ctrlpanel",
+    "| [bot4all](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/bot4all) | ✅ | ✅ | 6 mins and 58 seconds | 689.65 MiB | ghcr.io/ashu11-a/software:bot4all"
+  ],
+  "jellyfin": [
+    "| [9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/9) | ✅ | ✅ | 5 mins and 5 seconds | 249.80 MiB | ghcr.io/ashu11-a/jellyfin:9",
+    "| [serverless](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/jellyfin/serverless) | ✅ | ✅ | 1 min and 14 seconds | 179.29 MiB | ghcr.io/ashu11-a/jellyfin:serverless"
+  ],
+  "paneldactyl": [
+    "| [alpine-16](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-16) | ✅ | ✅ | 1 min and 11 seconds | 80.56 MiB | ghcr.io/ashu11-a/paneldactyl:alpine-16",
+    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/debian) | ✅ | ✅ | 31 mins and 46 seconds | 264.04 MiB | ghcr.io/ashu11-a/paneldactyl:debian",
+    "| [alpine-20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/paneldactyl/alpine-20) | ✅ | ✅ | 1 min and 32 seconds | 88.98 MiB | ghcr.io/ashu11-a/paneldactyl:alpine-20"
+  ],
+  "installers": [
+    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/debian) | ✅ | ✅ | 2 mins and 55 seconds | 87.58 MiB | ghcr.io/ashu11-a/installers:debian",
+    "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/alpine) | ✅ | ✅ | 0 mins and 40 seconds | 12.37 MiB | ghcr.io/ashu11-a/installers:alpine",
+    "| [ubuntu](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/installers/ubuntu) | ✅ | ✅ | 2 mins and 45 seconds | 92.81 MiB | ghcr.io/ashu11-a/installers:ubuntu"
+  ],
+  "distro": [
+    "| [debian](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/debian) | ✅ | ✅ | 3 mins and 29 seconds | 88.07 MiB | ghcr.io/ashu11-a/distro:debian",
+    "| [alpine](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/distro/alpine) | ✅ | ✅ | 0 mins and 37 seconds | 17.77 MiB | ghcr.io/ashu11-a/distro:alpine"
+  ],
+  "games": [
+    "| [terraria](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/games/terraria) | ✅ | ✅ | 1 min and 29 seconds | 110.54 MiB | ghcr.io/ashu11-a/games:terraria"
+  ],
+  "yolks": [
+    "| [nodejs_22](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/22) | ✅ | ✅ | 1 min and 26 seconds | 64.12 MiB | ghcr.io/ashu11-a/yolks:nodejs_22",
+    "| [nodejs_20](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/20) | ✅ | ✅ | 0 mins and 48 seconds | 55.16 MiB | ghcr.io/ashu11-a/yolks:nodejs_20",
+    "| [nodejs_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/21) | ✅ | ✅ | 1 min and 21 seconds | 56.32 MiB | ghcr.io/ashu11-a/yolks:nodejs_21",
+    "| [dotnet_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/8) | ✅ | ✅ | 0 mins and 47 seconds | 57.59 MiB | ghcr.io/ashu11-a/yolks:dotnet_8",
+    "| [dotnet_6](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/6) | ✅ | ✅ | 0 mins and 21 seconds | 55.12 MiB | ghcr.io/ashu11-a/yolks:dotnet_6"
+  ],
+  "java": [
+    "| [zulu_11](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/java/zulu/11) | ✅ | ✅ | 0 mins and 30 seconds | 69.84 MiB | ghcr.io/ashu11-a/java:zulu_11",
+    "| [zulu_17](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/java/zulu/17) | ✅ | ✅ | 0 mins and 36 seconds | 74.04 MiB | ghcr.io/ashu11-a/java:zulu_17",
+    "| [zulu_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/java/zulu/21) | ✅ | ✅ | 1 min and 2 seconds | 78.95 MiB | ghcr.io/ashu11-a/java:zulu_21"
+  ]
+}
