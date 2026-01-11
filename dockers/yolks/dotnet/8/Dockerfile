@@ -14,6 +14,9 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN rm -rf /var/lib/apt/lists/*
 
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
+    && ln -s /proc/self/fd /dev/fd
+
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 
