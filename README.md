@@ -57,8 +57,8 @@
 | [nodejs_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/21) | ✅ | ✅ | ✅ | 0 mins and 57 seconds | 56.32 MiB | ghcr.io/ashu11-a/yolks:nodejs_21
 | [nodejs_19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/19) | ✅ | ✅ | ✅ | 1 min and 1 second | 60.60 MiB | ghcr.io/ashu11-a/yolks:nodejs_19
 | [nodejs_18](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/18) | ✅ | ✅ | ✅ | 0 mins and 58 seconds | 54.85 MiB | ghcr.io/ashu11-a/yolks:nodejs_18
-| [dotnet_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/8) | ✅ | ✅ | 1 min and 18 seconds | 130.71 MiB | ghcr.io/ashu11-a/yolks:dotnet_8
-| [dotnet_6](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/6) | ✅ | ✅ | 1 min and 19 seconds | 120.27 MiB | ghcr.io/ashu11-a/yolks:dotnet_6
+| [dotnet_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/8) | ✅ | ✅ | 1 min and 33 seconds | 130.71 MiB | ghcr.io/ashu11-a/yolks:dotnet_8
+| [dotnet_6](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/6) | ✅ | ✅ | 1 min and 28 seconds | 120.27 MiB | ghcr.io/ashu11-a/yolks:dotnet_6
 ## 🛠️ Software Tools
 | Service | Arch | Build Success | Build Time | Size (MiB) | Docker
 |--|--|--|--|--|--|
@@ -110,7 +110,7 @@
 <br>
 
 <div align="right">
-  <sub>Last update: 1/11/2026, 12:40:52 AM</sub>
+  <sub>Last update: 1/11/2026, 12:56:15 AM</sub>
 </div>
 <!--end-docker-->
 
