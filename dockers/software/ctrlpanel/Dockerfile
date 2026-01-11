@@ -66,9 +66,8 @@ RUN set -eux \
 COPY ./crontab_test.sh /
 RUN chmod 777 /crontab_test.sh
 
-ENV LC_ALL=en_US.UTF-8
-ENV LANG=en_US.UTF-8
-ENV LANGUAGE=en_US.UTF-8
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 USER container
 ENV USER=container HOME=/home/container

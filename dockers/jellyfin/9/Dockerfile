@@ -32,9 +32,8 @@ RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && \
   apt-get install -y /tmp/jellyfin-ffmpeg.deb && \
   rm /tmp/jellyfin-ffmpeg.deb
 
-ENV LC_ALL=en_US.UTF-8
-ENV LANG=en_US.UTF-8
-ENV LANGUAGE=en_US.UTF-8
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 USER container
 ENV USER=container HOME=/home/container

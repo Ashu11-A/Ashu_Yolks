@@ -41,9 +41,8 @@ COPY --from=node /usr/local/bin /usr/local/bin
 
 RUN go install github.com/alfg/ffmpegd@latest
 
-ENV LC_ALL=en_US.UTF-8
-ENV LANG=en_US.UTF-8
-ENV LANGUAGE=en_US.UTF-8
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 USER container
 ENV USER=container HOME=/home/container

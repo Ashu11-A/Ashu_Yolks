@@ -24,9 +24,8 @@ RUN apt install -y --no-install-recommends \
 RUN apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-ENV LC_ALL=en_US.UTF-8
-ENV LANG=en_US.UTF-8
-ENV LANGUAGE=en_US.UTF-8
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 USER container
 ENV USER=container HOME=/home/container
