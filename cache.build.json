@@ -5,10 +5,10 @@
     "| [nodejs_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/21) | ✅ | ✅ | ✅ | 0 mins and 57 seconds | 56.32 MiB | ghcr.io/ashu11-a/yolks:nodejs_21",
     "| [nodejs_19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/19) | ✅ | ✅ | ✅ | 1 min and 1 second | 60.60 MiB | ghcr.io/ashu11-a/yolks:nodejs_19",
     "| [nodejs_18](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/18) | ✅ | ✅ | ✅ | 0 mins and 58 seconds | 54.85 MiB | ghcr.io/ashu11-a/yolks:nodejs_18",
-    "| [dotnet_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/8) | ✅ | ✅ | 0 mins and 48 seconds | 56.96 MiB | ghcr.io/ashu11-a/yolks:dotnet_8",
-    "| [dotnet_6](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/6) | ✅ | ✅ | 0 mins and 45 seconds | 54.51 MiB | ghcr.io/ashu11-a/yolks:dotnet_6",
-    "| [dotnet_9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/9) | ✅ | ✅ | 0 mins and 46 seconds | 59.37 MiB | ghcr.io/ashu11-a/yolks:dotnet_9",
-    "| [dotnet_10](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/10) | ✅ | ✅ | 0 mins and 31 seconds | 62.72 MiB | ghcr.io/ashu11-a/yolks:dotnet_10"
+    "| [dotnet_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/8) | ✅ | ✅ | 0 mins and 34 seconds | 57.59 MiB | ghcr.io/ashu11-a/yolks:dotnet_8",
+    "| [dotnet_6](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/6) | ✅ | ✅ | 0 mins and 44 seconds | 55.12 MiB | ghcr.io/ashu11-a/yolks:dotnet_6",
+    "| [dotnet_9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/9) | ✅ | ✅ | 0 mins and 28 seconds | 60.00 MiB | ghcr.io/ashu11-a/yolks:dotnet_9",
+    "| [dotnet_10](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/10) | ✅ | ✅ | 0 mins and 36 seconds | 63.35 MiB | ghcr.io/ashu11-a/yolks:dotnet_10"
   ],
   "software": [
     "| [stress](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/software/stress) | ✅ | ✅ | ✅ | 22 mins and 21 seconds | 11.81 MiB | ghcr.io/ashu11-a/software:stress",
