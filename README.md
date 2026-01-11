@@ -57,10 +57,10 @@
 | [nodejs_21](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/21) | ✅ | ✅ | ✅ | 0 mins and 57 seconds | 56.32 MiB | ghcr.io/ashu11-a/yolks:nodejs_21
 | [nodejs_19](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/19) | ✅ | ✅ | ✅ | 1 min and 1 second | 60.60 MiB | ghcr.io/ashu11-a/yolks:nodejs_19
 | [nodejs_18](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/nodejs/18) | ✅ | ✅ | ✅ | 0 mins and 58 seconds | 54.85 MiB | ghcr.io/ashu11-a/yolks:nodejs_18
-| [dotnet_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/8) | ✅ | ✅ | 0 mins and 43 seconds | 54.00 MiB | ghcr.io/ashu11-a/yolks:dotnet_8
-| [dotnet_6](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/6) | ✅ | ✅ | 0 mins and 45 seconds | 51.69 MiB | ghcr.io/ashu11-a/yolks:dotnet_6
-| [dotnet_9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/9) | ✅ | ✅ | 0 mins and 37 seconds | 56.41 MiB | ghcr.io/ashu11-a/yolks:dotnet_9
-| [dotnet_10](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/10) | ✅ | ✅ | 0 mins and 45 seconds | 59.76 MiB | ghcr.io/ashu11-a/yolks:dotnet_10
+| [dotnet_8](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/8) | ✅ | ✅ | 0 mins and 48 seconds | 56.96 MiB | ghcr.io/ashu11-a/yolks:dotnet_8
+| [dotnet_6](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/6) | ✅ | ✅ | 0 mins and 45 seconds | 54.51 MiB | ghcr.io/ashu11-a/yolks:dotnet_6
+| [dotnet_9](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/9) | ✅ | ✅ | 0 mins and 46 seconds | 59.37 MiB | ghcr.io/ashu11-a/yolks:dotnet_9
+| [dotnet_10](https://github.com/Ashu11-A/Ashu_Yolks/tree/main/dockers/yolks/dotnet/10) | ✅ | ✅ | 0 mins and 31 seconds | 62.72 MiB | ghcr.io/ashu11-a/yolks:dotnet_10
 ## 🛠️ Software Tools
 | Service | Arch | Build Success | Build Time | Size (MiB) | Docker
 |--|--|--|--|--|--|
@@ -112,7 +112,7 @@
 <br>
 
 <div align="right">
-  <sub>Last update: 1/11/2026, 1:44:18 AM</sub>
+  <sub>Last update: 1/11/2026, 1:55:55 AM</sub>
 </div>
 <!--end-docker-->
 
