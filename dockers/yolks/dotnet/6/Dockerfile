@@ -1,6 +1,8 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
 FROM $REPO:6.0.36-bullseye-slim
 
+SHELL ["/bin/bash", "-c"]
+
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV DEBIAN_FRONTEND=noninteractive
 

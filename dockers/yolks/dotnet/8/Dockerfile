@@ -1,6 +1,8 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
 FROM $REPO:8.0.22-bookworm-slim
 
+SHELL ["/bin/bash", "-c"]
+
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -13,9 +15,6 @@ RUN apt-get install -y --no-install-recommends \
   wget
 
 RUN rm -rf /var/lib/apt/lists/*
-
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
-    && ln -s /proc/self/fd /dev/fd 
 
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
