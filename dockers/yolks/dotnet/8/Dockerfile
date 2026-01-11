@@ -9,14 +9,7 @@ RUN apt-get install -y --no-install-recommends \
   curl \
   bash \
   git \
-  wget \
-  libsdl2-dev \
-  libc6 \
-  libgcc1 \
-  libgssapi-krb5-2 \
-  libstdc++6 \
-  zlib1g \
-  iproute2
+  wget
 
 RUN rm -rf /var/lib/apt/lists/*
 

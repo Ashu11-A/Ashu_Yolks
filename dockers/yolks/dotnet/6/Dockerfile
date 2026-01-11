@@ -4,20 +4,14 @@ FROM $REPO:6.0.13-bullseye-slim
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
+RUN apt-get install -y --no-install-recommends \
+  ca-certificates \
   curl \
   bash \
   git \
-  wget \
-  libsdl2-dev \
-  libc6 \
-  libgcc1 \
-  libgssapi-krb5-2 \
-  libstdc++6 \
-  zlib1g \
-  iproute2 \
-  && rm -rf /var/lib/apt/lists/*
+  wget
+
+RUN rm -rf /var/lib/apt/lists/*
 
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
