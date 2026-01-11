@@ -1,10 +1,10 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:6.0.13-bullseye-slim
+FROM $REPO:6.0.36-bullseye-slim
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
   ca-certificates \
   curl \
