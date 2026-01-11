@@ -1,20 +1,14 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:8.0.22-bookworm-slim
-
-SHELL ["/bin/bash", "-c"]
+FROM $REPO:8.0.22-alpine3.23
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
-ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
+RUN apk add --no-cache \
   ca-certificates \
   curl \
   bash \
   git \
   wget
-
-RUN rm -rf /var/lib/apt/lists/*
 
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8

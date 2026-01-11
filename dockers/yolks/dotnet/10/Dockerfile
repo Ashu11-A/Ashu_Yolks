@@ -1,5 +1,5 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:6.0.36-alpine3.20
+FROM $REPO:10.0.1-alpine3.23
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
