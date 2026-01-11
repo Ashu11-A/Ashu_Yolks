@@ -4,14 +4,18 @@ FROM $REPO:9.0.11-alpine3.23
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 RUN apk add --no-cache \
-  ca-certificates \
-  curl \
   bash \
-  git \
+  curl \
   wget \
   jq \
+  git \
   unzip \
-  icu-libs
+  ca-certificates \
+  icu-libs \
+  gcompat \
+  libstdc++ \
+  zlib \
+  sdl2
 
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 ENV LANG=en_US.UTF-8
