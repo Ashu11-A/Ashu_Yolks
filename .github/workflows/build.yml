@@ -32,33 +32,36 @@ jobs:
         with:
           script: |
             const fs = require('fs/promises')
-
             const data = await fs.readFile('metadata.json', { encoding: 'utf-8' })
+            // Filtra apenas os modificados
             const paths = JSON.parse(data).filter((data) => data.changed ? data : null)
-
+            
             core.setOutput('has_changes', `${paths.length > 0}`)
             core.setOutput('paths', paths)
+
   build:
-    name: ${{ toJson(matrix.data) }}
-    runs-on: ubuntu-latest
+    # Nome dinâmico para facilitar visualização nos logs (ex: minecraft:latest (arm64))
+    name: ${{ matrix.data.type }}:${{ matrix.data.tag }} (${{ matrix.arch }})
     needs: prepare
     if: needs.prepare.outputs.has_changes == 'true'
+    # Define o runner nativo baseado na arquitetura da matriz [cite: 54]
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
     strategy:
+      fail-fast: false
       matrix:
+        # Cruza os dados dos caminhos com as arquiteturas desejadas
         data: ${{ fromJson(needs.prepare.outputs.paths) }}
+        arch: [amd64, arm64]
     steps:
       - name: Clone repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+      # QEMU removido pois estamos usando hardware nativo
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        with:
-          buildkitd-flags: --debug
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -67,22 +70,51 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and push (Native)
         uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.data.path }}
           file: ${{ matrix.data.path }}/Dockerfile
-          platforms: ${{ matrix.data.arch }}
+          # Define a plataforma explicitamente para a instância atual
+          platforms: linux/${{ matrix.arch }}
           push: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=build-${{ matrix.data.type }}-${{ matrix.arch }}
+          cache-to: type=gha,mode=max,scope=build-${{ matrix.data.type }}-${{ matrix.arch }}
+          # Adiciona sufixo na tag para permitir merge posterior (-amd64, -arm64)
           tags: |
-            ghcr.io/ashu11-a/${{ matrix.data.type }}:${{ matrix.data.tag }}
+            ghcr.io/ashu11-a/${{ matrix.data.type }}:${{ matrix.data.tag }}-${{ matrix.arch }}
+
+  merge:
+    name: Create Multi-arch Manifest
+    runs-on: ubuntu-latest
+    needs: [prepare, build]
+    if: needs.prepare.outputs.has_changes == 'true'
+    strategy:
+      matrix:
+        data: ${{ fromJson(needs.prepare.outputs.paths) }}
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Create and push manifest list
+        # Une as tags -amd64 e -arm64 em uma tag final única (sem sufixo)
+        run: |
+          IMAGE="ghcr.io/ashu11-a/${{ matrix.data.type }}:${{ matrix.data.tag }}"
+          docker buildx imagetools create -t $IMAGE \
+            ${IMAGE}-amd64 \
+            ${IMAGE}-arm64
 
   readme:
     name: Generate Readme.md
     runs-on: ubuntu-latest
-    needs: build
+    needs: merge # Agora espera o merge finalizar
     continue-on-error: true
     steps:
       - name: Clone repo
