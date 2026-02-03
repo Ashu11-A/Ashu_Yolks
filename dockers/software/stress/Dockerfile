@@ -1,6 +1,6 @@
 FROM alpine:latest AS build
 
-# Adiciona repositório testing para o pacote judy-dev
+# Adiciona repositório testing e dependências
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk add --no-cache \
   build-base \
@@ -20,13 +20,11 @@ RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/a
   xxhash-dev \
   libmd-dev \
   libseccomp-dev \
-  mesa-dev \
   mpfr-dev
 
 RUN git clone https://github.com/ColinIanKing/stress-ng
 
 # Compila o projeto
-# O comando make clean garante que não haja artefatos antigos
 RUN cd stress-ng && \
   make clean && \
   make -j$(nproc) && \
@@ -38,7 +36,7 @@ FROM alpine:latest
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
-# Instalação apenas das dependências de Runtime (Execução)
+# Instalação das dependências de Runtime
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk add --no-cache \
   bash \
@@ -56,9 +54,11 @@ RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/a
   zlib \
   libmd \
   libseccomp \
-  xxhash
+  xxhash-libs \
+  xz-libs \
+  kmod
 
-# Copia apenas os binários compilados do estágio de build
+# Copia os binários compilados
 COPY --from=build /stress-ng/install-root/ /
 
 ENV LANG=C.UTF-8
