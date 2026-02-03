@@ -1,6 +1,6 @@
 FROM alpine:latest AS build
 
-# Build dependencies.
+# --- Build Stage ---
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk add --no-cache \
   build-base \
@@ -16,15 +16,13 @@ RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/a
   lksctp-tools-dev \
   libatomic \
   zlib-dev \
-  kmod-dev \
-  xxhash-dev \
   libmd-dev \
   libseccomp-dev \
   mpfr-dev
 
 RUN git clone https://github.com/ColinIanKing/stress-ng
 
-# Compile
+# Compilação
 RUN cd stress-ng && \
   make clean && \
   make -j$(nproc) && \
@@ -36,7 +34,7 @@ FROM alpine:latest
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
-# Runtime dependencies
+# --- Runtime Stage ---
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk add --no-cache \
   bash \
@@ -54,11 +52,9 @@ RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/a
   zlib \
   libmd \
   libseccomp \
-  xxhash \
-  xz-libs \
-  kmod
+  xz-libs
 
-# Copy binaries
+# Copia os binários
 COPY --from=build /stress-ng/install-root/ /
 
 ENV LANG=C.UTF-8
