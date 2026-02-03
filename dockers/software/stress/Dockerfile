@@ -1,6 +1,6 @@
 FROM alpine:latest AS build
 
-# Build dependencies
+# Build dependencies.
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk add --no-cache \
   build-base \
