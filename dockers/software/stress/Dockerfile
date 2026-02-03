@@ -1,6 +1,6 @@
 FROM alpine:latest AS build
 
-# Adiciona repositório testing e dependências
+# Build dependencies
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk add --no-cache \
   build-base \
@@ -24,19 +24,19 @@ RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/a
 
 RUN git clone https://github.com/ColinIanKing/stress-ng
 
-# Compila o projeto
+# Compile
 RUN cd stress-ng && \
   make clean && \
   make -j$(nproc) && \
   mkdir -p install-root && \
   make DESTDIR=install-root/ install
 
-# --- Imagem Final ---
+# --- Final Image ---
 FROM alpine:latest
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
-# Instalação das dependências de Runtime
+# Runtime dependencies
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk add --no-cache \
   bash \
@@ -54,11 +54,11 @@ RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/a
   zlib \
   libmd \
   libseccomp \
-  xxhash-libs \
+  xxhash \
   xz-libs \
   kmod
 
-# Copia os binários compilados
+# Copy binaries
 COPY --from=build /stress-ng/install-root/ /
 
 ENV LANG=C.UTF-8
