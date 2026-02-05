@@ -5,7 +5,9 @@ RUN apk add --no-cache --upgrade \
   curl \
   coreutils \
   bash \
-  mono
+  mono \
+  # Install Server
+  jq unzip tar gzip
 
 RUN apk add --no-cache libfaketime --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
