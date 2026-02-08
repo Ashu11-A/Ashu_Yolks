@@ -16,11 +16,11 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
   jellyfin-web \
   jellyfin-ffmpeg
 
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    USER=container \
+    HOME=/home/container
 
-USER container
-ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh

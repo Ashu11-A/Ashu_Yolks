@@ -106,11 +106,11 @@ COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 # Cria um link simbólico para o php-fpm
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    USER=container \
+    HOME=/home/container
 
-USER container
-ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh

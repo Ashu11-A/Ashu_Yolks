@@ -32,11 +32,11 @@ RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && \
   apt-get install -y /tmp/jellyfin-ffmpeg.deb && \
   rm /tmp/jellyfin-ffmpeg.deb
 
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    USER=container \
+    HOME=/home/container
 
-USER container
-ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh

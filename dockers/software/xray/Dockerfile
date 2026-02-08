@@ -24,11 +24,11 @@ COPY --from=xray-source /usr/local/share/xray /usr/local/share/xray
 COPY --from=xray-source /usr/local/etc/xray /usr/local/etc/xray
 COPY ./entrypoint.sh /entrypoint.sh
 
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    USER=container \
+    HOME=/home/container
 
-USER container
-ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh

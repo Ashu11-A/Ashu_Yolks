@@ -18,11 +18,11 @@ RUN apk add --no-cache \
   sdl2
 
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
-ENV LANG=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
+ENV LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    USER=container \
+    HOME=/home/container
 
-USER container
-ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh

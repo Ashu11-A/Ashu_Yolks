@@ -39,11 +39,11 @@ RUN echo "**** Instalação dos PHP ****" && \
   php${PHP_VERSION}-session \
   php${PHP_VERSION}-xmlwriter
 
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    USER=container \
+    HOME=/home/container
 
-USER container
-ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 COPY ./entrypoint.sh /entrypoint.sh
