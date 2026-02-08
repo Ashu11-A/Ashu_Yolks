@@ -2,7 +2,7 @@ FROM oven/bun:1 AS bun-source
 FROM node:lts-bookworm
 
 COPY --from=bun-source /usr/local/bin/bun /usr/local/bin/bun
-RUN ln -s /usr/local/bin/bun /usr/local/bin/bunx 
+RUN ln -s /usr/local/bin/bun /usr/local/bin/bunx
 
 RUN apt update && \
   apt install -y git wget curl tar zip unzip
