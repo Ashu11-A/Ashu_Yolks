@@ -7,6 +7,7 @@ ENV PHP_VERSION="83"
 
 RUN apk add --no-cache \
   ca-certificates \
+  bash \
   curl \
   ffmpeg \
   git \
