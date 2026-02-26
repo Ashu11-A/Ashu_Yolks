@@ -73,10 +73,10 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
   php${PHP_VERSION}-zip \
   php${PHP_VERSION}-zlib
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.20/community" >> /etc/apk/repositories && \
-  echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-  apk update && \
-  apk add --no-cache figlet lolcat
+# Instala ferramentas visuais
+RUN apk add --no-cache figlet lolcat \
+  --repository="http://dl-cdn.alpinelinux.org/alpine/v3.20/community" \
+  --repository="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 COPY uploads.ini /etc/php${PHP_VERSION}/conf.d/99-uploads.ini
