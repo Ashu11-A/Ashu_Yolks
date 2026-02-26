@@ -5,21 +5,6 @@ LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
 ENV PHP_VERSION="83"
 
-# Instala dependências de compilação
-RUN apk add --no-cache --virtual .build-deps \
-  autoconf \
-  automake \
-  file \
-  g++ \
-  gcc \
-  gpg \
-  libtool \
-  make \
-  re2c \
-  samba-dev \
-  zlib-dev
-
-# Instala pacotes principais
 RUN apk add --no-cache \
   ca-certificates \
   curl \
@@ -93,17 +78,9 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.20/community" >> /etc/apk/repo
   apk update && \
   apk add --no-cache figlet lolcat
 
-# Remove dependências de compilação
-RUN apk del .build-deps
-
-# Configurações customizadas do PHP.
-COPY uploads.ini /etc/php${PHP_VERSION}/conf.d/98-uploads.ini
-COPY opcache.ini /etc/php${PHP_VERSION}/conf.d/99-opcache.ini
-
-# Copia o Composer
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
+COPY uploads.ini /etc/php${PHP_VERSION}/conf.d/99-uploads.ini
 
-# Cria um link simbólico para o php-fpm
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
 
 ENV LANG=C.UTF-8 \
