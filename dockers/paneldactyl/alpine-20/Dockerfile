@@ -55,6 +55,7 @@ RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
     php${PHP_VERSION}-zip
 
 RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
+RUN ln -s /usr/bin/php${PHP_VERSION} /usr/bin/php
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 # Esse codigo o Drylian me passou

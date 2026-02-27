@@ -36,19 +36,8 @@ RUN docker-php-ext-install \
     mysqli \
     gd \
     bcmath
-    # xml \
-    # tokenizer \
-    # simplexml \
-    # session \
-    # posix \
-    # phar \
-    # mbstring \
-    # fileinfo \
-    # curl \
-    # dom \
-    # common
 
-RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
+RUN ln -s /usr/local/sbin/php-fpm /usr/sbin/php-fpm
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 RUN echo "UTC" > /etc/timezone
