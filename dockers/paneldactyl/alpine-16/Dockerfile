@@ -21,7 +21,8 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade \
     git \
     bash \
     ca-certificates \
-    yarn
+    yarn \
+    mysql-client
 
 RUN apk add --no-cache \
     --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community \

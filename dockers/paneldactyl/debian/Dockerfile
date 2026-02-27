@@ -18,12 +18,12 @@ RUN apt-get install -y --no-install-recommends -y \
     git \
     bash \
     ca-certificates \
-    fakeroot \
     libsodium-dev \
     libzip-dev \
     zip \
     libpng-dev \
-    libicu-dev
+    libicu-dev \
+    mysql-client
 
 RUN apt-get install -y lolcat figlet
 
