@@ -24,7 +24,8 @@ RUN apt-get install -y --no-install-recommends -y \
     libicu-dev \
     default-mysql-client
 
-RUN apt-get install -y lolcat figlet
+RUN apt-get install -y lolcat figlet && \
+    ln -s /usr/games/lolcat /usr/bin/lolcat
 
 RUN docker-php-ext-install \
     zip \
