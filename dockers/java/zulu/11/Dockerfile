@@ -3,16 +3,17 @@ FROM azul/zulu-openjdk-alpine:11-jre-headless-latest
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 RUN apk add --no-cache --update \
-    curl \
-    wget \
     bash \
     ca-certificates \
+    curl \
+    eudev \
     git \
+    numactl \
     openssl \
     tar \
-    tzdata
+    tzdata \
+    wget
 
-# Configuração de variáveis de ambiente para Locale 
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     USER=container \
