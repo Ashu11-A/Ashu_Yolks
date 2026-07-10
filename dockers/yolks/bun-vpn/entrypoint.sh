@@ -6,8 +6,7 @@ cd /home/container || exit 1
 
 vpn_preflight() {
   # /dev/net/tun is required by OpenVPN and vopono. If the node didn't pass the device through, try to
-  # create it — this succeeds only when the container runs as root (this image is sudo-less); warn if we
-  # can't. mknod needs CAP_MKNOD, which root has by default.
+  # create it — this succeeds only when the entrypoint has root/CAP_MKNOD; warn if we can't.
   if [ ! -c /dev/net/tun ]; then
     mkdir -p /dev/net 2>/dev/null
     if mknod /dev/net/tun c 10 200 2>/dev/null; then
@@ -29,8 +28,8 @@ vpn_preflight() {
   # DNS readability: some hosts' Docker generates /etc/resolv.conf and /etc/hosts as 0640 root:root, so
   # a non-root process can't read them and EVERY lookup fails with "Could not resolve host" (raw TCP
   # egress is unaffected). When we're root, relax them to world-readable — they hold only nameservers/
-  # hostnames, no secrets. (No sudo: this only takes effect on a root run; standard Docker already makes
-  # them 0644, so a non-root run typically resolves fine anyway.)
+  # hostnames, no secrets. This only takes effect on a root run; standard Docker already makes them 0644,
+  # so a non-root run typically resolves fine anyway.
   for f in /etc/resolv.conf /etc/hosts; do
     if [ -e "$f" ] && [ ! -r "$f" ]; then chmod o+r "$f" 2>/dev/null || true; fi
   done
