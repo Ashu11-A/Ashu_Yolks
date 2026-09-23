@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   gnupg \
   software-properties-common \
   ca-certificates \
-  nginx \
   xz-utils \
   tar \
   # for jellyfin-ffmpeg 

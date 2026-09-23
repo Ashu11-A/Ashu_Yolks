@@ -32,7 +32,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   locales \
   iproute2 \
   ca-certificates \
-  nginx \
   xz-utils \
   tar \
   ocl-icd-libopencl1 \
