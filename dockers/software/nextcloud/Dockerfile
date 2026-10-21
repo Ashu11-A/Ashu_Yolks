@@ -27,7 +27,7 @@ RUN apk add --no-cache \
   unzip \
   supervisor
 
-# Instala PHP e extensões
+# Instala PHP e extensões.
 RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
   apk add --no-cache \
   php${PHP_VERSION} \
