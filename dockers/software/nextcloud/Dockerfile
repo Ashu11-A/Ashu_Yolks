@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.24
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
@@ -31,7 +31,7 @@ RUN apk add --no-cache \
 RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
   apk add --no-cache \
   php${PHP_VERSION} \
-  php${PHP_VERSION}-apcu \
+  php${PHP_VERSION}-pecl-apcu \
   php${PHP_VERSION}-bcmath \
   php${PHP_VERSION}-bz2 \
   php${PHP_VERSION}-ctype \
@@ -60,7 +60,7 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
   php${PHP_VERSION}-pdo_sqlite \
   php${PHP_VERSION}-phar \
   php${PHP_VERSION}-posix \
-  php${PHP_VERSION}-redis \
+  php${PHP_VERSION}-pecl-redis \
   php${PHP_VERSION}-pecl-memcached \
   php${PHP_VERSION}-session \
   php${PHP_VERSION}-simplexml \
@@ -76,13 +76,18 @@ RUN echo "**** Instalando pacotes do PHP ${PHP_VERSION} e extensões ****" && \
 
 # Instala ferramentas visuais
 RUN apk add --no-cache figlet lolcat \
-  --repository="http://dl-cdn.alpinelinux.org/alpine/v3.20/community" \
+  --repository="http://dl-cdn.alpinelinux.org/alpine/v3.24/community" \
   --repository="http://dl-cdn.alpinelinux.org/alpine/edge/testing"
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 COPY uploads.ini /etc/php${PHP_VERSION}/conf.d/99-uploads.ini
 
-RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
+RUN ln -sf /usr/bin/php${PHP_VERSION} /usr/bin/php \
+    && ln -sf /usr/bin/php${PHP_VERSION} /usr/local/bin/php \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/bin/php-fpm \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/local/bin/php-fpm \
+    && php -v && php-fpm -v
 
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \

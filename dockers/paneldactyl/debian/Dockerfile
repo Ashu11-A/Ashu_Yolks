@@ -37,7 +37,10 @@ RUN docker-php-ext-install \
     gd \
     bcmath
 
-RUN ln -s /usr/local/sbin/php-fpm /usr/sbin/php-fpm
+RUN ln -sf /usr/local/sbin/php-fpm /usr/sbin/php-fpm \
+    && ln -sf /usr/local/sbin/php-fpm /usr/bin/php-fpm \
+    && ln -sf /usr/local/sbin/php-fpm /usr/local/bin/php-fpm \
+    && php -v && php-fpm -v
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 RUN echo "UTC" > /etc/timezone

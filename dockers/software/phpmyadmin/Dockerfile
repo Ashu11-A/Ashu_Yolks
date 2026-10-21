@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.24
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
@@ -38,6 +38,14 @@ RUN echo "**** Instalação dos PHP ****" && \
   php${PHP_VERSION}-mbstring \
   php${PHP_VERSION}-session \
   php${PHP_VERSION}-xmlwriter
+
+# Aliases faceis: php e php-fpm (corrige "php: command not found" quando o binario e phpXX)
+RUN ln -sf /usr/bin/php${PHP_VERSION} /usr/bin/php \
+    && ln -sf /usr/bin/php${PHP_VERSION} /usr/local/bin/php \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/bin/php-fpm \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/local/bin/php-fpm \
+    && php -v && php-fpm -v
 
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \

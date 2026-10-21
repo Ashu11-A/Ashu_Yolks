@@ -1,10 +1,10 @@
 FROM node:20-alpine AS node
-FROM alpine:3.19
+FROM alpine:3.24
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com"
 
 ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so"
-ENV PHP_VERSION="82"
+ENV PHP_VERSION="83"
 
 RUN apk add --no-cache lolcat --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 RUN apk add --no-cache --upgrade \
@@ -48,7 +48,12 @@ RUN apk add --no-cache --upgrade \
     php${PHP_VERSION}-mysqlnd
     
 
-RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
+RUN ln -sf /usr/bin/php${PHP_VERSION} /usr/bin/php \
+    && ln -sf /usr/bin/php${PHP_VERSION} /usr/local/bin/php \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/bin/php-fpm \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/local/bin/php-fpm \
+    && php -v && php-fpm -v
 
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 

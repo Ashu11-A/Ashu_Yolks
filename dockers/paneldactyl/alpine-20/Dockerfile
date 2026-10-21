@@ -1,8 +1,8 @@
 FROM node:20-alpine AS node
-FROM alpine:3.20
+FROM alpine:3.24
 
 LABEL author="Ashu" maintainer="Matheusn.biolowons@gmail.com" 
-ENV PHP_VERSION="82"
+ENV PHP_VERSION="83"
 
 COPY --from=node /usr/lib /usr/lib
 COPY --from=node /usr/local/share /usr/local/share
@@ -58,8 +58,12 @@ RUN echo "**** Instalação dos php${PHP_VERSION} ****" && \
     php${PHP_VERSION}-xmlwriter \
     php${PHP_VERSION}-zip
 
-RUN ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm
-RUN ln -s /usr/bin/php${PHP_VERSION} /usr/bin/php
+RUN ln -sf /usr/bin/php${PHP_VERSION} /usr/bin/php \
+    && ln -sf /usr/bin/php${PHP_VERSION} /usr/local/bin/php \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/bin/php-fpm \
+    && ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/local/bin/php-fpm \
+    && php -v && php-fpm -v
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 # Esse codigo o Drylian me passou
